@@ -6,7 +6,6 @@ import merge from 'merge';
 
 defaults = {
     conf: {
-        allowUnpublished: false,
         verbosity: CM_VERBOSE_NONE
     }
 };

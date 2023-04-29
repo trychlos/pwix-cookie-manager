@@ -32,4 +32,4 @@ cookieManager.Categories = [
 STORED_PRESENTED = 'pwix:cookie-manager/presented';
 STORED_TAB = 'pwix:cookie-manager/active-tab';
 STORED_DIALOG_SIZE = 'pwix:cookie-manager/dialog-size'
-STORED_COOKIE_PREFIX = 'pwix:cookie-manager/published.cookies/enabled';
+STORED_COOKIE_PREFIX = 'pwix:cookie-manager/published.cookies/enabled/';

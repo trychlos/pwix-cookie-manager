@@ -7,10 +7,7 @@ import merge from 'merge';
 cookieManager = {
 
     // configuration
-    conf: {
-        allowUnpublished: false,
-        verbosity: CM_VERBOSE_NONE
-    },
+    conf: {},
 
     // should be *in same terms* called both by the client and the server
     configure: function( o ){

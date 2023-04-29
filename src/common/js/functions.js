@@ -54,18 +54,30 @@ cookieManager.dump = function(){
 };
 
 /**
+ * @summary Set the user authorization of the named cookie
+ * @locus Anywhere
+ * @param {String} name the name of the cookie
+ * @param {Boolean} allowed whether the cookie is allowed or not
+ */
+cookieManager.enable = function( name, allowed ){
+    if( Meteor.isClient ){
+        const _ckname = STORED_COOKIE_PREFIX + name;
+        localStorage.setItem( _ckname, allowed ? 'true' : 'false' );
+    }
+};
+
+/**
  * @summary Says if the named cookie is enabled by the user
  * @locus Anywhere
  * @param {String} name the name of the cookie
- * @returns {Boolean} whether the cookie has been authorized
- *  value of 'allowUnpublished' if the cookie has not been published
+ * @returns {Boolean} whether the cookie has been authorized, defaulting to true
  */
 cookieManager.isEnabled = function( name ){
-    let _enabled = cookieManager.conf.allowUnpublished;
+    let _enabled = true;
     if( Meteor.isClient ){
         const _ckname = STORED_COOKIE_PREFIX + name;
         const _stored = localStorage.getItem( _ckname );
-        _enabled = ( _stored === null ) ? cookieManager.conf.allowUnpublished : _stored;
+        _enabled = ( _stored === null ) ? true : ( _stored === 'true' );
     }
     return _enabled;
 };

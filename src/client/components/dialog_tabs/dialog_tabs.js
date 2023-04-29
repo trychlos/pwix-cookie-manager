@@ -26,55 +26,60 @@ Template.dialog_tabs.onCreated( function(){
         tabs: [
             {
                 name: 'privacy',
-                nav_id: Random.id(),
                 content: 'tabs.privacy.content',
                 content_id: Random.id(),
                 label: 'tabs.privacy.label',
+                nav_id: Random.id(),
                 title: 'tabs.privacy.title'
             },
             {
                 name: 'technicals',
                 cat: CM_CAT_TECHNICALS,
-                nav_id: Random.id(),
                 content: 'tabs.technicals.content',
                 content_id: Random.id(),
+                cordion_id: Random.id(),
                 label: 'tabs.technicals.label',
+                nav_id: Random.id(),
                 title: 'tabs.technicals.title'
             },
             {
                 name: 'functionals',
                 cat: CM_CAT_FUNCTIONALS,
-                nav_id: Random.id(),
                 content: 'tabs.functionals.content',
                 content_id: Random.id(),
+                cordion_id: Random.id(),
                 label: 'tabs.functionals.label',
+                nav_id: Random.id(),
                 title: 'tabs.functionals.title'
             },
             {
                 name: 'marketing',
                 cat: CM_CAT_MARKETING,
-                nav_id: Random.id(),
                 content: 'tabs.marketing.content',
                 content_id: Random.id(),
+                cordion_id: Random.id(),
                 label: 'tabs.marketing.label',
+                nav_id: Random.id(),
                 title: 'tabs.marketing.title'
             },
             {
                 name: 'statistics',
                 cat: CM_CAT_STATISTICS,
-                nav_id: Random.id(),
                 content: 'tabs.statistics.content',
                 content_id: Random.id(),
+                cordion_id: Random.id(),
                 label: 'tabs.statistics.label',
+                nav_id: Random.id(),
                 title: 'tabs.statistics.title'
             },
             {
                 name: 'third',
                 cat: CM_CAT_THIRD,
-                nav_id: Random.id(),
                 content: 'tabs.third.content',
                 content_id: Random.id(),
+                cordion_id: Random.id(),
                 label: 'tabs.third.label',
+                nav_id: Random.id(),
                 title: 'tabs.third.title'
             }
         ],
@@ -97,6 +102,26 @@ Template.dialog_tabs.onRendered( function(){
 });
 
 Template.dialog_tabs.helpers({
+
+    // try to build a collapse identifier
+    collapseId( it, c ){
+        let id = 'id-' + it.cordion_id + '-' + c.name;
+        return id.replace( /[/:]/g, '-' );
+    },
+
+    // whether we have some package in the list
+    haveList( it ){
+        let a = [];
+        if( it.cat ){
+            a = cookieManager.byCategory( it.cat );
+        }
+        return a.length > 0;
+    },
+
+    // string translation
+    i18n( arg ){
+        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+    },
 
     // whether the button is active ?
     itemActive( it ){
@@ -150,14 +175,22 @@ Template.dialog_tabs.helpers({
     // a toggle switch for this cookie
     parmsSwitch( c ){
         return {
+            name: c.name,
             title: c.name,
-            initialState: cookieManager.isEnabled( c.name )
+            state: cookieManager.isEnabled( c.name ),
+            enabled: c.disableable
         }
     },
 
     // tabs list
     tabsList(){
         return Template.instance().CK.tabs;
+    }
+});
+
+Template.dialog_tabs.events({
+    'ts-state .toggleSwitch'( event, instance, data ){
+        cookieManager.enable( data.name, data.state );
     }
 });
 

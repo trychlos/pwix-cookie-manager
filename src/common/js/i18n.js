@@ -9,7 +9,8 @@ cookieManager.i18n = {
             choose: 'Set my choices'
         },
         dialog: {
-            title: 'Cookies preferences'
+            title: 'Cookies Management',
+            none: 'No declared cookie in this category'
         },
         tabs: {
             functionals: {

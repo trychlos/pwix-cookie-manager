@@ -40,12 +40,6 @@ The package's behavior can be configured through a call to the `cookieManager.co
 
 Known configuration options are:
 
-- `allowUnpublished`
-
-    Whether to consider that unpublished cookies should be considered as authorized by the user.
-
-    Defaults to `false`.
-
 - `verbosity`
 
     Define the expected verbosity level.

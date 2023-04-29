@@ -1,0 +1,32 @@
+/*
+ * pwix:cookie-manager/src/client/components/cmConsent/cmConsent.less
+ */
+
+.cm-cookie-manager {
+    .cm-dialog-tabs {
+        .nav {
+            flex-wrap: nowrap;
+            margin-right: 1em;
+            button {
+                width: 100%;
+                text-align: left;
+                white-space: nowrap;
+            }
+            li.nav-item:has( > button.active ){
+                border-left: 0.5em solid var( --bs-primary );
+            }
+            li.nav-item:not( :has( > button.active )){
+                border-left: 0.5em solid transparent;
+            }
+        }
+        .nav-tabs,
+        .nav-link {
+            border: 0;
+        }
+        .tab-content {
+            p:not( :last-child ){
+                margin-bottom: 0.5em;
+            }
+        }
+    }
+}

@@ -4,10 +4,8 @@
 
 import merge from 'merge';
 
-defaults = {
-    conf: {
-        verbosity: CM_VERBOSE_NONE
-    }
+cookieManager._defaults = {
+    verbosity: CM_VERBOSE_NONE
 };
 
-cookieManager.conf = merge.recursive( true, cookieManager.conf, defaults.conf );
+cookieManager.conf = merge.recursive( true, cookieManager.conf, cookieManager._defaults );

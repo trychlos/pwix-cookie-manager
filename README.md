@@ -72,6 +72,8 @@ Known configuration options are:
 
 Please note that `cookieManager.configure()` method should be called in the same terms both in client and server sides.
 
+Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `cookieManager.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
+
 ## Provides
 
 ### A global object
@@ -80,7 +82,7 @@ Please note that `cookieManager.configure()` method should be called in the same
 
 This object is allocated at package level: there is only one instance in your application. It gathers the available methods (see below).
 
-We suggest to the application developer which would make use of `pwix:cookie-manager` to attach this `cookieManager` object to the global `Meteor` object. This way, all willing-to packages may take advantage of the available methods to publish their own _cookies_, without having to first `require` or `import` the package, or even make it a dependency.
+`pwix:cookie-manager` attaches this global object to the global Meteor one, so that every willing-to packages is able to take advantage of the available methods to publish their own _cookies_ throught `Meteor.cookieManager`, without having to first `require` or `import` the package, or even make it a dependency.
 
 ### Constants
 

@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:cookie-manager',
-    version: '0.1.0',
+    version: '1.0.0-rc',
     summary: 'Cookies management for Meteor',
     git: 'https://github.com/trychlos/pwix-cookie-manager',
     documentation: 'README.md'
@@ -28,7 +28,7 @@ Package.onUse( function( api ){
 Package.onTest( function( api ){
     configure( api );
     api.use( 'tinytest' );
-    api.use( 'pwix:cookie-consent' );
+    api.use( 'pwix:cookie-manager' );
     api.mainModule( 'test/js/index.js' );
 });
 

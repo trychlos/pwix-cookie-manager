@@ -87,7 +87,12 @@ Template.cmConsent.events({
     },
     'md-close .cmConsent'( event, instance, data ){
         instance.CM.apply();
-        cookieManager.dump();
+        if( cookieManager.conf.dumpUpdate ){
+            cookieManager._published.every(( c ) => {
+                console.debug( 'pwix:cookieManager cmConsent', c.name, cookieManager.isEnabled( c.name ));
+                return true;
+            });
+        }
     }
 });
 

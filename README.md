@@ -40,6 +40,12 @@ The package's behavior can be configured through a call to the `cookieManager.co
 
 Known configuration options are:
 
+- `dumpUpdate`
+
+    Whether to dump the localStorage when updating the user choices.
+
+    Default to `false`.
+
 - `verbosity`
 
     Define the expected verbosity level.

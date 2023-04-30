@@ -5,6 +5,7 @@
 import merge from 'merge';
 
 cookieManager._defaults = {
+    dumpUpdate: false,
     verbosity: CM_VERBOSE_NONE
 };
 

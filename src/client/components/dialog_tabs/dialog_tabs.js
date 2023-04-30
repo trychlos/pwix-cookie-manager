@@ -16,8 +16,8 @@ Template.dialog_tabs.onCreated( function(){
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager dialog_tabs onCreated()' );
     }
-    
-    self.CK = {
+
+    self.CM = {
         // the parms
 
         // internal vars
@@ -87,9 +87,9 @@ Template.dialog_tabs.onCreated( function(){
         // get/set the active item
         active( name ){
             if( name ){
-                self.CK.activeTab = name;
+                self.CM.activeTab = name;
             }
-            return self.CK.activeTab;
+            return self.CM.activeTab;
         },
     };
 });
@@ -130,17 +130,17 @@ Template.dialog_tabs.helpers({
 
     // whether the button is active ?
     itemActive( it ){
-        return Template.instance().CK.active() === it.name ? 'active' : '';
+        return Template.instance().CM.active() === it.name ? 'active' : '';
     },
 
     // whether the current item is selected ?
     itemSelected( it ){
-        return Template.instance().CK.active() === it.name ? 'true' : 'false';
+        return Template.instance().CM.active() === it.name ? 'true' : 'false';
     },
 
     // whether the current tab is shown ?
     itemShow( it ){
-        return Template.instance().CK.active() === it.name ? 'show' : '';
+        return Template.instance().CM.active() === it.name ? 'show' : '';
     },
 
     // a text to be set after the tab content
@@ -195,7 +195,7 @@ Template.dialog_tabs.helpers({
 
     // tabs list
     tabsList(){
-        return Template.instance().CK.tabs;
+        return Template.instance().CM.tabs;
     }
 });
 

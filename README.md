@@ -338,6 +338,14 @@ The component is configurable with an object passed as an argument, which may co
 
 This dialog is modal, i.e. it blocks any user input other than clicking one the three buttons.
 
+#### `cmSliding`
+
+A sliding band displayed in the bottom of the screen, to let the user choose his preferences.
+
+Contrarily to `cmConsent`, this component is not blocking. The user is able to just ignore it.
+
+The component is configurable with an object passed as an argument, which may contain:
+
 ## NPM peer dependencies
 
 Starting with v 0.1.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 

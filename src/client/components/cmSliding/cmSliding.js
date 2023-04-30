@@ -1,5 +1,5 @@
 /*
- * pwix:cookie-manager/src/client/components/cmConsent/cmConsent.js
+ * pwix:cookie-manager/src/client/components/cmSliding/cmSliding.js
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
@@ -10,15 +10,15 @@ import '../dialog_tabs/dialog_tabs.js';
 
 import '../../../common/js/index.js';
 
-import './cmConsent.html';
-import './cmConsent.less';
+import './cmSliding.html';
+import './cmSliding.less';
 
-Template.cmConsent.onCreated( function(){
+Template.cmSliding.onCreated( function(){
     const self = this;
 
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmConsent onCreated()' );
+        console.debug( 'pwix:cookie-manager cmSliding onCreated()' );
     }
 
     self.CM = {
@@ -60,40 +60,44 @@ Template.cmConsent.onCreated( function(){
     };
 });
 
-Template.cmConsent.onRendered( function(){
+Template.cmSliding.onRendered( function(){
     const self = this;
 
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmConsent onRendered()' );
+        console.debug( 'pwix:cookie-manager cmSliding onRendered()' );
     }
 
+    // display the alert if needed
     if( localStorage.getItem( STORED_CHOSEN ) !== 'true' ){
-        pwixModal.run({
-            mdClasses: 'cm-cookie-manager',
-            mdTitle: Template.currentData().dialogTitle || pwixI18n.label( cookieManager.i18n, 'dialog.title' ),
-            mdBody: 'dialog_tabs',
-            mdFooter: 'dialog_buttons',
-            mdTarget: self.$( '.cmConsent' ),
-            mdSizeKey: STORED_DIALOG_SIZE,
-            mdOutsideClose: false,
-            cmState: self.CM.dict
-        });
+        self.$( '.cmSliding .body' ).addClass( 'show' );
     }
 });
 
-Template.cmConsent.events({
-    'cm-click .cmConsent'( event, instance, data ){
+Template.cmSliding.helpers({
+    // whether we have to display the alert ?
+    display(){
+        return localStorage.getItem( STORED_CHOSEN ) !== 'true';
+    },
+
+    // string translation
+    i18n( arg ){
+        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+    },
+});
+
+Template.cmSliding.events({
+    'cm-click .cmSliding'( event, instance, data ){
         instance.CM.chosen = data.name;
         pwixModal.close();
     },
-    'md-close .cmConsent'( event, instance, data ){
+    'md-close .cmSliding'( event, instance, data ){
         // apply user choices
         instance.CM.apply();
         // dump if asked for
         if( cookieManager.conf.dumpUpdate ){
             cookieManager._published.every(( c ) => {
-                console.debug( 'pwix:cookieManager cmConsent', c.name, cookieManager.isEnabled( c.name ));
+                console.debug( 'pwix:cookieManager cmSliding', c.name, cookieManager.isEnabled( c.name ));
                 return true;
             });
         }
@@ -102,9 +106,9 @@ Template.cmConsent.events({
     }
 });
 
-Template.cmConsent.onDestroyed( function(){
+Template.cmSliding.onDestroyed( function(){
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmConsent onDestroyed()' );
+        console.debug( 'pwix:cookie-manager cmSliding onDestroyed()' );
     }
 });

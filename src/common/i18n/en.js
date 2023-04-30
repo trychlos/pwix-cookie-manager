@@ -27,6 +27,13 @@ cookieManager.i18n = {
                 chosen: 'Prevent the cookieManager preferences dialog to be re-displayed each time a page is reloaded.',
                 size: 'Keep the last dialog size to improve user experience.'
             },
+            sliding: {
+                body: ''
+                    +'<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>'
+                    +'<p><a href="">Read our cookies policy</a>.</p>'
+                    +'<p><a href="">Open the cookies manager</a>.</p>',
+                gotit: 'Got it. Thanks!'
+            },
             tabs: {
                 functionals: {
                     content: ''

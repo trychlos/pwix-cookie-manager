@@ -42,6 +42,12 @@ function configure( api ){
     api.use( 'reactive-dict', 'client' );
     api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.addFiles( 'src/client/components/cmConsent/cmConsent.js', 'client' );
+    api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );
+    api.addAssets([
+        'resources/png/info-blue.png',
+        'resources/png/info-orange.png',
+        'resources/png/info-primary.png',
+    ], 'client' );
 }
 
 // NPM dependencies are checked in /src/server/js/check_npms.js

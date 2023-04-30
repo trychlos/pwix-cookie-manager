@@ -27,6 +27,13 @@ cookieManager.i18n = {
                 chosen: 'Empêche la boite de dialogue de gestion des cookies d\'être réaffichée quand une page est rechargée.',
                 size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
             },
+            sliding: {
+                body: ''
+                    +'<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>'
+                    +'<p><a href="#" >Lisez notre stratégie de gestion des cookies</a>.</p>'
+                    +'<p><a href="#">Managez vos cookies</a>.</p>',
+                gotit: 'Vu. Merci !'
+            },
             tabs: {
                 functionals: {
                     content: ''

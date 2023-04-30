@@ -1,0 +1,41 @@
+.cmSliding {
+
+    --cm-sliding-margins: 0.25em;
+    --cm-sliding-radius: 0.25em;
+
+    .body {
+        position: fixed;
+        bottom: var( --cm-sliding-margins );
+        left: var( --cm-sliding-margins );
+        right: var( --cm-sliding-margins );
+        margin: 0;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: var( --cm-sliding-radius );
+        transform: translateY(100%);
+        transition: all 500ms ease-out;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2em;
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .body.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0%);
+        transition-delay: 1000ms;
+
+        background-color: #fdf684;
+        color: black;
+        font-size: 90%;
+    }
+}

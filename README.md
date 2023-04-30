@@ -260,6 +260,10 @@ The component is configurable with an object passed as an argument, which may co
 
     An optional HTML string to be used as the title of the `privacy` tab, defaulting to HTML '`<h5>Your privacy</h5>`'.
 
+- `rejectButton`
+
+    An optional string to be used as the label of the `Reject all` button, defaulting to english « Reject all ».
+
 - `statisticsAfter`
 
     An optional HTML string to be used after the content of the `statistics` tab, defaulting to nothing.

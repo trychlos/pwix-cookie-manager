@@ -1,13 +1,21 @@
 <template name="dialog_buttons">
     <div class="cm-dialog-buttons">
 
-        <button type="button" class="btn btn-secondary" data-ck-name="choose">
-            {{ chooseLabel }}
-        </button>
+        <div class="left">
+            <button type="button" class="btn btn-secondary" data-cm-name="reject">
+                {{ rejectLabel }}
+            </button>
+        </div>
 
-        <button type="button" class="btn btn-primary" data-ck-name="accept">
-            {{ acceptLabel }}
-        </button>
+        <div class="right">
+            <button type="button" class="btn btn-secondary" data-cm-name="choose">
+                {{ chooseLabel }}
+            </button>
+    
+            <button type="button" class="btn btn-primary" data-cm-name="accept">
+                {{ acceptLabel }}
+            </button>
+        </div>
 
     </div>
 </template>

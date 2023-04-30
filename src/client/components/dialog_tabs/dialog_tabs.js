@@ -182,6 +182,12 @@ Template.dialog_tabs.helpers({
         }
     },
 
+    // initiaize the ReactiveDict for this cookie
+    setDict( c ){
+        dict = Template.currentData().cmState;
+        dict.set( c.name, cookieManager.isEnabled( c.name ));
+    },
+
     // tabs list
     tabsList(){
         return Template.instance().CK.tabs;
@@ -190,7 +196,7 @@ Template.dialog_tabs.helpers({
 
 Template.dialog_tabs.events({
     'ts-state .toggleSwitch'( event, instance, data ){
-        cookieManager.enable( data.name, data.state );
+        Template.currentData().cmState.set( data.name, data.state );
     }
 });
 

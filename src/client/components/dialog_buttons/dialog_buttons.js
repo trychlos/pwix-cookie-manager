@@ -23,17 +23,20 @@ Template.dialog_buttons.onRendered( function(){
 
 Template.dialog_buttons.helpers({
     acceptLabel(){
-        return Template.currentData.acceptButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.accept' });
+        return Template.currentData().acceptButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.accept' });
     },
     chooseLabel(){
-        return Template.currentData.chooseButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.choose' });
+        return Template.currentData().chooseButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.choose' });
+    },
+    rejectLabel(){
+        return Template.currentData().rejectButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.reject' });
     }
 });
 
 Template.dialog_buttons.events({
     'click .cm-dialog-buttons button'( event, instance ){
-        const ckname = instance.$( event.currentTarget ).data( 'cm-name' );
-        pwixModal.target().trigger( 'cm-click', { ckname: ckname });
+        const name = instance.$( event.currentTarget ).data( 'cm-name' );
+        pwixModal.target().trigger( 'cm-click', { name: name });
     }
 });
 

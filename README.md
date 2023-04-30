@@ -340,11 +340,11 @@ This dialog is modal, i.e. it blocks any user input other than clicking one the 
 
 #### `cmSliding`
 
-A sliding band displayed in the bottom of the screen, to let the user choose his preferences.
+A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.
 
 Contrarily to `cmConsent`, this component is not blocking. The user is able to just ignore it.
 
-The component is configurable with an object passed as an argument, which may contain:
+As this component has a link to the cookies manager modal dialog, it may take the exact same parameter than `cmConsent`.
 
 ## NPM peer dependencies
 

@@ -28,10 +28,9 @@ cookieManager.i18n = {
                 size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
             },
             sliding: {
-                body: ''
-                    +'<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>'
-                    +'<p><a href="#" >Lisez notre stratégie de gestion des cookies</a>.</p>'
-                    +'<p><a href="#">Managez vos cookies</a>.</p>',
+                body: '<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>',
+                policy_link: 'Prenez connaissance de notre stratégie de gestion des cookies',
+                modal_link: 'Managez vos cookies',
                 gotit: 'Vu. Merci !'
             },
             tabs: {

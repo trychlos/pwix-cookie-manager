@@ -1,16 +1,20 @@
 <template name="cmSliding">
     <div class="cmSliding">
 
-        <div class="body">
+        <div class="cm-body">
 
-            <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" width="48px" alt="Information" />
+            <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" width="32px" alt="Information" />
 
             <div class="text">
                 {{{ i18n key="sliding.body" }}}
+                <!--
+                <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
+                -->
+                <a href="#" class="cm-modal">{{ i18n key="sliding.modal_link" }}</a>
             </div>
 
             <div class="buttons">
-                <button class="btn btn-primary" type="button">{{ i18n key="sliding.gotit" }}</button>
+                <button class="btn btn-sm btn-primary cm-gotit" type="button">{{ i18n key="sliding.gotit" }}</button>
             </div>
 
         </div>

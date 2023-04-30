@@ -1,9 +1,10 @@
 .cmSliding {
 
+    --cm-sliding-padding: 1em;
     --cm-sliding-margins: 0.25em;
     --cm-sliding-radius: 0.25em;
 
-    .body {
+    .cm-body {
         position: fixed;
         bottom: var( --cm-sliding-margins );
         left: var( --cm-sliding-margins );
@@ -20,7 +21,7 @@
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        padding: 2em;
+        padding: var( --cm-sliding-padding );
 
         .text {
             display: flex;
@@ -28,7 +29,10 @@
             align-items: center;
         }
     }
-    .body.show {
+    .cm-body a {
+        font-style: italic;
+    }
+    .cm-body.show {
         opacity: 1;
         visibility: visible;
         transform: translateY(0%);

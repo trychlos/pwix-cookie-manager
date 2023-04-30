@@ -28,10 +28,9 @@ cookieManager.i18n = {
                 size: 'Keep the last dialog size to improve user experience.'
             },
             sliding: {
-                body: ''
-                    +'<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>'
-                    +'<p><a href="">Read our cookies policy</a>.</p>'
-                    +'<p><a href="">Open the cookies manager</a>.</p>',
+                body: '<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>',
+                policy_link: 'Read our cookies policy',
+                modal_link: 'Open the cookies manager',
                 gotit: 'Got it. Thanks!'
             },
             tabs: {

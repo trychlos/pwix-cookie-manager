@@ -109,6 +109,11 @@ Template.dialog_tabs.helpers({
         return id.replace( /[/:]/g, '-' );
     },
 
+    // Whether the cookie is disableable
+    disableable( c ){
+        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
+    },
+
     // whether we have some package in the list
     haveList( it ){
         let a = [];
@@ -150,12 +155,12 @@ Template.dialog_tabs.helpers({
 
     // the tab content
     navContent( it ){
-        return Template.currentData()[it.name+'Content'] || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: it.content });
+        return Template.currentData()[it.name+'Content'] || pwixI18n.label( cookieManager.i18n, it.content );
     },
 
     // the button label
     navLabel( it ){
-        return Template.currentData()[it.name+'Label'] || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: it.label });
+        return Template.currentData()[it.name+'Label'] || pwixI18n.label( cookieManager.i18n, it.label );
     },
 
     // the list of cookies published by the application and other packages
@@ -169,7 +174,7 @@ Template.dialog_tabs.helpers({
 
     // the tab content title
     navTitle( it ){
-        return Template.currentData()[it.name+'Title'] || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: it.title });
+        return Template.currentData()[it.name+'Title'] || pwixI18n.label( cookieManager.i18n, it.title );
     },
 
     // a toggle switch for this cookie

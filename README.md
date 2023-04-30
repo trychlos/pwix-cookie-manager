@@ -182,7 +182,7 @@ In order to not rely on the initialization order, this method should be called f
 
 #### `cmConsent`
 
-The dialog which let the user choose his privacy preferences.
+A modal dialog which let the user choose his privacy preferences.
 
 The component is configurable with an object passed as an argument, which may contain:
 
@@ -335,6 +335,8 @@ The component is configurable with an object passed as an argument, which may co
 - `thirdTitle`
 
     An optional HTML string to be used as the title of the `third` tab, defaulting to HTML '`<h5>Third-party cookies</h5>`'..
+
+This dialog is modal, i.e. it blocks any user input other than clicking one the three buttons.
 
 ## NPM peer dependencies
 

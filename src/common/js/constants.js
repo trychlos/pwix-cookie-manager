@@ -29,7 +29,7 @@ cookieManager.Categories = [
 // non exported
 //
 // localStorage data
-STORED_PRESENTED = 'pwix:cookie-manager/presented';
+STORED_CHOSEN = 'pwix:cookie-manager/displayed';
 STORED_TAB = 'pwix:cookie-manager/active-tab';
-STORED_DIALOG_SIZE = 'pwix:cookie-manager/dialog-size'
-STORED_COOKIE_PREFIX = 'pwix:cookie-manager/published.cookies/enabled/';
+STORED_DIALOG_SIZE = 'pwix:cookie-manager/consent-size'
+STORED_COOKIE_PREFIX = 'pwix:cookie-manager/enabled/';

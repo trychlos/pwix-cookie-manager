@@ -68,16 +68,18 @@ Template.cmConsent.onRendered( function(){
         console.debug( 'pwix:cookie-manager cmConsent onRendered()' );
     }
 
-    pwixModal.run({
-        mdClasses: 'cm-cookie-manager',
-        mdTitle: Template.currentData().dialogTitle || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'dialog.title' }),
-        mdBody: 'dialog_tabs',
-        mdFooter: 'dialog_buttons',
-        mdTarget: self.$( '.cmConsent' ),
-        mdSizeKey: STORED_DIALOG_SIZE,
-        mdOutsideClose: false,
-        cmState: self.CM.dict
-    });
+    if( localStorage.getItem( STORED_CHOSEN ) !== 'true' ){
+        pwixModal.run({
+            mdClasses: 'cm-cookie-manager',
+            mdTitle: Template.currentData().dialogTitle || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'dialog.title' }),
+            mdBody: 'dialog_tabs',
+            mdFooter: 'dialog_buttons',
+            mdTarget: self.$( '.cmConsent' ),
+            mdSizeKey: STORED_DIALOG_SIZE,
+            mdOutsideClose: false,
+            cmState: self.CM.dict
+        });
+    }
 });
 
 Template.cmConsent.events({
@@ -86,13 +88,17 @@ Template.cmConsent.events({
         pwixModal.close();
     },
     'md-close .cmConsent'( event, instance, data ){
+        // apply user choices
         instance.CM.apply();
+        // dump if asked for
         if( cookieManager.conf.dumpUpdate ){
             cookieManager._published.every(( c ) => {
                 console.debug( 'pwix:cookieManager cmConsent', c.name, cookieManager.isEnabled( c.name ));
                 return true;
             });
         }
+        // do not re-display
+        localStorage.setItem( STORED_CHOSEN , 'true' );
     }
 });
 

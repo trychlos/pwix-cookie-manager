@@ -30,7 +30,7 @@
                         {{#if it.cat }}
                             <div class="cookies-list">
                                 {{#if haveList it }}
-                                    <div class="accordion" id="{{ it.cordion_id }}">
+                                    <div class="accordion" id="cordion-{{ it.cordion_id }}">
                                         {{#each c in navList it }}
                                             {{ setDict c }}
                                             <div class="cookie-item d-flex flex-row align-items-center justify-content-between">
@@ -40,7 +40,7 @@
                                                             {{ c.name }}
                                                         </button>
                                                     </div>
-                                                    <div class="accordion-collapse collapse" data-bs-parent="#{{ it.cordion_id }}" id="{{ collapseId it c }}">
+                                                    <div class="accordion-collapse collapse" data-bs-parent="#cordion-{{ it.cordion_id }}" id="{{ collapseId it c }}">
                                                         <div class="accordion-body">
                                                             <table>
                                                                 <tr>
@@ -57,7 +57,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="title">{{ i18n key="cookie.disableable" }}</td>
-                                                                    <td>{{ c.disableable }}</td>
+                                                                    <td>{{ disableable c }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="title">{{ i18n key="cookie.link" }}</td>

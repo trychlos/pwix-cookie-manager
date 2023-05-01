@@ -8,7 +8,7 @@ cookieManager.i18n = {
         fr: {
             buttons: {
                 accept: 'Tout accepter',
-                choose: 'Configures choix',
+                choose: 'Enregistrer mes choix',
                 reject: 'Tout refuser'
             },
             cookie: {

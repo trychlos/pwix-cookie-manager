@@ -23,13 +23,13 @@ Template.cm_dialog_buttons.onRendered( function(){
 
 Template.cm_dialog_buttons.helpers({
     acceptLabel(){
-        return Template.currentData().acceptButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.accept' });
+        return Template.currentData().acceptButton || pwixI18n.label( cookieManager.i18n, 'buttons.accept' );
     },
     chooseLabel(){
-        return Template.currentData().chooseButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.choose' });
+        return Template.currentData().chooseButton || pwixI18n.label( cookieManager.i18n, 'buttons.choose' );
     },
     rejectLabel(){
-        return Template.currentData().rejectButton || pwixI18n.labelEx({ name: cookieManager.i18n, language: 'en', key: 'buttons.reject' });
+        return Template.currentData().rejectButton || pwixI18n.label( cookieManager.i18n, 'buttons.reject' );
     }
 });
 

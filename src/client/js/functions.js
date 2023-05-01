@@ -19,10 +19,8 @@ cookieManager.runManager = function( o ){
         mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( cookieManager.i18n, 'dialog.title' ),
         mdBody: 'cm_dialog_tabs',
         mdFooter: 'cm_dialog_buttons',
-        //mdTarget: self.$( '.cmConsent' ),
         mdSizeKey: STORED_DIALOG_SIZE,
         mdOutsideClose: false,
-        //cmState: self.CM.dict
         ...o
     });
 };

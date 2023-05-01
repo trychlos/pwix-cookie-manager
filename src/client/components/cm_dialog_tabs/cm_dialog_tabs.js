@@ -113,7 +113,7 @@ Template.cm_dialog_tabs.onCreated( function(){
                 // get the current state from dictionary
                 case 'chosen':
                     cookieManager._published.every(( c ) => {
-                        cookieManager.enable( c.name, self.CM.dict.get( c.name ));
+                        cookieManager.enable( c.name, self.CM.cookies[c.name]);
                         return true;
                     });
                     break;

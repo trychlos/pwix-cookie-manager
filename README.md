@@ -338,6 +338,10 @@ The component is configurable with an object passed as an argument, which may co
 
 This dialog is modal, i.e. it blocks any user input other than clicking one the three buttons.
 
+- English version
+
+    ![English version](/maintainer/png/consent-en-privacy.png)
+
 #### `cmSliding`
 
 A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.
@@ -355,6 +359,14 @@ As this component provides a link to the cookies manager modal dialog, it may ta
     On click, the `cm-policy-click` event will be triggered on `cmSliding` component.
 
     Defaults to `false`.
+
+- An english version
+
+    ![English version](/maintainer/png/sliding-en.png)
+
+- A french version
+
+    ![English version](/maintainer/png/sliding-fr.png)
 
 ### Informational messages
 

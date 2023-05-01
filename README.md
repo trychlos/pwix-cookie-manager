@@ -344,7 +344,23 @@ A sliding alert band displayed in the bottom of the screen, to let the user be i
 
 Contrarily to `cmConsent`, this component is not blocking. The user is able to just ignore it.
 
-As this component has a link to the cookies manager modal dialog, it may take the exact same parameter than `cmConsent`.
+As this component provides a link to the cookies manager modal dialog, it may take the exact same parameters than `cmConsent`, plus some specifics:
+
+- `cookiesPolicy`
+
+    Whether to display a link to the site wookies policy.
+
+    If provided, then the component will display a short sentence « Read our cookies policy ».
+
+    On click, the `cm-policy-click` event will be triggered on `cmSliding` component.
+
+    Defaults to `false`.
+
+### Informational messages
+
+#### `cm-policy-click`
+
+This event is triggered on the `cmSliding` component when the developer has requested the display of a link to the cookies policy, and the user has clicked this link.
 
 ## NPM peer dependencies
 
@@ -352,7 +368,7 @@ Starting with v 0.1.0, and in accordance with advices from [the Meteor Guide](ht
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 0.1.0:
+Dependencies as of v 1.0.0:
 ```
     'merge': '^2.1.1'
 ```
@@ -362,6 +378,14 @@ Each of these dependencies should be installed at application level:
     meteor npm install <package> --save
 ```
 
+## Translations
+
+New and updated translations are willingly accepted, and more than welcome. Just be kind enough to submit a PR on the [Github repository](https://github.com/trychlos/pwix-cookie-manager/pulls).
+
+## Cookies and comparable technologies
+
+`pwix:cookie-manager` makes use of `localStorage` to record its technical and functionals required informations. All of these are considered as non disableable by the user, and are advertised as such.
+
 ---
 P. Wieser
-- Last updated on 2023, Apr. 29th
+- Last updated on 2023, May 1st

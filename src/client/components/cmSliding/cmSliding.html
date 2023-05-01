@@ -3,13 +3,15 @@
 
         <div class="cm-body">
 
-            <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" width="32px" alt="Information" />
+            <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" height="{{ imageHeight }}" alt="Information" />
 
             <div class="text">
                 {{{ i18n key="sliding.body" }}}
-                <!--
-                <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
-                -->
+
+                {{#if cookiePolicy }}
+                    <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
+                {{/if}}
+
                 <a href="#" class="cm-modal">{{ i18n key="sliding.modal_link" }}</a>
             </div>
 

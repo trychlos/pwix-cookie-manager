@@ -5,8 +5,6 @@
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import '../cmConsent/cmConsent.js';
-
 import '../../../common/js/index.js';
 
 import './cmSliding.html';
@@ -86,9 +84,9 @@ Template.cmSliding.events({
         localStorage.setItem( STORED_CHOSEN , 'true' );
     },
 
-    // open the cmConsent modal (also closing this box)
+    // open the cookies manafer (also closing this box)
     'click .cm-modal'( event, instance ){
-        Blaze.renderWithData( Template.cmConsent, Template.currentData(), $( 'body' )[0] );
+        cookieManager.runManager( Template.currentData());
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
     },
 

@@ -172,81 +172,86 @@ In order to not rely on the initialization order, this method should be called f
 
     Defaulting to none.
 
-### Blaze components
+#### `cookieManager.runManager( o )`
 
-#### `cmConsent`
+Run a modal dialog to let the user choose his privacy preferences, and collect his explicit consent.
 
-A modal dialog which let the user choose his privacy preferences.
+This modal is a blocking one: the user MUST click on one the three proposed buttons to close it.
 
-The component is configurable with an object passed as an argument, which may contain:
+`runManager()` method runs the modal dialog whatever be the status of the presentation cookie. Even if the user has already seen this dialog on its first visite, calling this method will re-run the same dialog.
+
+The method accepts a configuration object passed as an argument, which may contain:
 
 - `dialogTitle`
 
-    An optional string to be used as title in the dialog header, defaulting to english « Cookies preferences ».
+    An optional string to be used as title in the dialog header, defaulting to language-dependent « Cookies Manager »
 
 - `acceptButton`
 
-    An optional string to be used as the label of the `Accept all` button, defaulting to english « Accept all ».
+    An optional string to be used as the label of the `Accept` button, defaulting to language-dependent « Accept all »
 
 - `chooseButton`
 
-    An optional string to be used as the label of the `Set my choices` button, defaulting to english « Set my choices ».
+    An optional string to be used as the label of the `Record` button, defaulting to language-dependent « Record my choices »
 
 - `functionalsAfter`
 
-    An optional HTML string to be used after the content of the `functionals` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `functionals` pane, defaulting to nothing.
 
 - `functionalsBefore`
 
-    An optional HTML string to be used before the content of the `functionals` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content in the `functionals` pane, defaulting to nothing.
 
 - `functionalsContent`
 
-    An optional HTML string to be used as the content of the `functionals` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `functionals` pane, defaulting to language-dependent:
 
-    « ...
+    « Functional _cookies_ are used by this web site to offer the user a greater, more comfortable, experience.<br />
+    « They can often be disabled by the user, though he/she should take care that the navigation experience may be greatly degraded.<br />
+    « They are expected to not be shared, nor available to any other party
 
 - `functionalsLabel`
 
-    An optional string to be used as the label of the `functionals` button, defaulting to english « Functional cookies ».
+    An optional string to be used as the label of the `functionals` tab, defaulting to language-dependent « Functional cookies »
 
 - `functionalsTitle`
 
-    An optional HTML string to be used as the title of the `functionals` tab, defaulting to HTML '`<h5>Functional cookies</h5>`'..
+    An optional HTML string to be displayed as the title in the `functionals` pane, defaulting to HTML language-dependent '`<h5>Functional cookies</h5>`'..
 
 - `marketingAfter`
 
-    An optional HTML string to be used after the content of the `marketing` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `marketing` pane, defaulting to nothing.
 
 - `marketingBefore`
 
-    An optional HTML string to be used before the content of the `marketing` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content in the `marketing` pane, defaulting to nothing.
 
 - `marketingContent`
 
-    An optional HTML string to be used as the content of the `marketing` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `marketing` pane, defaulting to language-dependent:
 
-    « ...
+    « Marketing _cookies_ are used to proposed targets ads. They can also be used to determine which web sites with the same object you have visited.<br />
+    « Most often, these cookies are most often controlled by a third-party partner.
 
 - `marketingLabel`
 
-    An optional string to be used as the label of the `marketing` button, defaulting to english « Marketing cookies ».
+    An optional string to be used as the label of the `marketing` tab, defaulting to language-dependent « Marketing cookies ».
 
 - `marketingTitle`
 
-    An optional HTML string to be used as the title of the `marketing` tab, defaulting to HTML '`<h5>Marketing cookies</h5>`'..
+    An optional HTML string to be displayed as the title in the `marketing` pane, defaulting to HTML language-dependent '`<h5>Marketing cookies</h5>`'..
 
 - `privacyAfter`
 
-    An optional HTML string to be used after the content of the `privacy` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `privacy` pane, defaulting to nothing.
 
 - `privacyBefore`
 
-    An optional HTML string to be used before the content of the `privacy` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content in the `privacy` pane, defaulting to nothing.
 
 - `privacyContent`
 
-    An optional HTML string to be used as the content of the `privacy` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `privacy` pane, defaulting to language-dependent:
 
     « When you visit a web site, it may record some informations about you, your device, the previous web site you come from, or any other information it may find useful.<br />
     « These informations are stored as _cookies, or other comparable technologies, which are essentially small data files.<br />
@@ -254,83 +259,87 @@ The component is configurable with an object passed as an argument, which may co
 
 - `privacyLabel`
 
-    An optional string to be used as the label of the `privacy` button, defaulting to english « Your privacy ».
+    An optional string to be used as the label of the `privacy` tab, defaulting to language-dependent « Your privacy ».
 
 - `privacyTitle`
 
-    An optional HTML string to be used as the title of the `privacy` tab, defaulting to HTML '`<h5>Your privacy</h5>`'.
+    An optional HTML string to be displayed as the title in the `privacy` pane, defaulting to HTML language-dependent '`<h5>Your privacy</h5>`'.
 
 - `rejectButton`
 
-    An optional string to be used as the label of the `Reject all` button, defaulting to english « Reject all ».
+    An optional string to be used as the label of the `Reject` button, defaulting to language-dependent « Reject all ».
 
 - `statisticsAfter`
 
-    An optional HTML string to be used after the content of the `statistics` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `statistics` pane, defaulting to nothing.
 
 - `statisticsBefore`
 
-    An optional HTML string to be used before the content of the `statistics` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content in the `statistics` pane, defaulting to nothing.
 
 - `statisticsContent`
 
-    An optional HTML string to be used as the content of the `statistics` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `statistics` pane, defaulting to language-dependent:
 
-    « ...
+    « Statistics _cookies_ are mainly used to be able to measure the frequentation of this web site.<br />
+    « They can for example register the link you have followed to come here, or the count of pages you have visited, of the detail of your navigation inside of this web site.
 
 - `statisticsLabel`
 
-    An optional string to be used as the label of the `statistics` button, defaulting to english « Statistics cookies ».
+    An optional string to be used as the label of the `statistics` tab, defaulting to language-dependent « Statistics cookies ».
 
 - `statisticsTitle`
 
-    An optional HTML string to be used as the title of the `statistics` tab, defaulting to HTML '`<h5>Statistics cookies</h5>`'..
+    An optional HTML string to be displayed as the title in the `statistics` pane, defaulting to HTML language-dependent '`<h5>Statistics cookies</h5>`'..
 
 - `technicalsAfter`
 
-    An optional HTML string to be used after the content of the `technicals` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `technicals` pane, defaulting to nothing.
 
 - `technicalsBefore`
 
-    An optional HTML string to be used before the content of the `technicals` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content of the `technicals` pane, defaulting to nothing.
 
 - `technicalsContent`
 
-    An optional HTML string to be used as the content of the `technicals` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `technicals` pane, defaulting to language-dependent:
 
-    « ...
+    « Technical _cookies_ are those considered by the web site as essential and absolutely required for make it just work.<br />
+    « These are generally just mandatory, cannot be disabled.
 
 - `technicalsLabel`
 
-    An optional string to be used as the label of the `technicals` button, defaulting to english « Technicals cookies ».
+    An optional string to be used as the label of the `technicals` tab, defaulting to language-dependent « Technicals cookies ».
 
 - `technicalsTitle`
 
-    An optional HTML string to be used as the title of the `technicals` tab, defaulting to HTML '`<h5>Technicals cookies</h5>`'..
+    An optional HTML string to be displayed as the title of the `technicals` pane, defaulting to HTML language-dependent '`<h5>Technicals cookies</h5>`'..
 
 - `thirdAfter`
 
-    An optional HTML string to be used after the content of the `third` tab, defaulting to nothing.
+    An optional HTML string to be displayed after the list of cookies (if any) in the `third` pane, defaulting to nothing.
 
 - `thirdBefore`
 
-    An optional HTML string to be used before the content of the `third` tab, defaulting to nothing.
+    An optional HTML string to be displayed before the content in the `third` pane, defaulting to nothing.
 
 - `thirdContent`
 
-    An optional HTML string to be used as the content of the `third` tab, defaulting to english
+    An optional HTML string to be displayed as the main text in the `third` pane, defaulting to language-dependent:
 
-    « ...
+    « Third-party _cookies_ are installed by external third-party sites, partners or service providers.<br />
+    « They are not controlled nor managed in any way by this web site.<br />
+    « You should take care of carefully review the general terms of use, along with the cookies and personal data management policies these third-party sites should publish.
 
 - `thirdLabel`
 
-    An optional string to be used as the label of the `third` button, defaulting to english « Third-party cookies ».
+    An optional string to be used as the label of the `third` tab, defaulting to language-dependent « Third-party cookies ».
 
 - `thirdTitle`
 
-    An optional HTML string to be used as the title of the `third` tab, defaulting to HTML '`<h5>Third-party cookies</h5>`'..
+    An optional HTML string to be displayed as the title in the `third` pane, defaulting to HTML language-dependent '`<h5>Third-party cookies</h5>`'..
 
-This dialog is modal, i.e. it blocks any user input other than clicking one the three buttons.
+Please note that this method is only available on the client.
 
 - English version
 
@@ -350,17 +359,17 @@ This dialog is modal, i.e. it blocks any user input other than clicking one the 
     ![English version](/maintainer/png/consent-statistics-fr.png)
     ![English version](/maintainer/png/consent-third-fr.png)
 
+### Blaze components
+
 #### `cmSliding`
 
 A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.
 
-Contrarily to `cmConsent`, this component is not blocking. The user is able to just ignore it.
-
-As this component provides a link to the cookies manager modal dialog, it may take the exact same parameters than `cmConsent`, plus some specifics:
+As this component provides a link to the cookies manager dialog, it may take the exact same parameters than `runManager()`, plus some specifics:
 
 - `cookiesPolicy`
 
-    Whether to display a link to the site wookies policy.
+    Whether to display a link to the site cookies policy.
 
     If provided, then the component will display a short sentence « Read our cookies policy ».
 
@@ -368,7 +377,7 @@ As this component provides a link to the cookies manager modal dialog, it may ta
 
     Defaults to `false`.
 
-And that is an english version
+And there is an english version
 
 ![English version](/maintainer/png/sliding-en.png)
 
@@ -380,7 +389,7 @@ And a french version
 
 #### `cm-policy-click`
 
-This event is triggered on the `cmSliding` component when the developer has requested the display of a link to the cookies policy, and the user has clicked this link.
+This event is triggered on the `.cmSliding` component class when the developer has requested the display of a link to the cookies policy, and the user has clicked on this link.
 
 ## NPM peer dependencies
 
@@ -404,7 +413,7 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 ## Cookies and comparable technologies
 
-`pwix:cookie-manager` makes use of `localStorage` to record its technical and functionals required informations. All of these are considered as non disableable by the user, and are advertised as such.
+`pwix:cookie-manager` makes use of `localStorage` to record its technical and functionals required informations. Some of these are considered as non disableable by the user, and are advertised as such.
 
 ---
 P. Wieser

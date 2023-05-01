@@ -1,11 +1,15 @@
-/*
+/*activeTab
  * pwix:cookie-manager/src/client/components/cm_dialog_tabs/cm_dialog_tabs.js
+ *
+ * The body of a modal dialog run via pwixModal.run()
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { Random } from 'meteor/random';
 
 import '../../../common/js/index.js';
+
+import '../../stylesheets/cm_cookie_manager.less';
 
 import './cm_dialog_tabs.html';
 
@@ -18,10 +22,9 @@ Template.cm_dialog_tabs.onCreated( function(){
     }
 
     self.CM = {
-        // the parms
-
         // internal vars
         activeTab: localStorage.getItem( STORED_TAB ) || 'privacy',
+        cookies: {},
 
         tabs: [
             {
@@ -95,10 +98,15 @@ Template.cm_dialog_tabs.onCreated( function(){
 });
 
 Template.cm_dialog_tabs.onRendered( function(){
+    const self = this;
+
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
     }
+
+    // set the modal target
+    pwixModal.target({ target: self.$( '.cm-dialog-tabs' ) });
 });
 
 Template.cm_dialog_tabs.helpers({
@@ -187,10 +195,9 @@ Template.cm_dialog_tabs.helpers({
         }
     },
 
-    // initiaize the ReactiveDict for this cookie
+    // initiaize our internal hash for this cookie
     setDict( c ){
-        dict = Template.currentData().cmState;
-        dict.set( c.name, cookieManager.isEnabled( c.name ));
+        Template.instance().CM.cookies[c.name] = cookieManager.isEnabled( c.name );
     },
 
     // tabs list
@@ -201,7 +208,7 @@ Template.cm_dialog_tabs.helpers({
 
 Template.cm_dialog_tabs.events({
     'ts-state .toggleSwitch'( event, instance, data ){
-        Template.currentData().cmState.set( data.name, data.state );
+        instance.CM.cookies[data.name] = data.state;
     }
 });
 

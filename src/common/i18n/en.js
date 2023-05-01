@@ -22,7 +22,7 @@ cookieManager.i18n = {
                 disableableFalse: 'No'
             },
             dialog: {
-                title: 'Cookies Management',
+                title: 'Cookies Manager',
                 none: 'No declared cookie in this category',
                 chosen: 'Prevent the cookieManager preferences dialog to be re-displayed each time a page is reloaded.',
                 size: 'Keep the last dialog size to improve user experience.'

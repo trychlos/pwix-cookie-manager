@@ -1,0 +1,84 @@
+/*
+ * pwix:cookie-manager/src/client/components/cmConsent/cmConsent.less
+ */
+
+.cm-cookie-manager {
+    .cm-dialog-tabs {
+        .nav {
+            flex-wrap: nowrap;
+            margin-right: 1em;
+            button {
+                width: 100%;
+                text-align: left;
+                white-space: nowrap;
+            }
+            li.nav-item:has( > button.active ){
+                border-left: 0.5em solid var( --bs-primary );
+            }
+            li.nav-item:not( :has( > button.active )){
+                border-left: 0.5em solid transparent;
+            }
+        }
+        .nav-tabs,
+        .nav-link {
+            border: 0;
+        }
+        .tab-content {
+            p:not( :last-child ){
+                margin-bottom: 0.5em;
+            }
+        }
+        .cookies-list {
+            border: 1px solid gray;
+            border-radius: 0.25em;
+            margin: 0.5em 0;
+            padding: 0.5em;
+
+            .accordion-item {
+                margin-right: 0.5em;
+
+                .accordion-button {
+                    padding: 0.5em;
+                    background-color: inherit;
+                    color: inherit;
+                }
+                .accordion-body {
+                    padding: 0.5em;
+                    font-size: 90%;
+                }
+                .title {
+                    font-size: 90%;
+                    color: gray;
+                    font-style: italic;
+                    padding-right: 0.5em;
+                }
+            }
+
+            .none {
+                font-style: italic;
+                font-size: 90%;
+                color: gray;
+            }
+        }
+    }
+    .cm-dialog-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .left {
+            flex-grow: 1;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+        }
+
+        .btn-primary {
+            margin-left: 1em;
+        }
+    }
+}

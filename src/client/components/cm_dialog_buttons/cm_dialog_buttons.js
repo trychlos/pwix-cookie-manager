@@ -5,6 +5,8 @@
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { pwixModal } from 'meteor/pwix:modal';
 
+import '../../stylesheets/cm_cookie_manager.less';
+
 import './cm_dialog_buttons.html';
 
 Template.cm_dialog_buttons.onCreated( function(){

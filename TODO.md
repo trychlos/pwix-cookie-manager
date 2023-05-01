@@ -16,7 +16,10 @@
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
 |    6 | 2023- 5- 1 | having a reject all button should be configurable |
 |    7 | 2023- 5- 1 | configure sliding background color |
-|    8 |  |  |
+|    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
+|    9 | 2023- 5- 1 | functional cookies should be disableable |
+|   10 | 2023- 5- 1 | Provide a link/a button to re-open the cookie manager |
+|   11 |  |  |
 
 ---
 ## Done

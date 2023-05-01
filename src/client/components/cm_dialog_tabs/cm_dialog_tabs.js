@@ -1,5 +1,5 @@
 /*
- * pwix:cookie-manager/src/client/components/dialog_tabs/dialog_tabs.js
+ * pwix:cookie-manager/src/client/components/cm_dialog_tabs/cm_dialog_tabs.js
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
@@ -7,14 +7,14 @@ import { Random } from 'meteor/random';
 
 import '../../../common/js/index.js';
 
-import './dialog_tabs.html';
+import './cm_dialog_tabs.html';
 
-Template.dialog_tabs.onCreated( function(){
+Template.cm_dialog_tabs.onCreated( function(){
     const self = this;
 
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager dialog_tabs onCreated()' );
+        console.debug( 'pwix:cookie-manager cm_dialog_tabs onCreated()' );
     }
 
     self.CM = {
@@ -94,14 +94,14 @@ Template.dialog_tabs.onCreated( function(){
     };
 });
 
-Template.dialog_tabs.onRendered( function(){
+Template.cm_dialog_tabs.onRendered( function(){
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager dialog_tabs onRendered()' );
+        console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
     }
 });
 
-Template.dialog_tabs.helpers({
+Template.cm_dialog_tabs.helpers({
 
     // try to build a collapse identifier
     collapseId( it, c ){
@@ -199,15 +199,15 @@ Template.dialog_tabs.helpers({
     }
 });
 
-Template.dialog_tabs.events({
+Template.cm_dialog_tabs.events({
     'ts-state .toggleSwitch'( event, instance, data ){
         Template.currentData().cmState.set( data.name, data.state );
     }
 });
 
-Template.dialog_tabs.onDestroyed( function(){
+Template.cm_dialog_tabs.onDestroyed( function(){
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
-        console.debug( 'pwix:cookie-manager dialog_tabs onDestroyed()' );
+        console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
     }
 });

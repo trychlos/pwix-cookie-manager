@@ -5,8 +5,8 @@
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import '../dialog_buttons/dialog_buttons.js';
-import '../dialog_tabs/dialog_tabs.js';
+import '../cm_dialog_buttons/cm_dialog_buttons.js';
+import '../cm_dialog_tabs/cm_dialog_tabs.js';
 
 import '../../../common/js/index.js';
 
@@ -72,8 +72,8 @@ Template.cmConsent.onRendered( function(){
         pwixModal.run({
             mdClasses: 'cm-cookie-manager',
             mdTitle: Template.currentData().dialogTitle || pwixI18n.label( cookieManager.i18n, 'dialog.title' ),
-            mdBody: 'dialog_tabs',
-            mdFooter: 'dialog_buttons',
+            mdBody: 'cm_dialog_tabs',
+            mdFooter: 'cm_dialog_buttons',
             mdTarget: self.$( '.cmConsent' ),
             mdSizeKey: STORED_DIALOG_SIZE,
             mdOutsideClose: false,

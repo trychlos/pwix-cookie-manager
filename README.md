@@ -340,7 +340,21 @@ This dialog is modal, i.e. it blocks any user input other than clicking one the 
 
 - English version
 
-    ![English version](/maintainer/png/consent-en-privacy.png)
+    ![English version](/maintainer/png/consent-privacy-en.png)
+    ![English version](/maintainer/png/consent-technicals-en.png)
+    ![English version](/maintainer/png/consent-functional-en.png)
+    ![English version](/maintainer/png/consent-marketing-en.png)
+    ![English version](/maintainer/png/consent-statistics-en.png)
+    ![English version](/maintainer/png/consent-third-en.png)
+
+- French version
+
+    ![English version](/maintainer/png/consent-privacy-fr.png)
+    ![English version](/maintainer/png/consent-technicals-fr.png)
+    ![English version](/maintainer/png/consent-functional-fr.png)
+    ![English version](/maintainer/png/consent-marketing-fr.png)
+    ![English version](/maintainer/png/consent-statistics-fr.png)
+    ![English version](/maintainer/png/consent-third-fr.png)
 
 #### `cmSliding`
 
@@ -360,13 +374,13 @@ As this component provides a link to the cookies manager modal dialog, it may ta
 
     Defaults to `false`.
 
-- An english version
+And that is an english version
 
-    ![English version](/maintainer/png/sliding-en.png)
+![English version](/maintainer/png/sliding-en.png)
 
-- A french version
+And a french version
 
-    ![English version](/maintainer/png/sliding-fr.png)
+![English version](/maintainer/png/sliding-fr.png)
 
 ### Informational messages
 

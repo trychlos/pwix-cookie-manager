@@ -91,7 +91,7 @@ Template.cmConsent.events({
         // apply user choices
         instance.CM.apply();
         // dump if asked for
-        if( cookieManager.conf.dumpUpdate ){
+        if( cookieManager.conf.verbosity & CM_VERBOSE_STORAGE ){
             cookieManager._published.every(( c ) => {
                 console.debug( 'pwix:cookieManager cmConsent', c.name, cookieManager.isEnabled( c.name ));
                 return true;

@@ -38,13 +38,7 @@ Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_,
 
 The package's behavior can be configured through a call to the `cookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
-Known configuration options are:
-
-- `dumpUpdate`
-
-    Whether to dump the localStorage when updating the user choices.
-
-    Default to `false`.
+There is at the moment a single configuration option:
 
 - `verbosity`
 
@@ -74,7 +68,7 @@ Known configuration options are:
 
     - `CM_VERBOSE_STORAGE`
 
-        Dump the localStorage at startup (client-side only).
+        Dump the localStorage first at startup, and then on user choice from `cmConsent` (client-side only).
 
 Please note that `cookieManager.configure()` method should be called in the same terms both in client and server sides.
 

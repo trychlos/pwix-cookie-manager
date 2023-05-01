@@ -14,7 +14,8 @@
 |    2 | 2023- 4-30 | cmConsent: have configuration options to provide a template for every category |
 |    3 | 2023- 4-30 | be able to configure the categories |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
-|    5 |  |  |
+|    5 | 2023- 5- 1 | rather than having a dump configuration option, have a verbosity level which triggers on updates |
+|    6 |  |  |
 
 ---
 ## Done
@@ -24,4 +25,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Apr. 29th
+- Last updated on 2023, May 1st

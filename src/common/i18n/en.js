@@ -17,9 +17,11 @@ cookieManager.i18n = {
                 lifetime: 'Lifetime',
                 disableable: 'Disableable',
                 link: 'Link',
-                ilimited: 'Illimited',
+                illimited: 'Illimited',
                 disableableTrue: 'Yes',
-                disableableFalse: 'No'
+                disableableFalse: 'No',
+                value: 'Current value',
+                undef: '<undefined>'
             },
             dialog: {
                 title: 'Cookies Manager',

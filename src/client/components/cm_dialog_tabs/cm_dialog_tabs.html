@@ -6,9 +6,9 @@
             <ul class="nav nav-tabs d-flex flex-column" role="tablist" aria-orientation="horizontal">
                 {{#each it in tabsList }}
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link {{ itemActive it }}" id="nav-{{ it.nav_id }}" type="button" role="tab" data-tab-name="{{ it.name }}"
+                        <button class="nav-link" id="nav-{{ it.nav_id }}" type="button" role="tab" data-tab-name="{{ it.name }}"
                                 data-bs-toggle="tab" data-bs-target="#tab-{{ it.content_id }}"
-                                aria-controls="tab-{{ it.content_id }}" aria-selected="{{ itemSelected it }}">
+                                aria-controls="tab-{{ it.content_id }}" aria-selected="false">
                             {{ navLabel it }}
                         </button>
                     </li>
@@ -17,7 +17,7 @@
     
             <div class="tab-content x-w100">
                 {{#each it in tabsList }}
-                    <div class="tab-pane fade {{ itemShow it }} {{ itemActive it }}" id="tab-{{ it.content_id }}" role="tabpanel" aria-labelledby="nav-{{ it.nav_id }}" tabindex="0">
+                    <div class="tab-pane fade" id="tab-{{ it.content_id }}" role="tabpanel" aria-labelledby="nav-{{ it.nav_id }}" tabindex="0">
                         <div class="title">
                             {{{ navTitle it }}}
                         </div>
@@ -53,15 +53,19 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="title">{{ i18n key="cookie.lifetime" }}</td>
-                                                                    <td>{{ c.lifetime }}</td>
+                                                                    <td>{{ ck_lifetime c }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="title">{{ i18n key="cookie.disableable" }}</td>
-                                                                    <td>{{ disableable c }}</td>
+                                                                    <td>{{ ck_disableable c }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="title">{{ i18n key="cookie.link" }}</td>
                                                                     <td>{{ c.link }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="title">{{ i18n key="cookie.value" }}</td>
+                                                                    <td>{{ ck_value c }}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>

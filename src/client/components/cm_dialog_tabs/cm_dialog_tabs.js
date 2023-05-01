@@ -1,4 +1,4 @@
-/*activeTab
+/*
  * pwix:cookie-manager/src/client/components/cm_dialog_tabs/cm_dialog_tabs.js
  *
  * The body of a modal dialog run via pwixModal.run()
@@ -23,8 +23,10 @@ Template.cm_dialog_tabs.onCreated( function(){
 
     self.CM = {
         // internal vars
-        activeTab: localStorage.getItem( STORED_TAB ) || 'privacy',
+        // the list of published cookies
         cookies: {},
+        // the chosen option
+        chosen: 'accept',
 
         tabs: [
             {
@@ -87,13 +89,36 @@ Template.cm_dialog_tabs.onCreated( function(){
             }
         ],
 
-        // get/set the active item
-        active( name ){
-            if( name ){
-                self.CM.activeTab = name;
+        // at the end, apply the chosen option
+        apply(){
+            switch( self.CM.chosen ){
+                // whatever be the current state of the cookie, set all true
+                case 'accept':
+                    cookieManager._published.every(( c ) => {
+                        cookieManager.enable( c.name, true );
+                        return true;
+                    });
+                    break;
+                
+                // disable all disableable cookies
+                case 'reject':
+                    cookieManager._published.every(( c ) => {
+                        if( c.disableable ){
+                            cookieManager.enable( c.name, false );
+                        }
+                        return true;
+                    });
+                    break;
+                
+                // get the current state from dictionary
+                case 'chosen':
+                    cookieManager._published.every(( c ) => {
+                        cookieManager.enable( c.name, self.CM.dict.get( c.name ));
+                        return true;
+                    });
+                    break;
             }
-            return self.CM.activeTab;
-        },
+        }
     };
 });
 
@@ -107,9 +132,33 @@ Template.cm_dialog_tabs.onRendered( function(){
 
     // set the modal target
     pwixModal.target({ target: self.$( '.cm-dialog-tabs' ) });
+
+    // activates the first tab
+    self.CM.tabs.every(( it ) => {
+        if( it.name === 'privacy' ){
+            self.$( '.nav-link#nav-'+it.nav_id ).tab( 'show' );
+            return false;
+        }
+        return true;
+    });
 });
 
 Template.cm_dialog_tabs.helpers({
+
+    // Whether the cookie is disableable
+    ck_disableable( c ){
+        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
+    },
+
+    // lifetime of the cookie
+    ck_lifetime( c ){
+        return c.lifetime ? c.lifetime : pwixI18n.label( cookieManager.i18n, 'cookie.illimited' );
+    },
+
+    // current value of the cookie
+    ck_value( c ){
+        return localStorage.getItem( c.name ) || pwixI18n.label( cookieManager.i18n, 'cookie.undef' );
+    },
 
     // try to build a collapse identifier
     collapseId( it, c ){
@@ -117,12 +166,7 @@ Template.cm_dialog_tabs.helpers({
         return id.replace( /[/:]/g, '-' );
     },
 
-    // Whether the cookie is disableable
-    disableable( c ){
-        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
-    },
-
-    // whether we have some package in the list
+    // whether we have some cookie in this category
     haveList( it ){
         let a = [];
         if( it.cat ){
@@ -134,21 +178,6 @@ Template.cm_dialog_tabs.helpers({
     // string translation
     i18n( arg ){
         return pwixI18n.label( cookieManager.i18n, arg.hash.key );
-    },
-
-    // whether the button is active ?
-    itemActive( it ){
-        return Template.instance().CM.active() === it.name ? 'active' : '';
-    },
-
-    // whether the current item is selected ?
-    itemSelected( it ){
-        return Template.instance().CM.active() === it.name ? 'true' : 'false';
-    },
-
-    // whether the current tab is shown ?
-    itemShow( it ){
-        return Template.instance().CM.active() === it.name ? 'show' : '';
     },
 
     // a text to be set after the tab content
@@ -207,8 +236,28 @@ Template.cm_dialog_tabs.helpers({
 });
 
 Template.cm_dialog_tabs.events({
+    // user accepts or refuses a cookie
     'ts-state .toggleSwitch'( event, instance, data ){
         instance.CM.cookies[data.name] = data.state;
+    },
+
+    // user clicks one of the three buttons, terminating the dialog
+    'cm-click .cm-dialog-tabs'( event, instance, data ){
+        instance.CM.chosen = data.name;
+        pwixModal.close();
+    },
+
+    // dialog is closed, apply the choice
+    'md-close .cm-dialog-tabs'( event, instance, data ){
+        // apply user choices
+        instance.CM.apply();
+        // dump if asked for
+        if( cookieManager.conf.verbosity & CM_VERBOSE_STORAGE ){
+            cookieManager._published.every(( c ) => {
+                console.debug( 'pwix:cookieManager', c.name, cookieManager.isEnabled( c.name ));
+                return true;
+            });
+        }
     }
 });
 

@@ -5,9 +5,8 @@
 .cm-cookie-manager {
     .cm-dialog-tabs {
         .nav {
-            flex-wrap: nowrap;
-            margin-right: 1em;
-            button {
+           flex-wrap: nowrap;
+           button {
                 width: 100%;
                 text-align: left;
                 white-space: nowrap;
@@ -17,6 +16,9 @@
             }
             li.nav-item:not( :has( > button.active )){
                 border-left: 0.5em solid transparent;
+            }
+            .nav-link {
+                padding-left: 0.5em;
             }
         }
         .nav-tabs,
@@ -44,13 +46,14 @@
                 }
                 .accordion-body {
                     padding: 0.5em;
-                    font-size: 90%;
+                    font-size: 85%;
                 }
                 .title {
                     font-size: 90%;
                     color: gray;
                     font-style: italic;
                     padding-right: 0.5em;
+                    vertical-align: top;
                 }
             }
 

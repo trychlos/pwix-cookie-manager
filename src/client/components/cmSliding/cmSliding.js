@@ -84,10 +84,11 @@ Template.cmSliding.events({
         localStorage.setItem( STORED_CHOSEN , 'true' );
     },
 
-    // open the cookies manafer (also closing this box)
+    // open the cookies manager (also closing this box)
     'click .cm-modal'( event, instance ){
         cookieManager.runManager( Template.currentData());
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
+        localStorage.setItem( STORED_CHOSEN , 'true' );
     },
 
     // user asks for display of the cookies policy (and close the box)

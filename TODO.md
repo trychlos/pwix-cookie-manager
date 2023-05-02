@@ -20,7 +20,9 @@
 |    7 | 2023- 5- 1 | configure sliding background color |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
 |      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
-|   11 |  |  |
+|      | 2023- 5- 2 | consent should be forgotten after one year |
+|   11 | 2023- 5- 2 | the lifetime of the consent should be configurable |
+|   12 |  |  |
 
 ---
 ## Done

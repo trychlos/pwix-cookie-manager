@@ -15,6 +15,8 @@
 |    3 | 2023- 4-30 | be able to configure the categories |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
 |    6 | 2023- 5- 1 | having a reject all button should be configurable |
+|      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
+|      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
 |      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |

@@ -9,7 +9,7 @@ Meteor.startup(() => {
 });
 
 Meteor.startup(() => {
-    // a technical cookie which prevent the cmConsent to be re-displayed each time the page reload
+    // a technical cookie which prevent the cmSliding to be re-displayed each time the page reload
     cookieManager.publish({
         name: STORED_CHOSEN,
         responsible: 'pwix:cookie-manager',

@@ -17,6 +17,38 @@ const _findCookie = function( name ){
     return _cookie;
 };
 
+// validate the cookie declaration
+const _validDeclaration = function( ck ){
+    let _valid = false;
+    if( ck ){
+        _valid = _validName( ck );
+    } else {
+        console.warn( 'pwix:cookie-manager expects a cookie declaration, got null' );
+    }
+    return _valid;
+}
+
+// validate the name of the cookie
+const _validName = function( ck ){
+    let _valid = false;
+    if( !ck.name ){
+        console.warn( 'pwix:cookie-manager expects cookie declaration have a name, found null' );
+    } else if( typeof ck.name !== 'string' && !( ck.name instanceof String )){
+        console.warn( 'pwix:cookie-manager expects cookie name be a string, found', ck.name );
+    } else {
+        _valid = true;
+        CM_RESERVED_CHARS.every(( ch ) => {
+            if( ck.name.indexOf( ch ) >= 0 ){
+                console.warn( 'pwix:cookie-manager found \''+ch+'\' reserved char in name', ck.name );
+                _valid = false;
+                return false;
+            }
+            return true;
+        })
+    }
+    return _valid;
+}
+
 /**
  * @summary Get the cookie for a given category
  * @locus Anywhere
@@ -67,6 +99,21 @@ cookieManager.enable = function( name, allowed ){
 };
 
 /**
+ * @summary Get the list of enabled cookies
+ * @locus Anywhere
+ * @returns {Array} the list of enabled cookies
+ */
+cookieManager.getEnabled = function(){
+    let res = [];
+    cookieManager._published.every(( c ) => {
+        if( cookieManaged.isEnabled( c.name )){
+            res.push( c );
+        }
+        return true;
+    });
+};
+
+/**
  * @summary Says if the named cookie is enabled by the user
  * @locus Anywhere
  * @param {String} name the name of the cookie
@@ -90,12 +137,12 @@ cookieManager.isEnabled = function( name ){
 cookieManager.publish = function( cookie ){
     if( Array.isArray( cookie )){
         cookie.every(( o ) => {
-            //console.log( o );
-            cookieManager._published.push( o );
+            if( _validDeclaration( o )){
+                cookieManager._published.push( o );
+            }
             return true;
         })
-    } else {
-        //console.log( cookie );
+    } else if( _validDeclaration( cookie )){
         cookieManager._published.push( cookie );
     }
 };

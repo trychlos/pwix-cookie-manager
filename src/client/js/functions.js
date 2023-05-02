@@ -9,6 +9,53 @@ import '../components/cm_dialog_buttons/cm_dialog_buttons.js';
 import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
 
 /**
+ * @summary reads the previous user consent
+ * @locus Client
+ * @returns {Object} with following keys:
+ *  - date: the timestamp of the recorded user consent
+ *  - action: the chosen action at date
+ *  - enabled: an array of enabled cookies name
+ * or
+ *  null if no valid previous consent found
+ */
+cookieManager.consentRead = function(){
+    const res = null;
+    const str = localStorage.getItem( STORED_CONSENT );
+    if( str ){
+        const parts = str.split( CM_COMMA );
+        if( parts.length === 3 ){
+            const enabled = parts[2].split( CM_PIPE );
+            // we have at the time at least two mandatory technical cookies
+            if( enabled.length > 1 ){
+                res = {
+                    date: parts[0],
+                    action: parts[1],
+                    enabled: enabled
+                };
+            }
+        }
+    }
+    return res;
+};
+
+/**
+ * @summary records the user consent
+ * @locus Client
+ * @param {String} action the chosen action
+ */
+cookieManager.consentWrite = function(){
+    let enabled = '';
+    cookieManager.getEnabled().every(( c ) => {
+        if( enabled ){
+            enabled += CM_PIPE;
+        }
+        enabled += c.name;
+    });
+    const now = Date.now();
+    localStorage.setItem( STORED_CONSENT, now + CM_COMMA + action + CM_COMMA + enabled );
+};
+
+/**
  * @summary runs the cookie manager to let the user accept or refuse cookies
  * @locus Client
  * @param {*} o the configuration object - see README

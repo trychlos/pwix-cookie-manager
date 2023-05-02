@@ -33,3 +33,12 @@ STORED_CHOSEN = 'pwix:cookie-manager/displayed';
 STORED_CONSENT = 'pwix:cookie-manager/consent';
 STORED_DIALOG_SIZE = 'pwix:cookie-manager/consent-manager-size'
 STORED_COOKIE_PREFIX = 'pwix:cookie-manager/enabled/';
+
+// reserved chars
+CM_COMMA = ',';
+CM_PIPE = '|';
+
+CM_RESERVED_CHARS = [
+    CM_COMMA,
+    CM_PIPE
+];

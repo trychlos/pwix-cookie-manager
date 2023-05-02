@@ -144,6 +144,11 @@ In order to not rely on the initialization order, this method should be called f
 
     This `name` is expected to be a unique identifier of the cookie, cannot be empty.
 
+    Please note that `cookieManager` internally uses some reserved characters. These reserved characters must not be used when naming a cookie. As of 1.1.1, these are:
+
+    - comma `,`
+    - pipe `|`
+
 - `responsible`
 
     The application (resp. another package) name, as a string.

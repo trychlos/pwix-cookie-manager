@@ -377,6 +377,23 @@ As this component provides a link to the cookies manager dialog, it may take the
 
     Defaults to `false`.
 
+`cmSliding` is displayed the first time a user visits the site, as a bottom sliding band. It can be closed:
+
+- when the user clicks on the 'Got it' button
+
+    - no update is done on the current cookies choices
+    - the component will not be displayed agains on next visit
+
+- when the user click on the link to open the cookie manager
+
+    - the component will not be displayed agains on next visit
+
+- when a link to the cookies policy has been provided and the user clicks on it
+
+    - no other action is taken than just close the component: neither any cookie choice update, nor any prevention againt a new display on next visit
+
+        Rationale is that reading, even very carefully, the cookies policy is not at all the same that explicitly consent to the cookies.
+
 And there is an english version
 
 ![English version](/maintainer/png/sliding-en.png)

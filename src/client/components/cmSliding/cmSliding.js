@@ -85,7 +85,7 @@ Template.cmSliding.events({
     },
 
     // open the cookies manager (also closing this box)
-    'click .cm-modal'( event, instance ){
+    'click .cm-manager'( event, instance ){
         cookieManager.runManager( Template.currentData());
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
         localStorage.setItem( STORED_CHOSEN , 'true' );

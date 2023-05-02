@@ -4,6 +4,15 @@
 
 import merge from 'merge';
 
+const _checkInteger = function( name ){
+    const val = cookieManager.conf[name];
+    const ival = parseInt( val );
+    if( val !== ival ){
+        console.warn( 'pwix:cookie-manager expects', name, 'be an integer, found', val, 'reset to', cookieManager._defaults[name] );
+        cookieManager.conf[name] = cookieManager._defaults[name];
+    }
+};
+
 cookieManager = {
 
     // configuration
@@ -12,6 +21,9 @@ cookieManager = {
     // should be *in same terms* called both by the client and the server
     configure: function( o ){
         cookieManager.conf = merge.recursive( true, cookieManager._defaults, o );
+        // make sure we have integer where required
+        _checkInteger( 'consentLifetime' );
+        // be verbose if asked for
         if( cookieManager.conf.verbosity & CM_VERBOSE_CONFIGURE ){
             console.debug( 'pwix:cookie-manager configure() with', o, 'building', cookieManager.conf );
         }

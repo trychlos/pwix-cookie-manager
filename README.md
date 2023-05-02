@@ -38,7 +38,13 @@ Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_,
 
 The package's behavior can be configured through a call to the `cookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
-There is at the moment a single configuration option:
+Known configuration options are:
+
+- `consentLifetime`
+
+    Define the lifetime of the user consent, i.e. the time at the end of which an explicit consent should be re-asked to the user, as a `ms` integer.
+
+    Defaults to 31536000000 ms, aka 365*24*60*60*1000, aka one year.
 
 - `verbosity`
 

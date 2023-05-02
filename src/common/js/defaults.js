@@ -5,6 +5,7 @@
 import merge from 'merge';
 
 cookieManager._defaults = {
+    consentLifetime: 31536000000,   // one year
     verbosity: CM_VERBOSE_NONE
 };
 

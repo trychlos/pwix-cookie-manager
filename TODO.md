@@ -21,7 +21,6 @@
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
 |      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
 |      | 2023- 5- 2 | consent should be forgotten after one year |
-|   11 | 2023- 5- 2 | the lifetime of the consent should be configurable |
 |   12 |  |  |
 
 ---
@@ -36,6 +35,8 @@
 |      | 2023- 5- 2 | done with 1.1.0 |
 |   10 | 2023- 5- 1 | Provide a link/a button to re-open the cookie manager |
 |      | 2023- 5- 2 | cmConsent being replaced with runManager(), this can be seen as done |
+|   11 | 2023- 5- 2 | the lifetime of the consent should be configurable |
+|      | 2023- 5- 2 | done |
 
 ---
 P. Wieser

@@ -15,24 +15,14 @@ Meteor.startup(() => {
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( cookieManager.i18n, 'dialog.chosen' ),
         category: CM_CAT_TECHNICALS,
-        lifetime: pwixI18n.label( cookieManager.i18n, 'cookie.illimited' ),
         disableable: false
     });
-    // fonctional cookies for cmConsent width and height
+    // fonctional cookies of the manager dialog width and height
     cookieManager.publish({
-        name: STORED_DIALOG_SIZE+'-width',
+        name: STORED_DIALOG_SIZE,
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( cookieManager.i18n, 'dialog.size' ),
         category: CM_CAT_FUNCTIONALS,
-        lifetime: pwixI18n.label( cookieManager.i18n, 'cookie.illimited' ),
-        disableable: false
-    });
-    cookieManager.publish({
-        name: STORED_DIALOG_SIZE+'-height',
-        responsible: 'pwix:cookie-manager',
-        description: pwixI18n.label( cookieManager.i18n, 'dialog.size' ),
-        category: CM_CAT_FUNCTIONALS,
-        lifetime: pwixI18n.label( cookieManager.i18n, 'cookie.illimited' ),
-        disableable: false
+        disableable: true
     });
 });

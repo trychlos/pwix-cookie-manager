@@ -17,8 +17,9 @@
 |    6 | 2023- 5- 1 | having a reject all button should be configurable |
 |    7 | 2023- 5- 1 | configure sliding background color |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
+|      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
 |    9 | 2023- 5- 1 | functional cookies should be disableable |
-|   10 | 2023- 5- 1 | Provide a link/a button to re-open the cookie manager |
+|      | 2023- 5- 2 | this will be done after pwixModal writes width and height in one single data |
 |   11 |  |  |
 
 ---
@@ -28,6 +29,8 @@
 | ---: | :---       | :---                       |
 |    5 | 2023- 5- 1 | rather than having a dump configuration option, have a verbosity level which triggers on updates |
 |      | 2023- 5- 1 | done |
+|   10 | 2023- 5- 1 | Provide a link/a button to re-open the cookie manager |
+|      | 2023- 5- 2 | cmConsent being replaced with runManager(), this can be seen as done |
 
 ---
 P. Wieser

@@ -20,7 +20,9 @@ cookieManager.runManager = function( o ){
         mdBody: 'cm_dialog_tabs',
         mdFooter: 'cm_dialog_buttons',
         mdSizeKey: STORED_DIALOG_SIZE,
-        mdOutsideClose: false,
+        mdCloseByBackdrop: false,
+        mdCloseByHeader: false,
+        mdCloseByKeyboard: false,
         ...o
     });
 };

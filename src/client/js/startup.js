@@ -17,6 +17,14 @@ Meteor.startup(() => {
         category: CM_CAT_TECHNICALS,
         disableable: false
     });
+    // a technical cookie which stores the user consent as a composite (date,chosen action,list of enabled cookies)
+    cookieManager.publish({
+        name: STORED_CONSENT,
+        responsible: 'pwix:cookie-manager',
+        description: pwixI18n.label( cookieManager.i18n, 'dialog.consent' ),
+        category: CM_CAT_TECHNICALS,
+        disableable: false
+    });
     // fonctional cookies of the manager dialog width and height
     cookieManager.publish({
         name: STORED_DIALOG_SIZE,

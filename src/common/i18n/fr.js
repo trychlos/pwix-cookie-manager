@@ -27,6 +27,7 @@ cookieManager.i18n = {
                 title: 'Gestion des cookies',
                 none: 'Aucun cookie déclaré dans cette categorie',
                 chosen: 'Empêche la boite de dialogue de gestion des cookies d\'être réaffichée quand une page est rechargée.',
+                consent: 'Une donnée composée qui enregistre la date du consentement de l\'utilisateur, l\'action qu\'il a choisie, ainsi que la liste des cookies autorisés',
                 size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
             },
             sliding: {

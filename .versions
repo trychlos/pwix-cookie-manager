@@ -29,7 +29,7 @@ htmljs@1.1.1
 id-map@1.1.1
 inter-process-messaging@0.1.1
 less@4.0.0
-local-test:pwix:cookie-manager@1.1.0
+local-test:pwix:cookie-manager@1.1.1
 logging@1.3.2
 meteor@1.11.2
 minimongo@1.9.3
@@ -44,13 +44,12 @@ npm-mongo@4.14.0
 observe-sequence@1.0.20
 ordered-dict@1.1.0
 promise@0.12.2
-pwix:cookie-manager@1.1.0
+pwix:cookie-manager@1.1.1
 pwix:i18n@1.0.1
 pwix:jquery-ui@0.1.1
 pwix:modal@1.3.0
 random@1.2.1
 react-fast-refresh@0.2.7
-reactive-dict@1.3.1
 reactive-var@1.0.12
 reload@1.3.1
 retry@1.1.0

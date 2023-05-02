@@ -20,7 +20,7 @@ import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
  */
 cookieManager.consentRead = function(){
     const res = null;
-    const str = localStorage.getItem( STORED_CONSENT );
+    const str = localStorage.getItem( STORED_USER_CONSENT );
     if( str ){
         const parts = str.split( CM_COMMA );
         if( parts.length === 3 ){
@@ -43,7 +43,7 @@ cookieManager.consentRead = function(){
  * @locus Client
  * @param {String} action the chosen action
  */
-cookieManager.consentWrite = function(){
+cookieManager.consentWrite = function( action ){
     let enabled = '';
     cookieManager.getEnabled().every(( c ) => {
         if( enabled ){
@@ -52,7 +52,7 @@ cookieManager.consentWrite = function(){
         enabled += c.name;
     });
     const now = Date.now();
-    localStorage.setItem( STORED_CONSENT, now + CM_COMMA + action + CM_COMMA + enabled );
+    localStorage.setItem( STORED_USER_CONSENT, now + CM_COMMA + action + CM_COMMA + enabled );
 };
 
 /**

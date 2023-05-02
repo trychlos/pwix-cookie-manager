@@ -118,6 +118,7 @@ Template.cm_dialog_tabs.onCreated( function(){
                     });
                     break;
             }
+            cookieManager.consentWrite( self.CM.chosen );
         }
     };
 });

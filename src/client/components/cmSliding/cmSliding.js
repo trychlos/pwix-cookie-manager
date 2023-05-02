@@ -13,7 +13,7 @@ import './cmSliding.less';
 Template.cmSliding.onCreated( function(){
     const self = this;
 
-    // be verbose
+    // be verbose if asked for
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onCreated()' );
     }
@@ -42,7 +42,7 @@ Template.cmSliding.onCreated( function(){
 Template.cmSliding.onRendered( function(){
     const self = this;
 
-    // be verbose
+    // be verbose if asked for
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onRendered()' );
     }
@@ -50,8 +50,10 @@ Template.cmSliding.onRendered( function(){
     // set the font-size
     self.$( '.cmSliding .cm-body' ).css({ fontSize: self.CM.fontSize });
 
-    // display the alert if needed
-    if( localStorage.getItem( STORED_CHOSEN ) !== 'true' ){
+    // display the adertising cookie message if we have no user consent, or too old
+    const consent = cookieManager.consentRead();
+    const show = ( consent === null ) || ( Date.now() - consent.date < cookieManager.conf.consentLifetime );
+    if( show ){
         self.$( '.cmSliding .cm-body' ).addClass( 'show' );
     }
 });
@@ -81,14 +83,14 @@ Template.cmSliding.events({
     // got it: close the box and do not redisplay
     'click .cm-gotit'( event, instance ){
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
-        localStorage.setItem( STORED_CHOSEN , 'true' );
+        cookieManager.consentWrite( 'gotit' );
     },
 
     // open the cookies manager (also closing this box)
+    //  will write itself the user consent
     'click .cm-manager'( event, instance ){
         cookieManager.runManager( Template.currentData());
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
-        localStorage.setItem( STORED_CHOSEN , 'true' );
     },
 
     // user asks for display of the cookies policy (and close the box)
@@ -100,7 +102,7 @@ Template.cmSliding.events({
 });
 
 Template.cmSliding.onDestroyed( function(){
-    // be verbose
+    // be verbose if asked for
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onDestroyed()' );
     }

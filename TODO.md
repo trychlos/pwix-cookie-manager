@@ -18,9 +18,6 @@
 |      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
 |      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
-|    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
-|      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
-|      | 2023- 5- 2 | consent should be forgotten after one year |
 |   12 |  |  |
 
 ---
@@ -30,6 +27,10 @@
 | ---: | :---       | :---                       |
 |    5 | 2023- 5- 1 | rather than having a dump configuration option, have a verbosity level which triggers on updates |
 |      | 2023- 5- 1 | done |
+|    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
+|      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
+|      | 2023- 5- 2 | consent should be forgotten after one year |
+|      | 2023- 5- 2 | done without ip address (needed here) |
 |    9 | 2023- 5- 1 | functional cookies should be disableable |
 |      | 2023- 5- 2 | this will be done after pwixModal writes width and height in one single data |
 |      | 2023- 5- 2 | done with 1.1.0 |

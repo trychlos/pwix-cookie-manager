@@ -30,7 +30,7 @@ cookieManager.Categories = [
 //
 // localStorage data
 STORED_CHOSEN = 'pwix:cookie-manager/displayed';
-STORED_CONSENT = 'pwix:cookie-manager/consent';
+STORED_USER_CONSENT = 'pwix:cookie-manager/user-consent';
 STORED_DIALOG_SIZE = 'pwix:cookie-manager/consent-manager-size'
 STORED_COOKIE_PREFIX = 'pwix:cookie-manager/enabled/';
 

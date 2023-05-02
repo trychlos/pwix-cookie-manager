@@ -432,6 +432,22 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 `pwix:cookie-manager` makes use of `localStorage` to record its technical and functionals required informations. Some of these are considered as non disableable by the user, and are advertised as such.
 
+## References
+
+- [Loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés](https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000886460)
+
+- [Regulation (EU) 2016/679 of the European parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data](http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679)
+
+- [Charter of fundamental rights of the European union (2012/C 326/02)](http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A12012P%2FTXT)
+
+- [Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data (ETS No. 108)](https://www.coe.int/en/web/conventions/full-list/-/conventions/treaty/108)
+
+- [Lignes_directrices_de_la_cnil_sur_les_cookies_et_autres_traceurs]()
+
+- [Recommandation-cookies-et-autres-traceurs]()
+
+- [Guidelines 05/2020 on consent under Regulation 2016/679](https://edpb.europa.eu/sites/default/files/files/file1/edpb_guidelines_202005_consent_en.pdf)
+
 ---
 P. Wieser
 - Last updated on 2023, May 2nd

@@ -92,6 +92,7 @@ Template.cmSliding.events({
     },
 
     // user asks for display of the cookies policy (and close the box)
+    //  as user has not 'got it' and not run the cookie manager, it will be redisplayed this cmSliding
     'click .cm-policy'( event, instance ){
         instance.$( '.cmSliding' ).trigger( 'cm-policy-click' );
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );

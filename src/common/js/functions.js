@@ -106,15 +106,16 @@ cookieManager.enable = function( name, allowed ){
 cookieManager.getEnabled = function(){
     let res = [];
     cookieManager._published.every(( c ) => {
-        if( cookieManaged.isEnabled( c.name )){
+        if( cookieManager.isEnabled( c.name )){
             res.push( c );
         }
         return true;
     });
+    return res;
 };
 
 /**
- * @summary Says if the named cookie is enabled by the user
+ * @summary Says if the named cookie is enabled (i.e. authorized) by the user
  * @locus Anywhere
  * @param {String} name the name of the cookie
  * @returns {Boolean} whether the cookie has been authorized, defaulting to true

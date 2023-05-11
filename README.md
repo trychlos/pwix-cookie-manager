@@ -16,7 +16,7 @@ This has been written because `selaias:cookie-consent` seems to no more be maint
 
 `pwix:cookie-manager` doesn't manage the cookies by themselves, I mean their value. So, whether the _cookie_ is really a cookie, i.e. a data file sent from the server to the client before HTTP headers, and so on, is entirey up to the application (resp. another package).
 
-Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_, i.e. a name and a description, an originator, a category, a status, along with some other properties which are only lelevant for the aim of management. All that semantic, along wihh the user consentement, is stored in the `localStorage` of the browser.
+Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_, i.e. a name and a description, an originator, a category, a status, along with some other properties which are only relevant for the aim of management. All that semantic, along wihh the user consentement, is stored in the `localStorage` of the browser.
 
 `pwix:cookie-manager` distinguishes five type of cookies:
 
@@ -74,7 +74,7 @@ Known configuration options are:
 
     - `CM_VERBOSE_STORAGE`
 
-        Dump the localStorage first at startup, and then on user choice from `cmConsent` (client-side only).
+        Dump the localStorage first at startup, and then on user choice (client-side only).
 
 Please note that `cookieManager.configure()` method should be called in the same terms both in client and server sides.
 
@@ -88,7 +88,7 @@ Also note, as an explicit reminder for the fools, that, because the Meteor packa
 
 This object is allocated at package level: there is only one instance in your application. It gathers the available methods (see below).
 
-`pwix:cookie-manager` attaches this global object to the global Meteor one, so that every willing-to packages is able to take advantage of the available methods to publish their own _cookies_ throught `Meteor.cookieManager`, without having to first `require` or `import` the package, or even make it a dependency.
+`pwix:cookie-manager` attaches this global object to the global Meteor one, so that every willing-to packages is able to take advantage of the available methods to publish their own _cookies_ through `Meteor.cookieManager`, without having to first `require` or `import` the package, or even make it a dependency.
 
 ### Constants
 
@@ -151,7 +151,7 @@ In order to not rely on the initialization order, this method should be called f
 
 - `responsible`
 
-    The application (resp. another package) name, as a string.
+    The application (resp. another package) name, as a string, defaulting to none.
 
 - `category`
 
@@ -161,27 +161,23 @@ In order to not rely on the initialization order, this method should be called f
 
 - `description`
 
-    A brief description of the role of the cookie, as a string.
-
-    Defaulting to none.
+    A brief description of the role of the cookie, as a string, defaulting to none.
 
 - `lifetime`
 
     The lifetime of the cookie, as a string, from just the navigation session life to illimited.
 
-    Defaulting to english « Unknown ».
+    Defaults to english « Unknown ».
 
 - `disableable`
 
-    Whether the cookie can be refused by the user.
-
-    Defaulting to `true`.
+    Whether the cookie can be refused by the user, defaulting to `true`.
 
 - `link`
 
     When we are describing a third-party cookie, the third-party main web site address.
 
-    Defaulting to none.
+    Defaults to none.
 
 #### `cookieManager.runManager( o )`
 
@@ -386,22 +382,22 @@ As this component provides a link to the cookies manager dialog, it may take the
 
     On click, the `cm-policy-click` event will be triggered on `cmSliding` component.
 
-    Defaults to `false`.
+    Defaults to none.
 
 `cmSliding` is displayed the first time a user visits the site, as a bottom sliding band. It can be closed:
 
 - when the user clicks on the 'Got it' button
 
     - no update is done on the current cookies choices
-    - the component will not be displayed agains on next visit
+    - the component will not be displayed again on next visit
 
 - when the user click on the link to open the cookie manager
 
-    - the component will not be displayed agains on next visit
+    - the component will not be displayed again on next visit
 
 - when a link to the cookies policy has been provided and the user clicks on it
 
-    - no other action is taken than just close the component: neither any cookie choice update, nor any prevention againt a new display on next visit
+    - no other action is taken than just close the component: neither any cookie choice update, nor any prevention against a new display on next visit
 
         Rationale is that reading, even very carefully, the cookies policy is not at all the same that explicitly consent to the cookies.
 

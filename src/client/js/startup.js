@@ -9,20 +9,13 @@ Meteor.startup(() => {
 });
 
 Meteor.startup(() => {
-    // a technical cookie which prevent the cmSliding to be re-displayed each time the page reload
-    cookieManager.publish({
-        name: STORED_CHOSEN,
-        responsible: 'pwix:cookie-manager',
-        description: pwixI18n.label( cookieManager.i18n, 'dialog.chosen' ),
-        category: CM_CAT_TECHNICALS,
-        disableable: false
-    });
     // a technical cookie which stores the user consent as a composite (date,chosen action,list of enabled cookies)
     cookieManager.publish({
-        name: STORED_CONSENT,
+        name: STORED_USER_CONSENT,
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( cookieManager.i18n, 'dialog.consent' ),
         category: CM_CAT_TECHNICALS,
+        lifetime: cookieManager.conf.consentLifetime,
         disableable: false
     });
     // fonctional cookies of the manager dialog width and height

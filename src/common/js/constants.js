@@ -29,7 +29,6 @@ cookieManager.Categories = [
 // non exported
 //
 // localStorage data
-STORED_CHOSEN = 'pwix:cookie-manager/displayed';
 STORED_USER_CONSENT = 'pwix:cookie-manager/user-consent';
 STORED_DIALOG_SIZE = 'pwix:cookie-manager/consent-manager-size'
 STORED_COOKIE_PREFIX = 'pwix:cookie-manager/enabled/';

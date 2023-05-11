@@ -19,14 +19,14 @@ import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
  *  null if no valid previous consent found
  */
 cookieManager.consentRead = function(){
-    const res = null;
+    let res = null;
     const str = localStorage.getItem( STORED_USER_CONSENT );
     if( str ){
         const parts = str.split( CM_COMMA );
         if( parts.length === 3 ){
             const enabled = parts[2].split( CM_PIPE );
-            // we have at the time at least two mandatory technical cookies
-            if( enabled.length > 1 ){
+            // we have at the time at least one mandatory technical cookie (the user consent)
+            if( enabled.length > 0 ){
                 res = {
                     date: parts[0],
                     action: parts[1],
@@ -50,6 +50,7 @@ cookieManager.consentWrite = function( action ){
             enabled += CM_PIPE;
         }
         enabled += c.name;
+        return true;
     });
     const now = Date.now();
     localStorage.setItem( STORED_USER_CONSENT, now + CM_COMMA + action + CM_COMMA + enabled );

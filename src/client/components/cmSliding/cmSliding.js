@@ -52,7 +52,7 @@ Template.cmSliding.onRendered( function(){
 
     // display the adertising cookie message if we have no user consent, or too old
     const consent = cookieManager.consentRead();
-    const show = ( consent === null ) || ( Date.now() - consent.date < cookieManager.conf.consentLifetime );
+    const show = ( consent === null ) || ( Date.now() - consent.date > cookieManager.conf.consentLifetime );
     if( show ){
         self.$( '.cmSliding .cm-body' ).addClass( 'show' );
     }

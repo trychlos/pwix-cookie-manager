@@ -18,7 +18,8 @@
 |      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
 |      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
-|   12 |  |  |
+|   12 | 2023- 5-18 | review display on small devices |
+|   13 |  |  |
 
 ---
 ## Done

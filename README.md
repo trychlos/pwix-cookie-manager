@@ -78,7 +78,7 @@ Known configuration options are:
 
 Please note that `cookieManager.configure()` method should be called in the same terms both in client and server sides.
 
-Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `cookieManager.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
+Remind too that Meteor packages are instanciated at application level. They are so only configurable once, or, in other words, only one instance has to be or can be configured. Addtionnal calls to `SSR.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
 ## Provides
 

@@ -1,25 +1,25 @@
 <template name="cmSliding">
     <div class="cmSliding">
 
-        <div class="cm-body">
+        {{#if show}}
+            <div class="cm-body">
+                <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" height="{{ imageHeight }}" alt="Information" />
 
-            <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" height="{{ imageHeight }}" alt="Information" />
+                <div class="text">
+                    {{{ i18n key="sliding.body" }}}
 
-            <div class="text">
-                {{{ i18n key="sliding.body" }}}
+                    {{#if cookiePolicy }}
+                        <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
+                    {{/if}}
 
-                {{#if cookiePolicy }}
-                    <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
-                {{/if}}
+                    <a href="#" class="cm-manager">{{ i18n key="sliding.manager_link" }}</a>
+                </div>
 
-                <a href="#" class="cm-manager">{{ i18n key="sliding.manager_link" }}</a>
+                <div class="buttons">
+                    <button class="btn btn-sm btn-primary cm-gotit" type="button">{{ i18n key="sliding.gotit" }}</button>
+                </div>
             </div>
-
-            <div class="buttons">
-                <button class="btn btn-sm btn-primary cm-gotit" type="button">{{ i18n key="sliding.gotit" }}</button>
-            </div>
-
-        </div>
+        {{/if}}
 
     </div>
 </template>

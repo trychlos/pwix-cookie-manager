@@ -36,7 +36,7 @@ Template.cmSliding.onCreated( function(){
     // get the args
     self.autorun(() => {
         self.CM.argBool( 'cookiePolicy' );
-    })
+    });
 });
 
 Template.cmSliding.onRendered( function(){
@@ -53,6 +53,7 @@ Template.cmSliding.onRendered( function(){
     // display the adertising cookie message if we have no user consent, or too old
     const consent = cookieManager.consentRead();
     const show = ( consent === null ) || ( Date.now() - consent.date > cookieManager.conf.consentLifetime );
+    //console.debug( 'consent=', consent, 'show=', show );
     if( show ){
         self.$( '.cmSliding .cm-body' ).addClass( 'show' );
     }
@@ -76,6 +77,16 @@ Template.cmSliding.helpers({
         const count = 2 + ( CM.cookiePolicy.get() ? 1 : 0 );
         const height = count * 16; // * parseFloat( CM.fontSize ) / 100;
         return height + 'px';
+    },
+
+    // whether this sliding has to be shown
+    //  rationale: do not show it when the page is being prerendered after having been requested by a bot crawler
+    show(){
+        const isPrerender = Package['pwix:ssr'] ? Package['pwix:ssr'].SSR.isPrerender() : false;
+        //console.debug( 'cookie-manager isPrerender', isPrerender );
+        //const isBot = Package['pwix:ssr'] ? Package['pwix:ssr'].SSR.isBot() : false;
+        //console.debug( 'cookie-manager isBot', isBot );
+        return !isPrerender;
     }
 });
 

@@ -19,7 +19,8 @@
 |      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
 |   12 | 2023- 5-18 | review display on small devices |
-|   13 |  |  |
+|   13 | 2023( 6-26 | Change 'make the cookieManager available to each and every package' to '...available to all' |
+|   14 |  |  |
 
 ---
 ## Done

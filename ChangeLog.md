@@ -7,6 +7,7 @@
 | xxx   | xxx | Add references from EU and CNIL to maintainers/docs |
 |         |            | Define consentLifetime configuration parameter (todo #11) |
 |         |            | Forgot the user consent after this configured lifetime (todo #8) |
+|         |            | Do not display the cmSliding component when being prerendered after having been requested by a bot crawler |
 | 1.1.1   | 2023- 5- 2 | Remove reactive-dict dependency |
 |         |            | Fix 1.1.0 release dates |
 | 1.1.0   | 2023- 5- 2 | Obsoletes cmConsent, replacing it with an internal cm_manager, trigerred by runManager() public method |

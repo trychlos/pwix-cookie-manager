@@ -18,9 +18,10 @@
 |      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
 |      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
-|   12 | 2023- 5-18 | review display on small devices |
-|   13 | 2023( 6-26 | Change 'make the cookieManager available to each and every package' to '...available to all' |
-|   14 |  |  |
+|   13 | 2023- 5-26 | Change 'make the cookieManager available to each and every package' to '...available to all' |
+|   14 | 2023- 5-29 | make the cookie description localizable |
+|   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
+|   16 |  |  |
 
 ---
 ## Done
@@ -40,6 +41,8 @@
 |      | 2023- 5- 2 | cmConsent being replaced with runManager(), this can be seen as done |
 |   11 | 2023- 5- 2 | the lifetime of the consent should be configurable |
 |      | 2023- 5- 2 | done |
+|   12 | 2023- 5-18 | review display on small devices |
+|      | 2023- 5-29 | done (and will request the last version of pwix:layout) |
 
 ---
 P. Wieser

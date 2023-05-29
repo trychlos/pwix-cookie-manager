@@ -2,8 +2,23 @@
  * pwix:cookie-manager/src/client/components/cmConsent/cmConsent.less
  */
 
+ @import "{pwix:layout}/src/client/css/ui_constants.less";
+
 .cm-cookie-manager {
     .cm-dialog-tabs {
+        @media screen and ( min-width: @ui-md-width ){
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+        }
+
+        // used on small devices
+        .form-select {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    
+        // used starting with medium devices
         .nav {
            flex-wrap: nowrap;
            button {
@@ -25,16 +40,24 @@
         .nav-link {
             border: 0;
         }
+
+        // and the tabs content
         .tab-content {
             p:not( :last-child ){
                 margin-bottom: 0.5em;
             }
         }
+
+        --cm-cookie-accordion-padding: 2px;
+        @media screen and ( min-width: @ui-md-width ){
+            --cm-cookie-accordion-padding: 0.5em;
+        }
+
         .cookies-list {
             border: 1px solid gray;
             border-radius: 0.25em;
             margin: 0.5em 0;
-            padding: 0.5em;
+            padding: var( --cm-cookie-accordion-padding );
 
             .accordion-item {
                 margin-right: 0.5em;
@@ -45,7 +68,7 @@
                     color: inherit;
                 }
                 .accordion-body {
-                    padding: 0.5em;
+                    padding: var( --cm-cookie-accordion-padding );
                     font-size: 85%;
                 }
                 .title {

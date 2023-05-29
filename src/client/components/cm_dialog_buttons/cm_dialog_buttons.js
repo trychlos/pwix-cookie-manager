@@ -3,6 +3,7 @@
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
+import { uiLayout } from 'meteor/pwix:layout';
 import { pwixModal } from 'meteor/pwix:modal';
 
 import '../../stylesheets/cm_cookie_manager.less';
@@ -32,6 +33,10 @@ Template.cm_dialog_buttons.helpers({
     },
     rejectLabel(){
         return Template.currentData().rejectButton || pwixI18n.label( cookieManager.i18n, 'buttons.reject' );
+    },
+    // have a small-btn class on small up to medium devices
+    smallBtn(){
+        return uiLayout.isMD() ? 'btn-sm': '';
     }
 });
 

@@ -1,95 +1,113 @@
 <template name="cm_dialog_tabs">
     <div class="cm-dialog-tabs">
 
-        <div class="d-flex flex-row align-items-start">
-
-            <ul class="nav nav-tabs d-flex flex-column" role="tablist" aria-orientation="horizontal">
+        {{#if uiMDView }}
+            <!-- small to medium devices display -->
+            <select class="form-select nav" role="tablist">
+                {{#each it in tabsList }}
+                    <option class="nav-item" role="presentation">
+                        {{> cm_dialog_tabs_button it=it }}
+                    </option>
+                {{/each}}
+            </select>
+        {{else}}
+            <!-- medium devices and up display -->
+            <ul class="nav nav-tabs d-flex flex-column" role="tablist" aria-orientation="vertical">
                 {{#each it in tabsList }}
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="nav-{{ it.nav_id }}" type="button" role="tab" data-tab-name="{{ it.name }}"
-                                data-bs-toggle="tab" data-bs-target="#tab-{{ it.content_id }}"
-                                aria-controls="tab-{{ it.content_id }}" aria-selected="false">
-                            {{ navLabel it }}
-                        </button>
+                        {{> cm_dialog_tabs_button it=it }}
                     </li>
                 {{/each}}
             </ul>
-    
-            <div class="tab-content x-w100">
-                {{#each it in tabsList }}
-                    <div class="tab-pane fade" id="tab-{{ it.content_id }}" role="tabpanel" aria-labelledby="nav-{{ it.nav_id }}" tabindex="0">
+        {{/if}}
+
+        <div class="tab-content x-w100">
+            {{#each it in tabsList }}
+                <div class="tab-pane fade" id="tab-{{ it.content_id }}" role="tabpanel" aria-labelledby="nav-{{ it.nav_id }}" tabindex="0">
+                    {{#unless uiMDView }}
                         <div class="title">
                             {{{ navTitle it }}}
                         </div>
-                        <div class="before">
-                            {{{ navBefore it }}}
-                        </div>
-                        <div class="content">
-                            {{{ navContent it }}}
-                        </div>
-                        {{#if it.cat }}
-                            <div class="cookies-list">
-                                {{#if haveList it }}
-                                    <div class="accordion" id="cordion-{{ it.cordion_id }}">
-                                        {{#each c in navList it }}
-                                            {{ setDict c }}
-                                            <div class="cookie-item d-flex flex-row align-items-center justify-content-between">
-                                                <div class="accordion-item flex-grow-1">
-                                                    <div class="accordion-header">
-                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collapseId it c }}" aria-expanded="false" aria-controls="{{ it.cordion_id }}-{{ c.name }}">
-                                                            {{ c.name }}
-                                                        </button>
-                                                    </div>
-                                                    <div class="accordion-collapse collapse" data-bs-parent="#cordion-{{ it.cordion_id }}" id="{{ collapseId it c }}">
-                                                        <div class="accordion-body">
-                                                            <table>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.originator" }}</td>
-                                                                    <td>{{ c.responsible }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.description" }}</td>
-                                                                    <td>{{ c.description }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.lifetime" }}</td>
-                                                                    <td>{{ ck_lifetime c }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.disableable" }}</td>
-                                                                    <td>{{ ck_disableable c }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.link" }}</td>
-                                                                    <td>{{ c.link }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="title">{{ i18n key="cookie.value" }}</td>
-                                                                    <td>{{ ck_value c }}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{> toggleSwitch (parmsSwitch c) }}
-                                            </div>
-                                        {{/each}}
-                                    </div>
-                                {{else}}
-                                    <div class="none">
-                                        {{ i18n key="dialog.none" }}
-                                    </div>
-                                {{/if}}
-                            </div>
-                        {{/if}}
-                        <div class="after">
-                            {{{ navAfter it }}}
-                        </div>
+                    {{/unless}}
+                    <div class="before">
+                        {{{ navBefore it }}}
                     </div>
-                {{/each}}
-            </div>
-    
+                    <div class="content">
+                        {{{ navContent it }}}
+                    </div>
+                    {{#if it.cat }}
+                        <div class="cookies-list">
+                            {{#if haveList it }}
+                                <div class="accordion" id="cordion-{{ it.cordion_id }}">
+                                    {{#each c in navList it }}
+                                        {{ setDict c }}
+                                        {{> cm_dialog_tabs_cookie it=it c=c }}
+                                    {{/each}}
+                                </div>
+                            {{else}}
+                                <div class="none">
+                                    {{ i18n key="dialog.none" }}
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                    <div class="after">
+                        {{{ navAfter it }}}
+                    </div>
+                </div>
+            {{/each}}
         </div>
 
+    </div>
+</template>
+
+<template name="cm_dialog_tabs_button">
+    <button class="nav-link" id="nav-{{ it.nav_id }}" type="button" role="tab" data-tab-name="{{ it.name }}"
+            data-bs-toggle="tab" data-bs-target="#tab-{{ it.content_id }}"
+            aria-controls="tab-{{ it.content_id }}" aria-selected="false">
+        {{ navLabel it }}
+    </button>
+</template>
+
+<template name="cm_dialog_tabs_cookie">
+    <div class="cookie-item d-flex flex-row align-items-center justify-content-between">
+        <div class="accordion-item flex-grow-1">
+            <div class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collapseId it c }}" aria-expanded="false" aria-controls="{{ it.cordion_id }}-{{ c.name }}">
+                    {{ c.name }}
+                </button>
+            </div>
+            <div class="accordion-collapse collapse" data-bs-parent="#cordion-{{ it.cordion_id }}" id="{{ collapseId it c }}">
+                <div class="accordion-body">
+                    <table>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.originator" }}</td>
+                            <td>{{ c.responsible }}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.description" }}</td>
+                            <td>{{ c.description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.lifetime" }}</td>
+                            <td>{{ ck_lifetime c }}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.disableable" }}</td>
+                            <td>{{ ck_disableable c }}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.link" }}</td>
+                            <td>{{ c.link }}</td>
+                        </tr>
+                        <tr>
+                            <td class="title">{{ i18n key="cookie.value" }}</td>
+                            <td>{{ ck_value c }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {{> toggleSwitch (parmsSwitch c) }}
     </div>
 </template>

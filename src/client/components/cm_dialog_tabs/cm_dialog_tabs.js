@@ -146,27 +146,6 @@ Template.cm_dialog_tabs.onRendered( function(){
 
 Template.cm_dialog_tabs.helpers({
 
-    // Whether the cookie is disableable
-    ck_disableable( c ){
-        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
-    },
-
-    // lifetime of the cookie
-    ck_lifetime( c ){
-        return c.lifetime ? c.lifetime : pwixI18n.label( cookieManager.i18n, 'cookie.illimited' );
-    },
-
-    // current value of the cookie
-    ck_value( c ){
-        return localStorage.getItem( c.name ) || pwixI18n.label( cookieManager.i18n, 'cookie.undef' );
-    },
-
-    // try to build a collapse identifier
-    collapseId( it, c ){
-        let id = 'id-' + it.cordion_id + '-' + c.name;
-        return id.replace( /[/:]/g, '-' );
-    },
-
     // whether we have some cookie in this category
     haveList( it ){
         let a = [];
@@ -196,11 +175,6 @@ Template.cm_dialog_tabs.helpers({
         return Template.currentData()[it.name+'Content'] || pwixI18n.label( cookieManager.i18n, it.content );
     },
 
-    // the button label
-    navLabel( it ){
-        return Template.currentData()[it.name+'Label'] || pwixI18n.label( cookieManager.i18n, it.label );
-    },
-
     // the list of cookies published by the application and other packages
     navList( it ){
         let a = [];
@@ -215,16 +189,6 @@ Template.cm_dialog_tabs.helpers({
         return Template.currentData()[it.name+'Title'] || pwixI18n.label( cookieManager.i18n, it.title );
     },
 
-    // a toggle switch for this cookie
-    parmsSwitch( c ){
-        return {
-            name: c.name,
-            title: c.name,
-            state: cookieManager.isEnabled( c.name ),
-            enabled: c.disableable
-        }
-    },
-
     // initiaize our internal hash for this cookie
     setDict( c ){
         Template.instance().CM.cookies[c.name] = cookieManager.isEnabled( c.name );
@@ -237,6 +201,14 @@ Template.cm_dialog_tabs.helpers({
 });
 
 Template.cm_dialog_tabs.events({
+    // display the tab according to the selected option (on small to medium devices)
+    'change .form-select'( event, instance ){
+        const target = instance.$( '.form-select option:selected button' ).attr( 'id' );
+        instance.$( '.form-select option button.active' ).removeClass( 'active' );
+        instance.$( '.tab-content .tab-pane.active' ).removeClass( 'active show' );
+        instance.$( '.nav-link#'+target ).tab( 'show' );
+    },
+
     // user accepts or refuses a cookie
     'ts-state .toggleSwitch'( event, instance, data ){
         instance.CM.cookies[data.name] = data.state;
@@ -266,5 +238,51 @@ Template.cm_dialog_tabs.onDestroyed( function(){
     // be verbose
     if( cookieManager.conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
+    }
+});
+
+Template.cm_dialog_tabs_button.helpers({
+    // the button label
+    navLabel( it ){
+        return Template.currentData()[it.name+'Label'] || pwixI18n.label( cookieManager.i18n, it.label );
+    }
+});
+
+Template.cm_dialog_tabs_cookie.helpers({
+
+    // Whether the cookie is disableable
+    ck_disableable( c ){
+        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
+    },
+
+    // lifetime of the cookie
+    ck_lifetime( c ){
+        return c.lifetime ? c.lifetime : pwixI18n.label( cookieManager.i18n, 'cookie.illimited' );
+    },
+
+    // current value of the cookie
+    ck_value( c ){
+        return localStorage.getItem( c.name ) || pwixI18n.label( cookieManager.i18n, 'cookie.undef' );
+    },
+
+    // try to build a collapse identifier
+    collapseId( it, c ){
+        let id = 'id-' + it.cordion_id + '-' + c.name;
+        return id.replace( /[/:]/g, '-' );
+    },
+
+    // string translation
+    i18n( arg ){
+        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+    },
+
+    // a toggle switch for this cookie
+    parmsSwitch( c ){
+        return {
+            name: c.name,
+            title: c.name,
+            state: cookieManager.isEnabled( c.name ),
+            enabled: c.disableable
+        }
     }
 });

@@ -42,7 +42,7 @@
 |   11 | 2023- 5- 2 | the lifetime of the consent should be configurable |
 |      | 2023- 5- 2 | done |
 |   12 | 2023- 5-18 | review display on small devices |
-|      | 2023- 5-29 | done (and will request the last version of pwix:layout) |
+|      | 2023- 5-29 | done (and will request the last version of pwix:modal) |
 
 ---
 P. Wieser

@@ -32,6 +32,7 @@ cookieManager.i18n = {
             },
             sliding: {
                 body: '<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>',
+                body_xs: '<p>This site use <em>cookies</em> to offer you a better experience.</p>',
                 policy_link: 'Read our cookies policy',
                 manager_link: 'Open the cookies manager',
                 gotit: 'Got it. Thanks!'

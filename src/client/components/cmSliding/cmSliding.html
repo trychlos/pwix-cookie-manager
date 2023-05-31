@@ -6,7 +6,11 @@
                 <img src="/packages/pwix_cookie-manager/resources/png/info-primary.png" height="{{ imageHeight }}" alt="Information" />
 
                 <div class="text">
+                    {{#if uiXSView }}
+                        {{{ i18n key="sliding.body_xs" }}}
+                    {{else}}
                     {{{ i18n key="sliding.body" }}}
+                    {{/if}}
 
                     {{#if cookiePolicy }}
                         <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>

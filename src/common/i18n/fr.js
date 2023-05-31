@@ -32,7 +32,7 @@ cookieManager.i18n = {
             },
             sliding: {
                 body: '<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>',
-                body_xs: '<p>Ce site utilise des <em>cookies</em> pour vous procurer une meilleure expérience de navigation.</p>',
+                body_sm: '<p>Ce site utilise des <em>cookies</em> pour vous procurer une meilleure expérience de navigation.</p>',
                 policy_link: 'Prenez connaissance de notre stratégie de gestion des cookies',
                 manager_link: 'Managez vos cookies',
                 gotit: 'Vu. Merci !'

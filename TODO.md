@@ -25,7 +25,9 @@
 |   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
 |   16 | 2023- 5-29 | Have a verbosity level to the availability message |
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
-|   18 |  |  |
+|   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
+|   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
+|   20 |  |  |
 
 ---
 ## Done

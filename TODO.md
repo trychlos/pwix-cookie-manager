@@ -27,7 +27,8 @@
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   20 |  |  |
+|   20 | 2023- 6-12 | Have cookieManager.i18n.namespace() to let another package add a translation to this one |
+|   21 |  |  |
 
 ---
 ## Done

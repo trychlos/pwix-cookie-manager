@@ -9,5 +9,7 @@ if( false ){
 }
 
 checkNpmVersions({
-    'merge': '^2.1.1'
-    }, 'pwix:cookie-manager' );
+    'lodash': '^4.17.0'
+},
+    'pwix:cookie-manager'
+);

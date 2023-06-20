@@ -417,13 +417,13 @@ This event is triggered on the `.cmSliding` component class when the developer h
 
 ## NPM peer dependencies
 
-Starting with v 0.1.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 
+Starting with v 1.0.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 1.0.0:
+Dependencies as of v 1.2.0:
 ```
-    'merge': '^2.1.1'
+    'lodash': '^4.17.0'
 ```
 
 Each of these dependencies should be installed at application level:

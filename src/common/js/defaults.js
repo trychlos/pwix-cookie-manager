@@ -2,7 +2,7 @@
  * pwix:cookie-manager/src/common/js/defaults.js
  */
 
-import merge from 'merge';
+import _ from 'lodash';
 
 cookieManager._defaults = {
     consentLifetime: 31536000000,   // one year

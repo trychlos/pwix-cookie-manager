@@ -1,22 +1,47 @@
-# pwix:cookie-manager - ChangeLog
+# pwix:cookie-manager
 
 ## ChangeLog
 
-| Version | Release    | Content |
-| ---:    | :---       | :---    |
-| 1.2.0   | xxx | Add references from EU and CNIL to maintainers/docs |
-|         |            | Define consentLifetime configuration parameter (todo #11) |
-|         |            | Forgot the user consent after this configured lifetime (todo #8) |
-|         |            | Do not display the cmSliding component when being rendered after having been requested by a bot crawler (requires pwix:ssr) |
-|         |            | Add a dependency on pwix:layout to manage small devices |
-|         |            | Increment the minimal pwix:modal version |
-| 1.1.1   | 2023- 5- 2 | Remove reactive-dict dependency |
-|         |            | Fix 1.1.0 release dates |
-| 1.1.0   | 2023- 5- 2 | Obsoletes cmConsent, replacing it with an internal cm_manager, trigerred by runManager() public method |
-|         |            | Bump pwix:modal required version to v 1.3.0 to make the cookie manager actually blocking |
-|         |            | Clarify README on when the cmSliding component is shown, and when not shown again |
-| 1.0.1   | 2023- 5- 1 | Fix Meteor packaging |
-| 1.0.0   | 2023- 5- 1 | Initial release |
+## ChangeLog
+
+### 1.2.0-rc
+
+    Release date: 
+
+    - Add references from EU and CNIL to maintainers/docs
+    - Define consentLifetime configuration parameter (todo #11)
+    - Forgot the user consent after this configured lifetime (todo #8)
+    - Do not display the cmSliding component when being rendered after having been requested by a bot crawler (requires pwix:ssr)
+    - Add a dependency on pwix:layout to better manage small devices
+    - Increment the minimal pwix:modal version
+    - Replace merge depency with lodash
+
+### 1.1.1
+
+    Release date: 2023- 5- 2
+
+    - Remove reactive-dict dependency
+    - Fix 1.1.0 release date
+
+### 1.1.0
+
+    Release date: 2023- 5- 2
+
+    - Obsoletes cmConsent, replacing it with an internal cm_manager, trigerred by runManager() public method
+    - Bump pwix:modal required version to v 1.3.0 to make the cookie manager actually blocking
+    - Clarify README on when the cmSliding component is shown, and when not shown again
+
+### 1.0.1
+
+    Release date: 2023- 5- 1
+
+    - Fix Meteor packaging
+
+### 1.0.0
+
+    Release date: 2023- 5- 1
+
+    - Initial release
 
 ---
 P. Wieser

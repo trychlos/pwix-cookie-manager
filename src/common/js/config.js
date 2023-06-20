@@ -2,7 +2,7 @@
  * pwix:cookie-manager/src/common/js/config.js
  */
 
-import merge from 'merge';
+import _ from 'lodash';
 
 const _checkInteger = function( name ){
     const val = cookieManager.conf[name];
@@ -20,7 +20,7 @@ cookieManager = {
 
     // should be *in same terms* called both by the client and the server
     configure: function( o ){
-        cookieManager.conf = merge.recursive( true, cookieManager._defaults, o );
+        _.merge( cookieManager.conf, cookieManager._defaults, o );
         // make sure we have integer where required
         _checkInteger( 'consentLifetime' );
         // be verbose if asked for

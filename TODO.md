@@ -28,7 +28,10 @@
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
 |   20 | 2023- 6-12 | Have cookieManager.i18n.namespace() to let another package add a translation to this one |
-|   21 |  |  |
+|   21 | 2023- 6-20 | conf should be made private (renamed and prefixed with _) |
+|   22 | 2023- 6-20 | merge config.js + defaults.js into configure.js |
+|   23 | 2023- 6-20 | configure()) without argument should behave as a getter |
+|   24 |  |  |
 
 ---
 ## Done

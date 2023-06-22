@@ -157,7 +157,7 @@ Template.cm_dialog_tabs.helpers({
 
     // string translation
     i18n( arg ){
-        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+        return pwixI18n.label( I18N, arg.hash.key );
     },
 
     // a text to be set after the tab content
@@ -172,7 +172,7 @@ Template.cm_dialog_tabs.helpers({
 
     // the tab content
     navContent( it ){
-        return Template.currentData()[it.name+'Content'] || pwixI18n.label( cookieManager.i18n, it.content );
+        return Template.currentData()[it.name+'Content'] || pwixI18n.label( I18N, it.content );
     },
 
     // the list of cookies published by the application and other packages
@@ -186,7 +186,7 @@ Template.cm_dialog_tabs.helpers({
 
     // the tab content title
     navTitle( it ){
-        return Template.currentData()[it.name+'Title'] || pwixI18n.label( cookieManager.i18n, it.title );
+        return Template.currentData()[it.name+'Title'] || pwixI18n.label( I18N, it.title );
     },
 
     // initiaize our internal hash for this cookie
@@ -244,7 +244,7 @@ Template.cm_dialog_tabs.onDestroyed( function(){
 Template.cm_dialog_tabs_button.helpers({
     // the button label
     navLabel( it ){
-        return Template.currentData()[it.name+'Label'] || pwixI18n.label( cookieManager.i18n, it.label );
+        return Template.currentData()[it.name+'Label'] || pwixI18n.label( I18N, it.label );
     }
 });
 
@@ -252,17 +252,17 @@ Template.cm_dialog_tabs_cookie.helpers({
 
     // Whether the cookie is disableable
     ck_disableable( c ){
-        return pwixI18n.label( cookieManager.i18n, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
+        return pwixI18n.label( I18N, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
     },
 
     // lifetime of the cookie
     ck_lifetime( c ){
-        return c.lifetime ? c.lifetime : pwixI18n.label( cookieManager.i18n, 'cookie.illimited' );
+        return c.lifetime ? c.lifetime : pwixI18n.label( I18N, 'cookie.illimited' );
     },
 
     // current value of the cookie
     ck_value( c ){
-        return localStorage.getItem( c.name ) || pwixI18n.label( cookieManager.i18n, 'cookie.undef' );
+        return localStorage.getItem( c.name ) || pwixI18n.label( I18N, 'cookie.undef' );
     },
 
     // try to build a collapse identifier
@@ -273,7 +273,7 @@ Template.cm_dialog_tabs_cookie.helpers({
 
     // string translation
     i18n( arg ){
-        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+        return pwixI18n.label( I18N, arg.hash.key );
     },
 
     // a toggle switch for this cookie

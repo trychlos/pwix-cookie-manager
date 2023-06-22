@@ -19,6 +19,7 @@
     - Merge config.js + defaults.js into configure.js (todo #22)
     - configure() now acts both as a getter and a setter (todo #23)
     - Review the cookieManager attachement message (todo #13)
+    - Have cookieManager.i18n.namespace() (todo #20)
 
 ### 1.1.1
 

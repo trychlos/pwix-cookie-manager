@@ -41,3 +41,5 @@ CM_RESERVED_CHARS = [
     CM_COMMA,
     CM_PIPE
 ];
+
+I18N = 'pwix:cookie-manager:i18n-namespace';

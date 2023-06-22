@@ -366,6 +366,12 @@ Please note that this method is only available on the client.
     ![English version](/maintainer/png/consent-statistics-fr.png)
     ![English version](/maintainer/png/consent-third-fr.png)
 
+#### `cookieManager.i18n.namespace()`
+
+This method returns the i18n namespace of this package.
+
+With this namespace, one can easily extend the available translations.
+
 ### Blaze components
 
 #### `cmSliding`

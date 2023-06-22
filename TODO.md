@@ -26,7 +26,6 @@
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   20 | 2023- 6-12 | Have cookieManager.i18n.namespace() to let another package add a translation to this one |
 |   24 |  |  |
 
 ---
@@ -50,6 +49,8 @@
 |   12 | 2023- 5-18 | review display on small devices |
 |      | 2023- 5-29 | done (and will request the last version of pwix:modal) |
 |   13 | 2023- 5-26 | Change 'make the cookieManager available to each and every package' to '...available to all' |
+|      | 2023- 6-22 | done |
+|   20 | 2023- 6-12 | Have cookieManager.i18n.namespace() to let another package add a translation to this one |
 |      | 2023- 6-22 | done |
 |   21 | 2023- 6-20 | conf should be made private (renamed and prefixed with _) |
 |      | 2023- 6-22 | done |

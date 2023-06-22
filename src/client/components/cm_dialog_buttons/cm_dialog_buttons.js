@@ -26,13 +26,13 @@ Template.cm_dialog_buttons.onRendered( function(){
 
 Template.cm_dialog_buttons.helpers({
     acceptLabel(){
-        return Template.currentData().acceptButton || pwixI18n.label( cookieManager.i18n, 'buttons.accept' );
+        return Template.currentData().acceptButton || pwixI18n.label( I18N, 'buttons.accept' );
     },
     chooseLabel(){
-        return Template.currentData().chooseButton || pwixI18n.label( cookieManager.i18n, 'buttons.choose' );
+        return Template.currentData().chooseButton || pwixI18n.label( I18N, 'buttons.choose' );
     },
     rejectLabel(){
-        return Template.currentData().rejectButton || pwixI18n.label( cookieManager.i18n, 'buttons.reject' );
+        return Template.currentData().rejectButton || pwixI18n.label( I18N, 'buttons.reject' );
     },
     // have a small-btn class on small up to medium devices
     smallBtn(){

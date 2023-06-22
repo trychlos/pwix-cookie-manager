@@ -67,7 +67,7 @@ Template.cmSliding.helpers({
 
     // string translation
     i18n( arg ){
-        return pwixI18n.label( cookieManager.i18n, arg.hash.key );
+        return pwixI18n.label( I18N, arg.hash.key );
     },
 
     // image height

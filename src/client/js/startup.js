@@ -13,7 +13,7 @@ Meteor.startup(() => {
     cookieManager.publish({
         name: STORED_USER_CONSENT,
         responsible: 'pwix:cookie-manager',
-        description: pwixI18n.label( cookieManager.i18n, 'dialog.consent' ),
+        description: pwixI18n.label( I18N, 'dialog.consent' ),
         category: CM_CAT_TECHNICALS,
         lifetime: cookieManager._conf.consentLifetime,
         disableable: false
@@ -22,7 +22,7 @@ Meteor.startup(() => {
     cookieManager.publish({
         name: STORED_DIALOG_SIZE,
         responsible: 'pwix:cookie-manager',
-        description: pwixI18n.label( cookieManager.i18n, 'dialog.size' ),
+        description: pwixI18n.label( I18N, 'dialog.size' ),
         category: CM_CAT_FUNCTIONALS,
         disableable: true
     });

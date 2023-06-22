@@ -64,7 +64,7 @@ cookieManager.consentWrite = function( action ){
 cookieManager.runManager = function( o ){
     pwixModal.run({
         mdClasses: 'cm-cookie-manager',
-        mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( cookieManager.i18n, 'dialog.title' ),
+        mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( I18N, 'dialog.title' ),
         mdBody: 'cm_dialog_tabs',
         mdFooter: 'cm_dialog_buttons',
         mdSizeKey: STORED_DIALOG_SIZE,

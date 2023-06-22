@@ -39,7 +39,3 @@ cookieManager.configure = function( o ){
     // also acts as a getter
     return cookieManager._conf;
 };
-
-// make the cookieManager available to each and every package
-console.log( 'make the cookieManager available to each and every package' );
-Meteor.cookieManager = cookieManager;

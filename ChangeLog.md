@@ -18,6 +18,7 @@
     - Rename conf to _conf making clearer this is a private variable (todo #21)
     - Merge config.js + defaults.js into configure.js (todo #22)
     - configure() now acts both as a getter and a setter (todo #23)
+    - Review the cookieManager attachement message (todo #13)
 
 ### 1.1.1
 

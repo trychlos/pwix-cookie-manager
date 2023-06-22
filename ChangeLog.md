@@ -16,6 +16,7 @@
     - Increment the minimal pwix:modal version
     - Replace merge depency with lodash
     - Rename conf to _conf making clearer this is a private variable (todo #21)
+    - Merge config.js + defaults.js into configure.js (todo #22)
 
 ### 1.1.1
 

@@ -1,5 +1,5 @@
 /*
- * pwix:cookie-manager/src/common/js/config.js
+ * pwix:cookie-manager/src/common/js/configure.js
  */
 
 import _ from 'lodash';
@@ -12,6 +12,13 @@ const _checkInteger = function( name ){
         cookieManager._conf[name] = cookieManager._defaults[name];
     }
 };
+
+cookieManager._defaults = {
+    consentLifetime: 31536000000,   // one year
+    verbosity: CM_VERBOSE_NONE
+};
+
+cookieManager._conf = merge.recursive( true, cookieManager._conf, cookieManager._defaults );
 
 cookieManager.configure = function( o ){
     _.merge( cookieManager._conf, cookieManager._defaults, o );

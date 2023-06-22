@@ -8,7 +8,7 @@
 
     Release date: 
 
-    - 
+    - Change cookieManager attachement message
 
 ### 1.2.0
 

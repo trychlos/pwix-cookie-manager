@@ -18,16 +18,26 @@ cookieManager._defaults = {
     verbosity: CM_VERBOSE_NONE
 };
 
-cookieManager._conf = merge.recursive( true, cookieManager._conf, cookieManager._defaults );
+_.merge( cookieManager._conf, cookieManager._defaults );
 
+/**
+ * @summary Get/set the package configuration
+ *  Should be called *in same terms* both in client and in server
+ * @param {Object} o configuration options
+ * @returns {Object} the package configuration
+ */
 cookieManager.configure = function( o ){
-    _.merge( cookieManager._conf, cookieManager._defaults, o );
-    // make sure we have integer where required
-    _checkInteger( 'consentLifetime' );
-    // be verbose if asked for
-    if( cookieManager._conf.verbosity & CM_VERBOSE_CONFIGURE ){
-        console.debug( 'pwix:cookie-manager configure() with', o, 'building', cookieManager._conf );
+    if( o && _.isObject( o )){
+        _.merge( cookieManager._conf, cookieManager._defaults, o );
+        // make sure we have integer where required
+        _checkInteger( 'consentLifetime' );
+        // be verbose if asked for
+        if( cookieManager._conf.verbosity & CM_VERBOSE_CONFIGURE ){
+            console.debug( 'pwix:cookie-manager configure() with', o, 'building', cookieManager._conf );
+        }
     }
+    // also acts as a getter
+    return cookieManager._conf;
 };
 
 // make the cookieManager available to each and every package

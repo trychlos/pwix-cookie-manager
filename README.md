@@ -463,4 +463,4 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 ---
 P. Wieser
-- Last updated on 2023, May 2nd
+- Last updated on 2023, June 22nd

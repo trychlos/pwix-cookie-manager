@@ -23,6 +23,7 @@
 |   14 | 2023- 5-29 | make the cookie description localizable |
 |   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
 |   16 | 2023- 5-29 | Have a verbosity level to the availability message |
+|      | 2023- 6-22 | the attachment as Meteor.cookieManager is made at initialization time, before configure() be called, so depends of a Meteor application-level global |
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
@@ -61,4 +62,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, May 2nd
+- Last updated on 2023, June 22nd

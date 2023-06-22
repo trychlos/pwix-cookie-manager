@@ -4,9 +4,9 @@
 
 ## ChangeLog
 
-### 1.2.0-rc
+### 1.2.0
 
-    Release date: 
+    Release date: 2023- 6-22
 
     - Add references from EU and CNIL to maintainers/docs
     - Define consentLifetime configuration parameter (todo #11)
@@ -20,6 +20,7 @@
     - configure() now acts both as a getter and a setter (todo #23)
     - Review the cookieManager attachement message (todo #13)
     - Have cookieManager.i18n.namespace() (todo #20)
+    - Add a dependency on pwix:toggle-switch package
 
 ### 1.1.1
 
@@ -50,4 +51,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, May 2nd
+- Last updated on 2023, June 22nd

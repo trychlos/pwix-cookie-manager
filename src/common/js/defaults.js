@@ -9,4 +9,4 @@ cookieManager._defaults = {
     verbosity: CM_VERBOSE_NONE
 };
 
-cookieManager.conf = merge.recursive( true, cookieManager.conf, cookieManager._defaults );
+cookieManager._conf = merge.recursive( true, cookieManager._conf, cookieManager._defaults );

@@ -3,7 +3,7 @@
  */
 
 Meteor.startup(() => {
-    if( cookieManager.conf.verbosity & CM_VERBOSE_STORAGE ){
+    if( cookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
         cookieManager.dump();
     }
 });
@@ -15,7 +15,7 @@ Meteor.startup(() => {
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( cookieManager.i18n, 'dialog.consent' ),
         category: CM_CAT_TECHNICALS,
-        lifetime: cookieManager.conf.consentLifetime,
+        lifetime: cookieManager._conf.consentLifetime,
         disableable: false
     });
     // fonctional cookies of the manager dialog width and height

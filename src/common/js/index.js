@@ -2,6 +2,7 @@
  * pwix:cookie-manager/src/common/js/index.js
  */
 
+import './global.js';
 import './config.js';
 //
 import './constants.js';

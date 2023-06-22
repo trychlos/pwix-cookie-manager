@@ -15,6 +15,7 @@
     - Add a dependency on pwix:layout to better manage small devices
     - Increment the minimal pwix:modal version
     - Replace merge depency with lodash
+    - Rename conf to _conf making clearer this is a private variable (todo #21)
 
 ### 1.1.1
 

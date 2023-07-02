@@ -9,6 +9,7 @@
     Release date: 
 
     - Change cookieManager attachement message
+    - Upgrade pwix:layout version requirement to get ui_layout.less constants
 
 ### 1.2.0
 

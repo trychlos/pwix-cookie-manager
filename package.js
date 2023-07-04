@@ -9,17 +9,7 @@ Package.describe({
 Package.onUse( function( api ){
     configure( api );
     api.export([
-        'CookieManager',
-        'CookieManager.C.Category.FUNCTIONALS',
-        'CookieManager.C.Category.MARKETING',
-        'CookieManager.C.Category.STATISTICS',
-        'CookieManager.C.Category.TECHNICALS',
-        'CookieManager.C.Category.THIRD',
-        'CookieManager.C.Verbose.NONE',
-        'CookieManager.C.Verbose.CONFIGURE',
-        'CookieManager.C.Verbose.COMPONENTS',
-        'CookieManager.C.Verbose.DUMP',
-        'CookieManager.C.Verbose.STORAGE'
+        'CookieManager'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );

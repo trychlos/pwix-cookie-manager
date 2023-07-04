@@ -37,9 +37,9 @@ function configure( api ){
     api.use( 'blaze-html-templates@2.0.0', 'client' );
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
-    api.use( 'pwix:i18n@1.0.0' );
-    api.use( 'pwix:layout@1.2.9' );
-    api.use( 'pwix:modal@1.4.0' );
+    api.use( 'pwix:i18n@1.4.0' );
+    api.use( 'pwix:layout@1.3.0' );
+    api.use( 'pwix:modal@1.6.0' );
     api.use( 'pwix:toggle-switch@0.3.0' );
     api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );

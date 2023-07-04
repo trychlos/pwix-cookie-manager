@@ -9,7 +9,8 @@
     Release date: 
 
     - Change cookieManager attachement message
-    - Upgrade pwix:layout version requirement to get ui_layout.less constants
+    - Upgrade pwix:layout version requirement to get layout.less constants
+    - Upgrade pwix:modal version requirement to get Modal object
 
 ### 1.2.0
 

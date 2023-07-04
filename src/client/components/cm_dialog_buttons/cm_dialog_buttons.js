@@ -4,7 +4,7 @@
 
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { uiLayout } from 'meteor/pwix:layout';
-import { pwixModal } from 'meteor/pwix:modal';
+import { Modal } from 'meteor/pwix:modal';
 
 import '../../stylesheets/cm_cookie_manager.less';
 
@@ -43,7 +43,7 @@ Template.cm_dialog_buttons.helpers({
 Template.cm_dialog_buttons.events({
     'click .cm-dialog-buttons button'( event, instance ){
         const name = instance.$( event.currentTarget ).data( 'cm-name' );
-        pwixModal.target().trigger( 'cm-click', { name: name });
+        Modal.target().trigger( 'cm-click', { name: name });
     }
 });
 

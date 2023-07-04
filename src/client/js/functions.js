@@ -3,7 +3,7 @@
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
-import { pwixModal } from 'meteor/pwix:modal';
+import { Modal } from 'meteor/pwix:modal';
 
 import '../components/cm_dialog_buttons/cm_dialog_buttons.js';
 import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
@@ -62,7 +62,7 @@ cookieManager.consentWrite = function( action ){
  * @param {*} o the configuration object - see README
  */
 cookieManager.runManager = function( o ){
-    pwixModal.run({
+    Modal.run({
         mdClasses: 'cm-cookie-manager',
         mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( I18N, 'dialog.title' ),
         mdBody: 'cm_dialog_tabs',

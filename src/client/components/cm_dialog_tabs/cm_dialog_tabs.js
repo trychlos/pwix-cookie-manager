@@ -1,7 +1,7 @@
 /*
  * pwix:cookie-manager/src/client/components/cm_dialog_tabs/cm_dialog_tabs.js
  *
- * The body of a modal dialog run via pwixModal.run()
+ * The body of a modal dialog run via Modal.run()
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
@@ -132,7 +132,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     }
 
     // set the modal target
-    pwixModal.target({ target: self.$( '.cm-dialog-tabs' ) });
+    Modal.target({ target: self.$( '.cm-dialog-tabs' ) });
 
     // activates the first tab
     self.CM.tabs.every(( it ) => {
@@ -217,7 +217,7 @@ Template.cm_dialog_tabs.events({
     // user clicks one of the three buttons, terminating the dialog
     'cm-click .cm-dialog-tabs'( event, instance, data ){
         instance.CM.chosen = data.name;
-        pwixModal.close();
+        Modal.close();
     },
 
     // dialog is closed, apply the choice

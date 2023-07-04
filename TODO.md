@@ -11,9 +11,9 @@
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
 |    1 | 2023- 4-30 | cmConsent: have a configuration option to display a logo |
-|      | 2023- 5-29 | cmConsent has been replaced by a pwixModal.run() call - but same idea |
+|      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
 |    2 | 2023- 4-30 | cmConsent: have configuration options to provide a template for every category |
-|      | 2023- 5-29 | cmConsent has been replaced by a pwixModal.run() call - but same idea |
+|      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
 |    3 | 2023- 4-30 | be able to configure the categories |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
 |    6 | 2023- 5- 1 | having a reject all button should be configurable |
@@ -41,7 +41,7 @@
 |      | 2023- 5- 2 | consent should be forgotten after one year |
 |      | 2023- 5- 2 | done without ip address (needed here) |
 |    9 | 2023- 5- 1 | functional cookies should be disableable |
-|      | 2023- 5- 2 | this will be done after pwixModal writes width and height in one single data |
+|      | 2023- 5- 2 | this will be done after Modal writes width and height in one single data |
 |      | 2023- 5- 2 | done with 1.1.0 |
 |   10 | 2023- 5- 1 | Provide a link/a button to re-open the cookie manager |
 |      | 2023- 5- 2 | cmConsent being replaced with runManager(), this can be seen as done |

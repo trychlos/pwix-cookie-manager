@@ -4,6 +4,8 @@
 
 import _ from 'lodash';
 
+cookieManager._conf = {};
+
 const _checkInteger = function( name ){
     const val = cookieManager._conf[name];
     const ival = parseInt( val );

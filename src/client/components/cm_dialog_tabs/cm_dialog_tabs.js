@@ -17,7 +17,7 @@ Template.cm_dialog_tabs.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onCreated()' );
     }
 
@@ -127,7 +127,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     const self = this;
 
     // be verbose
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
     }
 
@@ -225,7 +225,7 @@ Template.cm_dialog_tabs.events({
         // apply user choices
         instance.CM.apply();
         // dump if asked for
-        if( CookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
+        if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
             CookieManager._published.every(( c ) => {
                 console.debug( 'pwix:CookieManager', c.name, CookieManager.isEnabled( c.name ));
                 return true;
@@ -236,7 +236,7 @@ Template.cm_dialog_tabs.events({
 
 Template.cm_dialog_tabs.onDestroyed( function(){
     // be verbose
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
     }
 });

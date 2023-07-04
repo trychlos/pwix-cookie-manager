@@ -17,7 +17,7 @@ const _checkInteger = function( name ){
 
 CookieManager._defaults = {
     consentLifetime: 31536000000,   // one year
-    verbosity: CM_VERBOSE_NONE
+    verbosity: CookieManager.C.Verbose.NONE
 };
 
 _.merge( CookieManager._conf, CookieManager._defaults );
@@ -34,7 +34,7 @@ CookieManager.configure = function( o ){
         // make sure we have integer where required
         _checkInteger( 'consentLifetime' );
         // be verbose if asked for
-        if( CookieManager._conf.verbosity & CM_VERBOSE_CONFIGURE ){
+        if( CookieManager._conf.verbosity & CookieManager.C.Verbose.CONFIGURE ){
             console.debug( 'pwix:cookie-manager configure() with', o, 'building', CookieManager._conf );
         }
     }

@@ -2,14 +2,26 @@
  * pwix:cookie-manager/src/common/js/constants.js
  */
 
+CookieManager.C = {
+
+    // verbosity levels
+    Verbose: {
+        NONE: 0,
+        CONFIGURE:  0x01 <<  0,
+        COMPONENTS: 0x01 <<  1,
+        DUMP:       0x01 <<  2,
+        STORAGE:    0x01 <<  3
+    }
+};
+
 // exported
 //
 // verbosity level
-CM_VERBOSE_NONE        = 0;
-CM_VERBOSE_CONFIGURE   = 0x01 <<  0;
-CM_VERBOSE_COMPONENTS  = 0x01 <<  1;
-CM_VERBOSE_DUMP        = 0x01 <<  2;
-CM_VERBOSE_STORAGE     = 0x01 <<  3;
+CookieManager.C.Verbose.NONE        = 0;
+CookieManager.C.Verbose.CONFIGURE   = 0x01 <<  0;
+CookieManager.C.Verbose.COMPONENTS  = 0x01 <<  1;
+CookieManager.C.Verbose.DUMP        = 0x01 <<  2;
+CookieManager.C.Verbose.STORAGE     = 0x01 <<  3;
 
 // categories of cookies
 CM_CAT_FUNCTIONALS = 'CM_CAT_FUNCTIONALS';

@@ -14,7 +14,7 @@ Template.cmSliding.onCreated( function(){
     const self = this;
 
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onCreated()' );
     }
 
@@ -43,7 +43,7 @@ Template.cmSliding.onRendered( function(){
     const self = this;
 
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onRendered()' );
     }
 
@@ -114,7 +114,7 @@ Template.cmSliding.events({
 
 Template.cmSliding.onDestroyed( function(){
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onDestroyed()' );
     }
 });

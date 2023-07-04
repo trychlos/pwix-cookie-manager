@@ -15,11 +15,11 @@ Package.onUse( function( api ){
         'CM_CAT_STATISTICS',
         'CM_CAT_TECHNICALS',
         'CM_CAT_THIRD',
-        'CM_VERBOSE_NONE',
-        'CM_VERBOSE_CONFIGURE',
-        'CM_VERBOSE_COMPONENTS',
-        'CM_VERBOSE_DUMP',
-        'CM_VERBOSE_STORAGE'
+        'CookieManager.C.Verbose.NONE',
+        'CookieManager.C.Verbose.CONFIGURE',
+        'CookieManager.C.Verbose.COMPONENTS',
+        'CookieManager.C.Verbose.DUMP',
+        'CookieManager.C.Verbose.STORAGE'
     ]);
     api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );

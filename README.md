@@ -52,11 +52,11 @@ Known configuration options are:
 
     The accepted value can be any or-ed combination of following:
 
-    - `CM_VERBOSE_NONE`
+    - `CookieManager.C.Verbose.NONE`
 
         Do not display any trace log to the console
 
-    - `CM_VERBOSE_COMPONENTS`
+    - `CookieManager.C.Verbose.COMPONENTS`
 
         Trace Blaze components life:
 
@@ -64,15 +64,15 @@ Known configuration options are:
         - rendering
         - destruction
 
-    - `CM_VERBOSE_CONFIGURE`
+    - `CookieManager.C.Verbose.CONFIGURE`
 
         Trace `CookieManager.configure()` calls and their result
 
-    - `CM_VERBOSE_DUMP`
+    - `CookieManager.C.Verbose.DUMP`
 
         Dump the `CookieManager` global object at startup.
 
-    - `CM_VERBOSE_STORAGE`
+    - `CookieManager.C.Verbose.STORAGE`
 
         Dump the localStorage first at startup, and then on user choice (client-side only).
 
@@ -92,11 +92,11 @@ This object is allocated at package level: there is only one instance in your ap
 
 ### Constants
 
-- `CM_VERBOSE_NONE`
-- `CM_VERBOSE_COMPONENTS`
-- `CM_VERBOSE_CONFIGURE`
-- `CM_VERBOSE_DUMP`
-- `CM_VERBOSE_STORAGE`
+- `CookieManager.C.Verbose.NONE`
+- `CookieManager.C.Verbose.COMPONENTS`
+- `CookieManager.C.Verbose.CONFIGURE`
+- `CookieManager.C.Verbose.DUMP`
+- `CookieManager.C.Verbose.STORAGE`
 
 - `CM_CAT_TECHNICALS`
 - `CM_CAT_FUNCTIONALS`

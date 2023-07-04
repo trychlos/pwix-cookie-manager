@@ -10,11 +10,11 @@ Package.onUse( function( api ){
     configure( api );
     api.export([
         'CookieManager',
-        'CM_CAT_FUNCTIONALS',
-        'CM_CAT_MARKETING',
-        'CM_CAT_STATISTICS',
-        'CM_CAT_TECHNICALS',
-        'CM_CAT_THIRD',
+        'CookieManager.C.Category.FUNCTIONALS',
+        'CookieManager.C.Category.MARKETING',
+        'CookieManager.C.Category.STATISTICS',
+        'CookieManager.C.Category.TECHNICALS',
+        'CookieManager.C.Category.THIRD',
         'CookieManager.C.Verbose.NONE',
         'CookieManager.C.Verbose.CONFIGURE',
         'CookieManager.C.Verbose.COMPONENTS',

@@ -20,11 +20,11 @@ Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_,
 
 `pwix:cookie-manager` distinguishes five type of cookies:
 
-- `CM_CAT_TECHNICALS`
-- `CM_CAT_FUNCTIONALS`
-- `CM_CAT_STATISTICS`
-- `CM_CAT_MARKETING`
-- `CM_CAT_THIRD`
+- `CookieManager.C.Category.TECHNICALS`
+- `CookieManager.C.Category.FUNCTIONALS`
+- `CookieManager.C.Category.STATISTICS`
+- `CookieManager.C.Category.MARKETING`
+- `CookieManager.C.Category.THIRD`
 
 `pwix:cookie-manager` makes the cookie have three status:
 
@@ -98,23 +98,11 @@ This object is allocated at package level: there is only one instance in your ap
 - `CookieManager.C.Verbose.DUMP`
 - `CookieManager.C.Verbose.STORAGE`
 
-- `CM_CAT_TECHNICALS`
-- `CM_CAT_FUNCTIONALS`
-- `CM_CAT_STATISTICS`
-- `CM_CAT_MARKETING`
-- `CM_CAT_THIRD`
-
-### References
-
-#### `CookieManager.Categories`
-
-The array of the known _cookies_ categories:
-
-- `CM_CAT_TECHNICALS`
-- `CM_CAT_FUNCTIONALS`
-- `CM_CAT_STATISTICS`
-- `CM_CAT_MARKETING`
-- `CM_CAT_THIRD`
+- `CookieManager.C.Category.TECHNICALS`
+- `CookieManager.C.Category.FUNCTIONALS`
+- `CookieManager.C.Category.STATISTICS`
+- `CookieManager.C.Category.MARKETING`
+- `CookieManager.C.Category.THIRD`
 
 ### Methods
 

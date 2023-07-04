@@ -12,6 +12,7 @@
     - Upgrade pwix:layout version requirement to get layout.less constants
     - Upgrade pwix:modal version requirement to get Modal object
     - Rename globally exported cookieManager to CookieManager
+    - Reorganize constants to not pollute the global space
 
 ### 1.2.0
 

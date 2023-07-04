@@ -39,7 +39,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'technicals',
-                cat: CM_CAT_TECHNICALS,
+                cat: CookieManager.C.Category.TECHNICALS,
                 content: 'tabs.technicals.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),
@@ -49,7 +49,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'functionals',
-                cat: CM_CAT_FUNCTIONALS,
+                cat: CookieManager.C.Category.FUNCTIONALS,
                 content: 'tabs.functionals.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),
@@ -59,7 +59,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'marketing',
-                cat: CM_CAT_MARKETING,
+                cat: CookieManager.C.Category.MARKETING,
                 content: 'tabs.marketing.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),
@@ -69,7 +69,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'statistics',
-                cat: CM_CAT_STATISTICS,
+                cat: CookieManager.C.Category.STATISTICS,
                 content: 'tabs.statistics.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),
@@ -79,7 +79,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'third',
-                cat: CM_CAT_THIRD,
+                cat: CookieManager.C.Category.THIRD,
                 content: 'tabs.third.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),

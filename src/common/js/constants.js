@@ -4,6 +4,15 @@
 
 CookieManager.C = {
 
+    // our categories of cookies
+    Category: {
+        FUNCTIONALS: 'FUNCTIONALS',
+        MARKETING: 'MARKETING',
+        STATISTICS: 'STATISTICS',
+        TECHNICALS: 'TECHNICALS',
+        THIRD: 'THIRD'
+    },
+
     // verbosity levels
     Verbose: {
         NONE: 0,
@@ -13,30 +22,6 @@ CookieManager.C = {
         STORAGE:    0x01 <<  3
     }
 };
-
-// exported
-//
-// verbosity level
-CookieManager.C.Verbose.NONE        = 0;
-CookieManager.C.Verbose.CONFIGURE   = 0x01 <<  0;
-CookieManager.C.Verbose.COMPONENTS  = 0x01 <<  1;
-CookieManager.C.Verbose.DUMP        = 0x01 <<  2;
-CookieManager.C.Verbose.STORAGE     = 0x01 <<  3;
-
-// categories of cookies
-CM_CAT_FUNCTIONALS = 'CM_CAT_FUNCTIONALS';
-CM_CAT_MARKETING = 'CM_CAT_MARKETING';
-CM_CAT_STATISTICS = 'CM_CAT_STATISTICS';
-CM_CAT_TECHNICALS = 'CM_CAT_TECHNICALS';
-CM_CAT_THIRD = 'CM_CAT_THIRD';
-
-CookieManager.Categories = [
-    CM_CAT_FUNCTIONALS,
-    CM_CAT_MARKETING,
-    CM_CAT_STATISTICS,
-    CM_CAT_TECHNICALS,
-    CM_CAT_THIRD
-];
 
 // non exported
 //

@@ -17,7 +17,7 @@ Template.cm_dialog_tabs.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onCreated()' );
     }
 
@@ -94,17 +94,17 @@ Template.cm_dialog_tabs.onCreated( function(){
             switch( self.CM.chosen ){
                 // whatever be the current state of the cookie, set all true
                 case 'accept':
-                    cookieManager._published.every(( c ) => {
-                        cookieManager.enable( c.name, true );
+                    CookieManager._published.every(( c ) => {
+                        CookieManager.enable( c.name, true );
                         return true;
                     });
                     break;
                 
                 // disable all disableable cookies
                 case 'reject':
-                    cookieManager._published.every(( c ) => {
+                    CookieManager._published.every(( c ) => {
                         if( c.disableable ){
-                            cookieManager.enable( c.name, false );
+                            CookieManager.enable( c.name, false );
                         }
                         return true;
                     });
@@ -112,13 +112,13 @@ Template.cm_dialog_tabs.onCreated( function(){
                 
                 // get the current state from dictionary
                 case 'chosen':
-                    cookieManager._published.every(( c ) => {
-                        cookieManager.enable( c.name, self.CM.cookies[c.name]);
+                    CookieManager._published.every(( c ) => {
+                        CookieManager.enable( c.name, self.CM.cookies[c.name]);
                         return true;
                     });
                     break;
             }
-            cookieManager.consentWrite( self.CM.chosen );
+            CookieManager.consentWrite( self.CM.chosen );
         }
     };
 });
@@ -127,7 +127,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     const self = this;
 
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
     }
 
@@ -150,7 +150,7 @@ Template.cm_dialog_tabs.helpers({
     haveList( it ){
         let a = [];
         if( it.cat ){
-            a = cookieManager.byCategory( it.cat );
+            a = CookieManager.byCategory( it.cat );
         }
         return a.length > 0;
     },
@@ -179,7 +179,7 @@ Template.cm_dialog_tabs.helpers({
     navList( it ){
         let a = [];
         if( it.cat ){
-            a = cookieManager.byCategory( it.cat );
+            a = CookieManager.byCategory( it.cat );
         }
         return a;
     },
@@ -191,7 +191,7 @@ Template.cm_dialog_tabs.helpers({
 
     // initiaize our internal hash for this cookie
     setDict( c ){
-        Template.instance().CM.cookies[c.name] = cookieManager.isEnabled( c.name );
+        Template.instance().CM.cookies[c.name] = CookieManager.isEnabled( c.name );
     },
 
     // tabs list
@@ -225,9 +225,9 @@ Template.cm_dialog_tabs.events({
         // apply user choices
         instance.CM.apply();
         // dump if asked for
-        if( cookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
-            cookieManager._published.every(( c ) => {
-                console.debug( 'pwix:cookieManager', c.name, cookieManager.isEnabled( c.name ));
+        if( CookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
+            CookieManager._published.every(( c ) => {
+                console.debug( 'pwix:CookieManager', c.name, CookieManager.isEnabled( c.name ));
                 return true;
             });
         }
@@ -236,7 +236,7 @@ Template.cm_dialog_tabs.events({
 
 Template.cm_dialog_tabs.onDestroyed( function(){
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
     }
 });
@@ -281,7 +281,7 @@ Template.cm_dialog_tabs_cookie.helpers({
         return {
             name: c.name,
             title: c.name,
-            state: cookieManager.isEnabled( c.name ),
+            state: CookieManager.isEnabled( c.name ),
             enabled: c.disableable
         }
     }

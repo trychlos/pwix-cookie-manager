@@ -8,9 +8,10 @@
 
     Release date: 
 
-    - Change cookieManager attachement message
+    - Change CookieManager attachement message
     - Upgrade pwix:layout version requirement to get layout.less constants
     - Upgrade pwix:modal version requirement to get Modal object
+    - Rename globally exported cookieManager to CookieManager
 
 ### 1.2.0
 
@@ -26,8 +27,8 @@
     - Rename conf to _conf making clearer this is a private variable (todo #21)
     - Merge config.js + defaults.js into configure.js (todo #22)
     - configure() now acts both as a getter and a setter (todo #23)
-    - Review the cookieManager attachement message (todo #13)
-    - Have cookieManager.i18n.namespace() (todo #20)
+    - Review the CookieManager attachement message (todo #13)
+    - Have CookieManager.i18n.namespace() (todo #20)
     - Add a dependency on pwix:toggle-switch package
 
 ### 1.1.1

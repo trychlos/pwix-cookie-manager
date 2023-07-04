@@ -3,7 +3,7 @@
  */
 
 Meteor.startup(() => {
-    if( cookieManager._conf.verbosity & CM_VERBOSE_DUMP ){
-        console.debug( 'cookieManager', cookieManager );
+    if( CookieManager._conf.verbosity & CM_VERBOSE_DUMP ){
+        console.debug( 'CookieManager', CookieManager );
     }
 });

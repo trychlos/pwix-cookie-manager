@@ -9,7 +9,7 @@ Package.describe({
 Package.onUse( function( api ){
     configure( api );
     api.export([
-        'cookieManager',
+        'CookieManager',
         'CM_CAT_FUNCTIONALS',
         'CM_CAT_MARKETING',
         'CM_CAT_STATISTICS',

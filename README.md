@@ -36,7 +36,7 @@ Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_,
 
 ## Configuration
 
-The package's behavior can be configured through a call to the `cookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
+The package's behavior can be configured through a call to the `CookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
 Known configuration options are:
 
@@ -66,17 +66,17 @@ Known configuration options are:
 
     - `CM_VERBOSE_CONFIGURE`
 
-        Trace `cookieManager.configure()` calls and their result
+        Trace `CookieManager.configure()` calls and their result
 
     - `CM_VERBOSE_DUMP`
 
-        Dump the `cookieManager` global object at startup.
+        Dump the `CookieManager` global object at startup.
 
     - `CM_VERBOSE_STORAGE`
 
         Dump the localStorage first at startup, and then on user choice (client-side only).
 
-Please note that `cookieManager.configure()` method should be called in the same terms both in client and server sides.
+Please note that `CookieManager.configure()` method should be called in the same terms both in client and server sides.
 
 Remind too that Meteor packages are instanciated at application level. They are so only configurable once, or, in other words, only one instance has to be or can be configured. Addtionnal calls to `SSR.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
@@ -84,11 +84,11 @@ Remind too that Meteor packages are instanciated at application level. They are 
 
 ### A global object
 
-`cookieManager`
+`CookieManager`
 
 This object is allocated at package level: there is only one instance in your application. It gathers the available methods (see below).
 
-`pwix:cookie-manager` attaches this global object to the global Meteor one, so that every willing-to packages is able to take advantage of the available methods to publish their own _cookies_ through `Meteor.cookieManager`, without having to first `require` or `import` the package, or even make it a dependency.
+`pwix:cookie-manager` attaches this global object to the global Meteor one, so that every willing-to packages is able to take advantage of the available methods to publish their own _cookies_ through `Meteor.CookieManager`, without having to first `require` or `import` the package, or even make it a dependency.
 
 ### Constants
 
@@ -106,7 +106,7 @@ This object is allocated at package level: there is only one instance in your ap
 
 ### References
 
-#### `cookieManager.Categories`
+#### `CookieManager.Categories`
 
 The array of the known _cookies_ categories:
 
@@ -118,19 +118,19 @@ The array of the known _cookies_ categories:
 
 ### Methods
 
-#### `cookieManager.byCategory( category )`
+#### `CookieManager.byCategory( category )`
 
 Returns the array of published cookies for the specified category.
 
-#### `cookieManager.configure( o )`
+#### `CookieManager.configure( o )`
 
 See above.
 
-#### `cookieManager.isEnabled( name )`
+#### `CookieManager.isEnabled( name )`
 
 Returns whether the named _cookie_ is authorized by the user.
 
-#### `cookieManager.publish( o )`
+#### `CookieManager.publish( o )`
 
 This method let the application (resp. another package) publish the cookies it makes use of, so that the user is able to be informed of what he accepts or refuses.
 
@@ -144,7 +144,7 @@ In order to not rely on the initialization order, this method should be called f
 
     This `name` is expected to be a unique identifier of the cookie, cannot be empty.
 
-    Please note that `cookieManager` internally uses some reserved characters. These reserved characters must not be used when naming a cookie. As of 1.1.1, these are:
+    Please note that `CookieManager` internally uses some reserved characters. These reserved characters must not be used when naming a cookie. As of 1.1.1, these are:
 
     - comma `,`
     - pipe `|`
@@ -157,7 +157,7 @@ In order to not rely on the initialization order, this method should be called f
 
     The category the cookie belong to.
 
-    Must be referenced in `cookieManager.Categories`.
+    Must be referenced in `CookieManager.Categories`.
 
 - `description`
 
@@ -179,7 +179,7 @@ In order to not rely on the initialization order, this method should be called f
 
     Defaults to none.
 
-#### `cookieManager.runManager( o )`
+#### `CookieManager.runManager( o )`
 
 Run a modal dialog to let the user choose his privacy preferences, and collect his explicit consent.
 
@@ -366,7 +366,7 @@ Please note that this method is only available on the client.
     ![English version](/maintainer/png/consent-statistics-fr.png)
     ![English version](/maintainer/png/consent-third-fr.png)
 
-#### `cookieManager.i18n.namespace()`
+#### `CookieManager.i18n.namespace()`
 
 This method returns the i18n namespace of this package.
 

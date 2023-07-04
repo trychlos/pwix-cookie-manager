@@ -2,8 +2,8 @@
  * pwix:cookie-manager/src/common/js/i18n.js
  */
 
-cookieManager.i18n = {
-    ...cookieManager.i18n,
+CookieManager.i18n = {
+    ...CookieManager.i18n,
     ...{
         en: {
             buttons: {
@@ -26,7 +26,7 @@ cookieManager.i18n = {
             dialog: {
                 title: 'Cookies Manager',
                 none: 'No declared cookie in this category',
-                chosen: 'Prevent the cookieManager preferences dialog to be re-displayed each time a page is reloaded.',
+                chosen: 'Prevent the CookieManager preferences dialog to be re-displayed each time a page is reloaded.',
                 consent: 'A composite data which records the date of the user consent, the action he has chosen, and the list of enabled cookies',
                 size: 'Keep the last dialog size to improve user experience.'
             },

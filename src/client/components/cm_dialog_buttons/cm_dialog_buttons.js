@@ -12,14 +12,14 @@ import './cm_dialog_buttons.html';
 
 Template.cm_dialog_buttons.onCreated( function(){
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onCreated()' );
     }
 });
 
 Template.cm_dialog_buttons.onRendered( function(){
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onRendered()' );
     }
 });
@@ -49,7 +49,7 @@ Template.cm_dialog_buttons.events({
 
 Template.cm_dialog_buttons.onDestroyed( function(){
     // be verbose
-    if( cookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
+    if( CookieManager._conf.verbosity & CM_VERBOSE_COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onDestroyed()' );
     }
 });

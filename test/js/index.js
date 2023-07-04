@@ -10,6 +10,6 @@ import { name as packageName } from "meteor/pwix:cookie-manager";
 
 // Write your tests here!
 // Here is an example.
-Tinytest.add('cookieManager - example', function (test) {
+Tinytest.add('CookieManager - example', function (test) {
   test.equal(packageName, "cookie-manager");
 });

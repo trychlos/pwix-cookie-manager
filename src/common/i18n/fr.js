@@ -2,8 +2,8 @@
  * pwix:cookie-manager/src/common/js/i18n.js
  */
 
-cookieManager.i18n = {
-    ...cookieManager.i18n,
+CookieManager.i18n = {
+    ...CookieManager.i18n,
     ...{
         fr: {
             buttons: {

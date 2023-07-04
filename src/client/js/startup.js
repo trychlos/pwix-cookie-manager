@@ -3,23 +3,23 @@
  */
 
 Meteor.startup(() => {
-    if( cookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
-        cookieManager.dump();
+    if( CookieManager._conf.verbosity & CM_VERBOSE_STORAGE ){
+        CookieManager.dump();
     }
 });
 
 Meteor.startup(() => {
     // a technical cookie which stores the user consent as a composite (date,chosen action,list of enabled cookies)
-    cookieManager.publish({
+    CookieManager.publish({
         name: STORED_USER_CONSENT,
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( I18N, 'dialog.consent' ),
         category: CM_CAT_TECHNICALS,
-        lifetime: cookieManager._conf.consentLifetime,
+        lifetime: CookieManager._conf.consentLifetime,
         disableable: false
     });
     // fonctional cookies of the manager dialog width and height
-    cookieManager.publish({
+    CookieManager.publish({
         name: STORED_DIALOG_SIZE,
         responsible: 'pwix:cookie-manager',
         description: pwixI18n.label( I18N, 'dialog.size' ),

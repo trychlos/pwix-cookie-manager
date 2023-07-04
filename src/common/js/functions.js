@@ -2,12 +2,12 @@
  * pwix:cookie-manager/src/common/js/functions.js
  */
 
-cookieManager._published = [];
+CookieManager._published = [];
 
 // returns the named cookie, or null
 const _findCookie = function( name ){
     let _cookie = null;
-    cookieManager._published.every(( c ) => {
+    CookieManager._published.every(( c ) => {
         if( c.name === name ){
             _cookie = c;
             return false;
@@ -56,14 +56,14 @@ const _validName = function( ck ){
  * @returns {Array} the array of cookies declared in this category
  *  Returns at least an empty array.
  */
-cookieManager.byCategory = function( category ){
+CookieManager.byCategory = function( category ){
     let res = [];
     if( !category ){
         console.warn( 'pwix:cookie-manager byCategory() expects a category, found none' );
-    } else if( !cookieManager.Categories.includes( category )){
+    } else if( !CookieManager.Categories.includes( category )){
         console.warn( 'pwix:cookie-manager byCategory() expects a known category, found', category );
     } else {
-        cookieManager._published.every(( c ) => {
+        CookieManager._published.every(( c ) => {
             if( c.category === category ){
                 res.push( c );
             }
@@ -77,10 +77,10 @@ cookieManager.byCategory = function( category ){
  * @summary Dump the localStorage space
  * @locus Anywhere
  */
-cookieManager.dump = function(){
+CookieManager.dump = function(){
     if( Meteor.isClient ){
         for( let i=0; i < localStorage.length; ++i ){
-            console.debug( 'cookieManager.dump() localStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
+            console.debug( 'CookieManager.dump() localStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
         }
     }
 };
@@ -91,7 +91,7 @@ cookieManager.dump = function(){
  * @param {String} name the name of the cookie
  * @param {Boolean} allowed whether the cookie is allowed or not
  */
-cookieManager.enable = function( name, allowed ){
+CookieManager.enable = function( name, allowed ){
     if( Meteor.isClient ){
         const _ckname = STORED_COOKIE_PREFIX + name;
         localStorage.setItem( _ckname, allowed ? 'true' : 'false' );
@@ -103,10 +103,10 @@ cookieManager.enable = function( name, allowed ){
  * @locus Anywhere
  * @returns {Array} the list of enabled cookies
  */
-cookieManager.getEnabled = function(){
+CookieManager.getEnabled = function(){
     let res = [];
-    cookieManager._published.every(( c ) => {
-        if( cookieManager.isEnabled( c.name )){
+    CookieManager._published.every(( c ) => {
+        if( CookieManager.isEnabled( c.name )){
             res.push( c );
         }
         return true;
@@ -120,7 +120,7 @@ cookieManager.getEnabled = function(){
  * @param {String} name the name of the cookie
  * @returns {Boolean} whether the cookie has been authorized, defaulting to true
  */
-cookieManager.isEnabled = function( name ){
+CookieManager.isEnabled = function( name ){
     let _enabled = true;
     if( Meteor.isClient ){
         const _ckname = STORED_COOKIE_PREFIX + name;
@@ -135,16 +135,16 @@ cookieManager.isEnabled = function( name ){
  * @locus Anywhere
  * @param {Object} cookies the cookie object, or an array of cookies objects
  */
-cookieManager.publish = function( cookie ){
+CookieManager.publish = function( cookie ){
     if( Array.isArray( cookie )){
         cookie.every(( o ) => {
             if( _validDeclaration( o )){
-                cookieManager._published.push( o );
+                CookieManager._published.push( o );
             }
             return true;
         })
     } else if( _validDeclaration( cookie )){
-        cookieManager._published.push( cookie );
+        CookieManager._published.push( cookie );
     }
 };
 
@@ -153,7 +153,7 @@ cookieManager.publish = function( cookie ){
  * @locus Anywhere
  * @param {String} name the name of the cookie
  */
-cookieManager.reset = function( name ){
+CookieManager.reset = function( name ){
     if( Meteor.isClient ){
         const _ckname = STORED_COOKIE_PREFIX + name;
         localStorage.removeItem( _ckname );
@@ -164,7 +164,7 @@ cookieManager.reset = function( name ){
  * @summary Empty the whole localStorage space
  * @locus Anywhere
  */
-cookieManager.removeAll = function(){
+CookieManager.removeAll = function(){
     if( Meteor.isClient ){
         let names = [];
         for( let i=0; i < localStorage.length; ++i ){

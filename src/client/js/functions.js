@@ -18,7 +18,7 @@ import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
  * or
  *  null if no valid previous consent found
  */
-cookieManager.consentRead = function(){
+CookieManager.consentRead = function(){
     let res = null;
     const str = localStorage.getItem( STORED_USER_CONSENT );
     if( str ){
@@ -43,9 +43,9 @@ cookieManager.consentRead = function(){
  * @locus Client
  * @param {String} action the chosen action
  */
-cookieManager.consentWrite = function( action ){
+CookieManager.consentWrite = function( action ){
     let enabled = '';
-    cookieManager.getEnabled().every(( c ) => {
+    CookieManager.getEnabled().every(( c ) => {
         if( enabled ){
             enabled += CM_PIPE;
         }
@@ -61,7 +61,7 @@ cookieManager.consentWrite = function( action ){
  * @locus Client
  * @param {*} o the configuration object - see README
  */
-cookieManager.runManager = function( o ){
+CookieManager.runManager = function( o ){
     Modal.run({
         mdClasses: 'cm-cookie-manager',
         mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( I18N, 'dialog.title' ),

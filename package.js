@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:cookie-manager',
-    version: '1.2.1-rc',
+    version: '1.3.0',
     summary: 'Cookies management for Meteor',
     git: 'https://github.com/trychlos/pwix-cookie-manager',
     documentation: 'README.md'
@@ -47,7 +47,9 @@ function configure( api ){
         'resources/png/info-blue.png',
         'resources/png/info-orange.png',
         'resources/png/info-primary.png',
-    ], 'client' );
+    ],
+        'client'
+    );
 }
 
 // NPM dependencies are checked in /src/server/js/check_npms.js

@@ -4,14 +4,14 @@
 
 ## ChangeLog
 
-### 1.2.1-rc
+### 1.3.0
 
-    Release date: 
+    Release date: 2023- 7- 4
 
     - Change CookieManager attachement message
     - Upgrade pwix:layout version requirement to get layout.less constants
     - Upgrade pwix:modal version requirement to get Modal object
-    - Rename globally exported cookieManager to CookieManager
+    - Rename globally exported cookieManager to CookieManager (bumping candidate version number)
     - Reorganize constants to not pollute the global space
 
 ### 1.2.0
@@ -61,4 +61,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, June 22nd
+- Last updated on 2023, July 4th

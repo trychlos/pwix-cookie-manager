@@ -6,11 +6,9 @@ Meteor.startup(() => {
     if( CookieManager._conf.verbosity & CookieManager.C.Verbose.DUMP ){
         console.debug( 'CookieManager', CookieManager );
     }
-    console.debug( 'CookieManager', CookieManager );
     if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
         CookieManager.dumpStorage();
     }
-    CookieManager.dumpStorage();
 });
 
 Meteor.startup(() => {

@@ -77,6 +77,10 @@ CookieManager.consentWrite = function( action ){
         return true;
     });
     CookieManager.cookiesRead();
+    // be verbose if asked for
+    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
+        CookieManager.dumpStorage();
+    }
 };
 
 /**

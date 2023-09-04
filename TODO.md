@@ -27,7 +27,8 @@
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   26 |  |  |
+|   26 | 2023- 9- 4 | closing the cookie manager dialog also closes the app content |
+|   27 |  |  |
 
 ---
 ## Done

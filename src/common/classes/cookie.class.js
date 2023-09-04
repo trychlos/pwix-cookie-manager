@@ -208,7 +208,7 @@ export class Cookie {
     enable( enabled ){
         if( arguments.length > 0 && ( enabled === true || enabled === false )){
             this._vars.enabled = enabled;
-            console.debug( this._vars.responsible, this._vars.name, 'enable', enabled );
+            //console.debug( this._vars.responsible, this._vars.name, 'enable', enabled );
         }
         return this._vars.enabled;
     }

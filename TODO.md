@@ -27,7 +27,7 @@
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   24 |  |  |
+|   26 |  |  |
 
 ---
 ## Done
@@ -59,6 +59,10 @@
 |      | 2023- 6-22 | done |
 |   23 | 2023- 6-20 | configure()) without argument should behave as a getter |
 |      | 2023- 6-22 | done |
+|   24 | 2023- 9- 4 | cmSliding: can the package handle itself the click instead of delegating to the app ? |
+|      | 2023- 9- 4 | actually already done; the application handles the 'cookies policy' |
+|   25 | 2023- 9- 4 | localStorage keys seems to not be well handled |
+|      | 2023- 9- 4 | fixed |
 
 ---
 P. Wieser

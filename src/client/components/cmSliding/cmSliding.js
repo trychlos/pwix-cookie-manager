@@ -94,7 +94,7 @@ Template.cmSliding.events({
     // got it: close the box and do not redisplay
     'click .cm-gotit'( event, instance ){
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
-        CookieManager.consentWrite( 'gotit' );
+        CookieManager.consentWrite( CookieManager.C.Action.GOTIT );
     },
 
     // open the cookies manager (also closing this box)

@@ -21,7 +21,8 @@ CookieManager.i18n = {
                 disableableTrue: 'Yes',
                 disableableFalse: 'No',
                 value: 'Current value',
-                undef: '<undefined>'
+                undef: '<undefined>',
+                unknown: 'Unknown'
             },
             dialog: {
                 title: 'Cookies Manager',

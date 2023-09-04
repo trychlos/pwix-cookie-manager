@@ -4,6 +4,14 @@
 
 CookieManager.C = {
 
+    // the user's consent actins
+    Action: {
+        GOTIT: 'GotIt',
+        ACCEPT_ALL: 'AcceptAll',
+        REJECT_ALL: 'RejectAll',
+        CHOSEN: 'Choose'
+    },
+
     // our categories of cookies
     Category: {
         FUNCTIONALS: 'FUNCTIONALS',
@@ -26,17 +34,18 @@ CookieManager.C = {
 // non exported
 //
 // localStorage data
-STORED_USER_CONSENT = 'pwix:cookie-manager/user-consent';
-STORED_DIALOG_SIZE = 'pwix:cookie-manager/consent-manager-size'
-STORED_COOKIE_PREFIX = 'pwix:cookie-manager/enabled/';
+CM_RESPONSIBLE = 'pwix:cookie-manager';
+CM_USER_CONSENT_CK = 'user-consent';
+CM_DIALOG_SIZE_CK = 'consent-manager-size';
+CM_ENABLED_CK = 'enabled';
 
 // reserved chars
 CM_COMMA = ',';
-CM_PIPE = '|';
+CM_SLASH = '/';
 
 CM_RESERVED_CHARS = [
     CM_COMMA,
-    CM_PIPE
+    CM_SLASH
 ];
 
 I18N = 'pwix:cookie-manager:i18n-namespace';

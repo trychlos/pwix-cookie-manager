@@ -16,7 +16,7 @@ This has been written because `selaias:cookie-consent` seems to no more be maint
 
 `pwix:cookie-manager` doesn't manage the cookies by themselves, I mean their value. So, whether the _cookie_ is really a cookie, i.e. a data file sent from the server to the client before HTTP headers, and so on, is entirey up to the application (resp. another package).
 
-Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_, i.e. a name and a description, an originator, a category, a status, along with some other properties which are only relevant for the aim of management. All that semantic, along wihh the user consentement, is stored in the `localStorage` of the browser.
+Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_, i.e. a name and a description, an originator, a category, a status, along with some other properties which are only relevant for the aim of management. All that semantic, along with the user consentement, is stored in the `localStorage` of the browser.
 
 `pwix:cookie-manager` distinguishes five type of cookies:
 
@@ -92,6 +92,11 @@ This object is allocated at package level: there is only one instance in your ap
 
 ### Constants
 
+- `CookieManager.C.Action.GOTIT`
+- `CookieManager.C.Action.ACCEPT_ALL`
+- `CookieManager.C.Action.REJECT_ALL`
+- `CookieManager.C.Action.CHOSEN`
+
 - `CookieManager.C.Verbose.NONE`
 - `CookieManager.C.Verbose.COMPONENTS`
 - `CookieManager.C.Verbose.CONFIGURE`
@@ -114,9 +119,9 @@ Returns the array of published cookies for the specified category.
 
 See above.
 
-#### `CookieManager.isEnabled( name )`
+#### `CookieManager.isEnabled( identifier )`
 
-Returns whether the named _cookie_ is authorized by the user.
+Returns whether the identified (responsible/name) _cookie_ is authorized by the user.
 
 #### `CookieManager.publish( o )`
 
@@ -126,20 +131,25 @@ In order to not rely on the initialization order, this method should be called f
 
 `o` here is either a javascript object which describes a cookie, or an array of such javascript objects. It may contains following datas:
 
+- `responsible`
+
+    Mandatory.
+
+    The application (resp. another package) name, as a string.
+
+    The `responsible/name` concatenation is expected to be a unique identifier of the cookie.
+
+    The `responsible` field is subject to restriction on reserved characters (#reserved-characters).
+
 - `name`
+
+    Mandatory.
 
     The technical name of the cookie, as a string, so that, for example, this coud be checked by the user in his browser.
 
-    This `name` is expected to be a unique identifier of the cookie, cannot be empty.
+    The `responsible/name` concatenation is expected to be a unique identifier of the cookie,.
 
-    Please note that `CookieManager` internally uses some reserved characters. These reserved characters must not be used when naming a cookie. As of 1.1.1, these are:
-
-    - comma `,`
-    - pipe `|`
-
-- `responsible`
-
-    The application (resp. another package) name, as a string, defaulting to none.
+    The `name` field is subject to restriction on reserved characters (#reserved-characters).
 
 - `category`
 
@@ -149,13 +159,21 @@ In order to not rely on the initialization order, this method should be called f
 
 - `description`
 
-    A brief description of the role of the cookie, as a string, defaulting to none.
+    A brief localized description of the role of the cookie, as a string, defaulting to none.
 
 - `lifetime`
 
     The lifetime of the cookie, as a string, from just the navigation session life to illimited.
 
+    Once again, this is here a descriptive string, as we do not manage the cookies themselves. This is just a user indication.
+
     Defaults to english « Unknown ».
+
+- `enabled`
+
+    Whether the cookie is initially enabled (`true`) or disabled (`false`), defaulting to `true`.
+
+    Defaults to `false` (disabled).
 
 - `disableable`
 
@@ -359,6 +377,13 @@ Please note that this method is only available on the client.
 This method returns the i18n namespace of this package.
 
 With this namespace, one can easily extend the available translations.
+
+#### Reserved characters
+
+Please note that `CookieManager` internally uses some reserved characters. These reserved characters must not be used when naming a cookie. As of 1.3.0, these are:
+
+- comma `,`
+- slash `/`.
 
 ### Blaze components
 

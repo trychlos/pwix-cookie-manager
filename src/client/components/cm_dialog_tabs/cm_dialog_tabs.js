@@ -2,6 +2,11 @@
  * pwix:cookie-manager/src/client/components/cm_dialog_tabs/cm_dialog_tabs.js
  *
  * The body of a modal dialog run via Modal.run()
+ * 
+ * CAUTION: we manage actually three templates here:
+ *  - cm_dialog_tabs
+ *  - cm_dialog_tabs_button
+ *  - cm_dialog_tabs_cookie
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
@@ -25,8 +30,8 @@ Template.cm_dialog_tabs.onCreated( function(){
         // internal vars
         // the list of published cookies
         cookies: {},
-        // the chosen option
-        chosen: 'accept',
+        // the (default) chosen option
+        chosen: CookieManager.C.Action.ACCEPT_ALL,
 
         tabs: [
             {
@@ -93,27 +98,28 @@ Template.cm_dialog_tabs.onCreated( function(){
         apply(){
             switch( self.CM.chosen ){
                 // whatever be the current state of the cookie, set all true
-                case 'accept':
-                    CookieManager._published.every(( c ) => {
-                        CookieManager.enable( c.name, true );
+                case CookieManager.C.Action.ACCEPT_ALL:
+                    CookieManager._published.every(( ck ) => {
+                        ck.enable( true );
                         return true;
                     });
                     break;
                 
                 // disable all disableable cookies
-                case 'reject':
-                    CookieManager._published.every(( c ) => {
-                        if( c.disableable ){
-                            CookieManager.enable( c.name, false );
+                case CookieManager.C.Action.REJECT_ALL:
+                    CookieManager._published.every(( ck ) => {
+                        //console.debug( ck.identifier(), 'disableable', ck.disableable());
+                        if( ck.disableable()){
+                            ck.enable( false );
                         }
                         return true;
                     });
                     break;
                 
                 // get the current state from dictionary
-                case 'chosen':
-                    CookieManager._published.every(( c ) => {
-                        CookieManager.enable( c.name, self.CM.cookies[c.name]);
+                case CookieManager.C.Action.CHOSEN:
+                    CookieManager._published.every(( ck ) => {
+                        ck.enable( self.CM.cookies[ck.identifier()]);
                         return true;
                     });
                     break;
@@ -121,6 +127,11 @@ Template.cm_dialog_tabs.onCreated( function(){
             CookieManager.consentWrite( self.CM.chosen );
         }
     };
+
+    // read the current allow state of the cookies
+    self.autorun(() => {
+        self.CM.cookies = CookieManager.cookiesRead();
+    });
 });
 
 Template.cm_dialog_tabs.onRendered( function(){
@@ -189,9 +200,9 @@ Template.cm_dialog_tabs.helpers({
         return Template.currentData()[it.name+'Title'] || pwixI18n.label( I18N, it.title );
     },
 
-    // initiaize our internal hash for this cookie
+    // initialize our internal hash for this cookie
     setDict( c ){
-        Template.instance().CM.cookies[c.name] = CookieManager.isEnabled( c.name );
+        Template.instance().CM.cookies[c.identifier()] = c.enable();
     },
 
     // tabs list
@@ -226,8 +237,8 @@ Template.cm_dialog_tabs.events({
         instance.CM.apply();
         // dump if asked for
         if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
-            CookieManager._published.every(( c ) => {
-                console.debug( 'pwix:CookieManager', c.name, CookieManager.isEnabled( c.name ));
+            CookieManager._published.every(( ck ) => {
+                console.debug( 'pwix:CookieManager', ck.responsible()+'/'+ck.name(), ck.enable());
                 return true;
             });
         }
@@ -279,10 +290,11 @@ Template.cm_dialog_tabs_cookie.helpers({
     // a toggle switch for this cookie
     parmsSwitch( c ){
         return {
-            name: c.name,
-            title: c.name,
-            state: CookieManager.isEnabled( c.name ),
-            enabled: c.disableable
+            responsible: c.responsible(),
+            name: c.name(),
+            title: c.name(),
+            state: c.enable(),
+            enabled: c.disableable()
         }
     }
 });

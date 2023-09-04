@@ -2,58 +2,13 @@
  * pwix:cookie-manager/src/common/js/functions.js
  */
 
-CookieManager._published = [];
-
-// returns the named cookie, or null
-const _findCookie = function( name ){
-    let _cookie = null;
-    CookieManager._published.every(( c ) => {
-        if( c.name === name ){
-            _cookie = c;
-            return false;
-        }
-        return true;
-    });
-    return _cookie;
-};
-
-// validate the cookie declaration
-const _validDeclaration = function( ck ){
-    let _valid = false;
-    if( ck ){
-        _valid = _validName( ck );
-    } else {
-        console.warn( 'pwix:cookie-manager expects a cookie declaration, got null' );
-    }
-    return _valid;
-}
-
-// validate the name of the cookie
-const _validName = function( ck ){
-    let _valid = false;
-    if( !ck.name ){
-        console.warn( 'pwix:cookie-manager expects cookie declaration have a name, found null' );
-    } else if( typeof ck.name !== 'string' && !( ck.name instanceof String )){
-        console.warn( 'pwix:cookie-manager expects cookie name be a string, found', ck.name );
-    } else {
-        _valid = true;
-        CM_RESERVED_CHARS.every(( ch ) => {
-            if( ck.name.indexOf( ch ) >= 0 ){
-                console.warn( 'pwix:cookie-manager found \''+ch+'\' reserved char in name', ck.name );
-                _valid = false;
-                return false;
-            }
-            return true;
-        })
-    }
-    return _valid;
-}
+import { Cookie } from '../classes/cookie.class.js';
 
 /**
  * @summary Get the cookie for a given category
  * @locus Anywhere
  * @param {String} category the requested category
- * @returns {Array} the array of cookies declared in this category
+ * @returns {Array} the array of Cookies declared in this category
  *  Returns at least an empty array.
  */
 CookieManager.byCategory = function( category ){
@@ -63,9 +18,9 @@ CookieManager.byCategory = function( category ){
     } else if( !Object.keys( CookieManager.C.Category ).includes( category )){
         console.warn( 'pwix:cookie-manager byCategory() expects a known category, found', category );
     } else {
-        CookieManager._published.every(( c ) => {
-            if( c.category === category ){
-                res.push( c );
+        CookieManager._published.every(( ck ) => {
+            if( ck.category() === category ){
+                res.push( ck );
             }
             return true;
         });
@@ -77,10 +32,10 @@ CookieManager.byCategory = function( category ){
  * @summary Dump the localStorage space
  * @locus Anywhere
  */
-CookieManager.dump = function(){
+CookieManager.dumpStorage = function(){
     if( Meteor.isClient ){
         for( let i=0; i < localStorage.length; ++i ){
-            console.debug( 'CookieManager.dump() localStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
+            console.debug( 'CookieManager.dumpStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
         }
     }
 };
@@ -88,13 +43,12 @@ CookieManager.dump = function(){
 /**
  * @summary Set the user authorization of the named cookie
  * @locus Anywhere
- * @param {String} name the name of the cookie
+ * @param {String} identifier the identifier (responsible/name) of the cookie
  * @param {Boolean} allowed whether the cookie is allowed or not
  */
-CookieManager.enable = function( name, allowed ){
+CookieManager.enable = function( identifier, allowed ){
     if( Meteor.isClient ){
-        const _ckname = STORED_COOKIE_PREFIX + name;
-        localStorage.setItem( _ckname, allowed ? 'true' : 'false' );
+        localStorage.setItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier, allowed ? 'true' : 'false' );
     }
 };
 
@@ -106,7 +60,7 @@ CookieManager.enable = function( name, allowed ){
 CookieManager.getEnabled = function(){
     let res = [];
     CookieManager._published.every(( c ) => {
-        if( CookieManager.isEnabled( c.name )){
+        if( c.enable()){
             res.push( c );
         }
         return true;
@@ -115,12 +69,12 @@ CookieManager.getEnabled = function(){
 };
 
 /**
- * @summary Says if the named cookie is enabled (i.e. authorized) by the user
+ * @summary Says if the identified (responsible/name) cookie is enabled (i.e. authorized) by the user
  * @locus Anywhere
- * @param {String} name the name of the cookie
- * @returns {Boolean} whether the cookie has been authorized, defaulting to true
+ * @param {String} identifier the identifier (responsible/name) of the cookie
+ * @returns {Boolean} whether the cookie has been authorized by the user
  */
-CookieManager.isEnabled = function( name ){
+CookieManager.isEnabled = function( identifier ){
     let _enabled = true;
     if( Meteor.isClient ){
         const _ckname = STORED_COOKIE_PREFIX + name;
@@ -132,48 +86,23 @@ CookieManager.isEnabled = function( name ){
 
 /**
  * @summary Cookie publication
+ * @description This should be called by each application or service which uses a cookie and wants the user accepts it.
+ *  Note that this behavior is supposed to be mandatory, and SHOULD be followed by all.
  * @locus Anywhere
- * @param {Object} cookies the cookie object, or an array of cookies objects
+ * @param {Object} cookies the cookie description as a javascript object, or an array of cookie descriptions
  */
-CookieManager.publish = function( cookie ){
-    if( Array.isArray( cookie )){
-        cookie.every(( o ) => {
-            if( _validDeclaration( o )){
-                CookieManager._published.push( o );
+CookieManager.publish = function( cookies ){
+    let ck;
+    if( Array.isArray( cookies )){
+        cookies.every(( o ) => {
+            if( ck = Cookie.Validate( o )){
+                //console.debug( 'pushing', ck );
+                CookieManager._published.push( ck );
             }
             return true;
-        })
-    } else if( _validDeclaration( cookie )){
-        CookieManager._published.push( cookie );
-    }
-};
-
-/**
- * @summary Reset the user preferences for the named cookie
- * @locus Anywhere
- * @param {String} name the name of the cookie
- */
-CookieManager.reset = function( name ){
-    if( Meteor.isClient ){
-        const _ckname = STORED_COOKIE_PREFIX + name;
-        localStorage.removeItem( _ckname );
-    }
-};
-
-/**
- * @summary Empty the whole localStorage space
- * @locus Anywhere
- */
-CookieManager.removeAll = function(){
-    if( Meteor.isClient ){
-        let names = [];
-        for( let i=0; i < localStorage.length; ++i ){
-            names.push( localStorage.key( i ));
-        }
-        names.every(( n ) => {
-            console.debug( 'removing', n );
-            localStorage.removeItem( n );
-            return true;
         });
+    } else if( ck = Cookie.Validate( cookies )){
+        //console.debug( 'pushing', ck );
+        CookieManager._published.push( ck );
     }
 };

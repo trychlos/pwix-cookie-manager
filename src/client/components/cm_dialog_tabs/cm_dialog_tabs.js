@@ -143,7 +143,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     }
 
     // set the modal target
-    Modal.target({ target: self.$( '.cm-dialog-tabs' ) });
+    Modal.set({ target: self.$( '.cm-dialog-tabs' ) });
 
     // activates the first tab
     self.CM.tabs.every(( it ) => {

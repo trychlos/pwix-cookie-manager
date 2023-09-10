@@ -9,6 +9,7 @@
     Release date: 
 
     - Remove cookies from our storage when user no more allow them (todo #25)
+    - Bump version requirements
 
 ### 1.3.0
 

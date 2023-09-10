@@ -77,7 +77,7 @@ CookieManager.getEnabled = function(){
 CookieManager.isEnabled = function( identifier ){
     let _enabled = true;
     if( Meteor.isClient ){
-        const _ckname = STORED_COOKIE_PREFIX + name;
+        const _ckname = STORED_COOKIE_PREFIX + identifier;
         const _stored = localStorage.getItem( _ckname );
         _enabled = ( _stored === null ) ? true : ( _stored === 'true' );
     }

@@ -49,3 +49,4 @@ CM_RESERVED_CHARS = [
 ];
 
 I18N = 'pwix:cookie-manager:i18n-namespace';
+STORED_COOKIE_PREFIX = CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH

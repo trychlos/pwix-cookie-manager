@@ -27,8 +27,9 @@
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   26 | 2023- 9- 4 | closing the cookie manager dialog also closes the app content |
-|   27 |  |  |
+|   27 | 2023- 9- 6 | Integrate cookie policy as a template + cookie link |
+|   28 | 2023- 9-10 | the package should integrate at least a template of a cookie policy and the cookie manager link and the cookie policy link |
+|   29 |  |  |
 
 ---
 ## Done
@@ -64,6 +65,8 @@
 |      | 2023- 9- 4 | actually already done; the application handles the 'cookies policy' |
 |   25 | 2023- 9- 4 | localStorage keys seems to not be well handled |
 |      | 2023- 9- 4 | fixed |
+|   26 | 2023- 9- 4 | closing the cookie manager dialog also closes the app content |
+|      | 2023- 9- 4 | fixed with pwix:accounts-ui v1.3.0 |
 
 ---
 P. Wieser

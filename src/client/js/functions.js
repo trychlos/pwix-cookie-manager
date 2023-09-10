@@ -84,15 +84,6 @@ CookieManager.consentWrite = function( action ){
 };
 
 /**
- * @summary Reset the user preferences for the named cookie
- * @locus Client
- * @param {String} identifier the identifier 'responsible/name' of the cookie
- */
-CookieManager.reset = function( identifier ){
-    localStorage.removeItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier );
-};
-
-/**
  * @summary Empty the whole localStorage space
  * @locus Client
  */
@@ -106,6 +97,15 @@ CookieManager.removeAll = function(){
         localStorage.removeItem( n );
         return true;
     });
+};
+
+/**
+ * @summary Reset the user preferences for the named cookie
+ * @locus Client
+ * @param {String} identifier the identifier 'responsible/name' of the cookie
+ */
+CookieManager.reset = function( identifier ){
+    localStorage.removeItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier );
 };
 
 /**

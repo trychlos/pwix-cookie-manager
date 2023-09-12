@@ -11,6 +11,7 @@
     - Remove cookies from our storage when user no more allow them (todo #25)
     - Bump version requirements
     - Update to new pwix:modal v 1.7.0
+    - Back to Meteor 2.9.0
 
 ### 1.3.0
 

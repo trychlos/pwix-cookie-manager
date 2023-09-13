@@ -40,6 +40,22 @@ The package's behavior can be configured through a call to the `CookieManager.co
 
 Known configuration options are:
 
+- `categories`
+
+    An array of the categories the application wishes to add to the predefined ones.
+
+    Each item of this array represents a category, must be an object with following keys:
+
+    - `id`: a string which identifies the category
+
+    - `label`: a (localized) string to be displayed as the tab label, defaulting to `id`
+
+    - `title`: a (localized) HTML string to be displayed as the title of the corresponding tab in the Cookie Manager, defaulting to `id`
+
+    - `content`: a (localized) HTML string to be displayed as the description of the category in the Cookie Manager, defaulting to `id`
+
+    When defined, these new categories may be used by the application to better categorize its own cookies.
+
 - `consentLifetime`
 
     Define the lifetime of the user consent, i.e. the time at the end of which an explicit consent should be re-asked to the user, as a `ms` integer.

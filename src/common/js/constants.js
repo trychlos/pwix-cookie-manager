@@ -33,6 +33,11 @@ CookieManager.C = {
 
 // non exported
 //
+
+// dynamic constants, aka constants modifiable by the application
+CookieManager.Cdyn = {};
+CookieManager.Cdyn.Category = CookieManager.C.Category;
+
 // localStorage data
 CM_RESPONSIBLE = 'pwix:cookie-manager';
 CM_USER_CONSENT_CK = 'user-consent';

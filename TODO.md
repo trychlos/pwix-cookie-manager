@@ -14,7 +14,6 @@
 |      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
 |    2 | 2023- 4-30 | cmConsent: have configuration options to provide a template for every category |
 |      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
-|    3 | 2023- 4-30 | be able to configure the categories |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
 |    6 | 2023- 5- 1 | having a reject all button should be configurable |
 |      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
@@ -22,8 +21,6 @@
 |    7 | 2023- 5- 1 | configure sliding background color |
 |   14 | 2023- 5-29 | make the cookie description localizable |
 |   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
-|   16 | 2023- 5-29 | Have a verbosity level to the availability message |
-|      | 2023- 6-22 | the attachment as Meteor.CookieManager is made at initialization time, before configure() be called, so depends of a Meteor application-level global |
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
@@ -36,6 +33,8 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
+|    3 | 2023- 4-30 | be able to configure the categories |
+|      | 2023- 9-13 | done |
 |    5 | 2023- 5- 1 | rather than having a dump configuration option, have a verbosity level which triggers on updates |
 |      | 2023- 5- 1 | done |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
@@ -53,6 +52,9 @@
 |      | 2023- 5-29 | done (and will request the last version of pwix:modal) |
 |   13 | 2023- 5-26 | Change 'make the CookieManager available to each and every package' to '...available to all' |
 |      | 2023- 6-22 | done |
+|   16 | 2023- 5-29 | Have a verbosity level to the availability message |
+|      | 2023- 6-22 | the attachment as Meteor.CookieManager is made at initialization time, before configure() be called, so depends of a Meteor application-level global |
+|      | 2023- 9-13 | cancelled as just impossible to do better - keep the log always |
 |   20 | 2023- 6-12 | Have CookieManager.i18n.namespace() to let another package add a translation to this one |
 |      | 2023- 6-22 | done |
 |   21 | 2023- 6-20 | conf should be made private (renamed and prefixed with _) |

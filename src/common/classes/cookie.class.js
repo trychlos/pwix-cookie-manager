@@ -59,7 +59,7 @@ export class Cookie {
         if( !o.category ){
             console.warn( 'pwix:cookie-manager expects cookie declaration have a category, found null or undefined' );
             valid = false;
-        } else if( !Object.keys( CookieManager.C.Category ).includes( o.category )){
+        } else if( !Object.keys( CookieManager.Cdyn.Category ).includes( o.category )){
             console.warn( 'pwix:cookie-manager expects cookie category be declared as one of a CookieManager.Category, found', o.category );
             valid = false;
         }

@@ -132,6 +132,23 @@ Template.cm_dialog_tabs.onCreated( function(){
     self.autorun(() => {
         self.CM.cookies = CookieManager.cookiesRead();
     });
+
+    // add to the predefined tabs those which may have been declared by the application
+    CookieManager._conf.categories.every(( cat ) => {
+        let o = {
+            name: cat.id,
+            cat: cat.id,
+            content_id: Random.id(),
+            cordion_id: Random.id(),
+            nav_id: Random.id()
+        };
+        o[o.name+'Label'] = cat.label || cat.id;
+        o[o.name+'Title'] = '<h5>'+( cat.title || cat.id )+'</h5>';
+        o[o.name+'Content'] = cat.content || cat.id;
+        self.CM.tabs.push( o );
+        return true;
+    });
+    //console.debug( 'tabs', self.CM.tabs );
 });
 
 Template.cm_dialog_tabs.onRendered( function(){
@@ -173,17 +190,17 @@ Template.cm_dialog_tabs.helpers({
 
     // a text to be set after the tab content
     navAfter( it ){
-        return Template.currentData()[it.name+'After'] || '';
+        return it[it.name+'After'] || '';
     },
 
     // a text to be set before the tab content
     navBefore( it ){
-        return Template.currentData()[it.name+'Before'] || '';
+        return it[it.name+'Before'] || '';
     },
 
     // the tab content
     navContent( it ){
-        return Template.currentData()[it.name+'Content'] || pwixI18n.label( I18N, it.content );
+        return it[it.name+'Content'] || pwixI18n.label( I18N, it.content );
     },
 
     // the list of cookies published by the application and other packages
@@ -197,7 +214,7 @@ Template.cm_dialog_tabs.helpers({
 
     // the tab content title
     navTitle( it ){
-        return Template.currentData()[it.name+'Title'] || pwixI18n.label( I18N, it.title );
+        return it[it.name+'Title'] || pwixI18n.label( I18N, it.title );
     },
 
     // initialize our internal hash for this cookie
@@ -255,7 +272,7 @@ Template.cm_dialog_tabs.onDestroyed( function(){
 Template.cm_dialog_tabs_button.helpers({
     // the button label
     navLabel( it ){
-        return Template.currentData()[it.name+'Label'] || pwixI18n.label( I18N, it.label );
+        return it[it.name+'Label'] || pwixI18n.label( I18N, it.label );
     }
 });
 

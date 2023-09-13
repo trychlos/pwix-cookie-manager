@@ -12,6 +12,7 @@
     - Bump version requirements
     - Update to new pwix:modal v 1.7.0
     - Back to Meteor 2.9.0
+    - Let the application define its own categories (todo #3)
 
 ### 1.3.0
 

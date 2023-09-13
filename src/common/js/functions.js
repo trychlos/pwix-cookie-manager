@@ -15,7 +15,7 @@ CookieManager.byCategory = function( category ){
     let res = [];
     if( !category ){
         console.warn( 'pwix:cookie-manager byCategory() expects a category, found none' );
-    } else if( !Object.keys( CookieManager.C.Category ).includes( category )){
+    } else if( !Object.keys( CookieManager.Cdyn.Category ).includes( category )){
         console.warn( 'pwix:cookie-manager byCategory() expects a known category, found', category );
     } else {
         CookieManager._published.every(( ck ) => {

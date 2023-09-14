@@ -16,7 +16,9 @@
                         <a href="#" class="cm-policy">{{ i18n key="sliding.policy_link" }}</a>
                     {{/if}}
 
-                    <a href="#" class="cm-manager">{{ i18n key="sliding.manager_link" }}</a>
+                    {{#if cookieManager }}
+                        {{> cmManagerLink }}
+                    {{/if}}
                 </div>
 
                 <div class="buttons">

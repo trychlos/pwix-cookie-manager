@@ -7,6 +7,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import '../../../common/js/index.js';
 
+import '../cmManagerLink/cmManagerLink.js';
+
 import './cmSliding.html';
 import './cmSliding.less';
 
@@ -60,6 +62,11 @@ Template.cmSliding.onRendered( function(){
 });
 
 Template.cmSliding.helpers({
+    // have a link to CookieManager dialog
+    cookieManager(){
+        return this.cookieManager || false;
+    },
+
     // have ac ookie policy url ?
     cookiePolicy(){
         return Template.instance().CM.cookiePolicy.get();

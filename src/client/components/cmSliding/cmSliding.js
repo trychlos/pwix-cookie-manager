@@ -2,8 +2,9 @@
  * pwix:cookie-manager/src/client/components/cmSliding/cmSliding.js
  */
 
+import _ from 'lodash';
+
 import { pwixI18n } from 'meteor/pwix:i18n';
-import { ReactiveVar } from 'meteor/reactive-var';
 
 import '../../../common/js/index.js';
 
@@ -11,6 +12,7 @@ import '../cmManagerLink/cmManagerLink.js';
 
 import './cmSliding.html';
 import './cmSliding.less';
+import _ from 'lodash';
 
 Template.cmSliding.onCreated( function(){
     const self = this;
@@ -21,24 +23,21 @@ Template.cmSliding.onCreated( function(){
     }
 
     self.CM = {
-        // args
-        cookiePolicy: new ReactiveVar( false ),
-
         // parms
         fontSize: '90%',
 
-        argBool( name ){
-            const b = Template.currentData()[name];
-            if( b === true || b === false ){
-                self.CM[name].set( b );
-            }
+        // these functions here because we need them twice
+        haveBool( name, def ){
+            const context = Template.currentData();
+            return Object.keys( context ).includes( name ) && _.isBoolean( context[name] ) ? context[name] : def;
+        },
+        haveManager(){
+            return self.CM.haveBool( 'cookiesManager', false );
+        },
+        havePolicy(){
+            return self.CM.haveBool( 'cookiesPolicy', false );
         }
-    }
-
-    // get the args
-    self.autorun(() => {
-        self.CM.argBool( 'cookiePolicy' );
-    });
+    };
 });
 
 Template.cmSliding.onRendered( function(){
@@ -63,13 +62,13 @@ Template.cmSliding.onRendered( function(){
 
 Template.cmSliding.helpers({
     // have a link to CookieManager dialog
-    cookieManager(){
-        return this.cookieManager || false;
+    cookiesManager(){
+        return Template.instance().CM.haveManager();
     },
 
-    // have ac ookie policy url ?
-    cookiePolicy(){
-        return Template.instance().CM.cookiePolicy.get();
+    // have a cookie policy url ?
+    cookiesPolicy(){cookiesPolicy
+        return Template.instance().CM.havePolicy();
     },
 
     // string translation
@@ -81,7 +80,7 @@ Template.cmSliding.helpers({
     //  depends of the count of displayed lines and of the font size
     imageHeight(){
         const CM = Template.instance().CM;
-        const count = 2 + ( CM.cookiePolicy.get() ? 1 : 0 );
+        const count = 2 + ( CM.haveManager() ? 1 : 0 ) + ( CM.havePolicy() ? 1 : 0 );
         const height = count * 16; // * parseFloat( CM.fontSize ) / 100;
         return height + 'px';
     },

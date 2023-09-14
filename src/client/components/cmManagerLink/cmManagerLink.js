@@ -27,6 +27,5 @@ Template.cmManagerLink.helpers({
 Template.cmManagerLink.events({
     'click .cmManagerLink'( event, instance ){
         CookieManager.runManager( this );
-        return false;
     }
 });

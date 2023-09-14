@@ -35,6 +35,10 @@ CookieManager.i18n = {
                 manager: {
                     label: 'Gestion des cookies',
                     title: 'Gestion des cookies'
+                },
+                policy: {
+                    label: 'Politique de gestion des cookies',
+                    title: 'Politique de gestion des cookies'
                 }
             },
             sliding: {

@@ -9,10 +9,10 @@ import { pwixI18n } from 'meteor/pwix:i18n';
 import '../../../common/js/index.js';
 
 import '../cmManagerLink/cmManagerLink.js';
+import '../cmManagerLink/cmPolicyLink.js';
 
 import './cmSliding.html';
 import './cmSliding.less';
-import _ from 'lodash';
 
 Template.cmSliding.onCreated( function(){
     const self = this;
@@ -105,15 +105,13 @@ Template.cmSliding.events({
 
     // open the cookies manager (also closing this box)
     //  will write itself the user consent
-    'click .cm-manager'( event, instance ){
-        CookieManager.runManager( Template.currentData());
+    'click .cm-manager-link'( event, instance ){
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
     },
 
     // user asks for display of the cookies policy (and close the box)
     //  as user has not 'got it' and not run the cookie manager, it will be redisplayed this cmSliding
-    'click .cm-policy'( event, instance ){
-        instance.$( '.cmSliding' ).trigger( 'cm-policy-click' );
+    'click .cm-policy-link'( event, instance ){
         instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
     }
 });

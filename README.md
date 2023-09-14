@@ -435,6 +435,30 @@ The title of the link.
 
 Defaults to a (localized) « Cookies management ».
 
+#### `cmPolicyLink`
+
+A component which displays a link to the Cookies Policy page.
+
+It may be run with following parms:
+
+- `label`
+
+The label.
+
+Defaults to a (localized) « Cookies policy ».
+
+- `route`
+
+The route to be set on the link.
+
+Defaults to a '`#`', which sends a `cm-policy-click` event.
+
+- `title`
+
+The title of the link.
+
+Defaults to a (localized) « Cookies policy ».
+
 #### `cmSliding`
 
 A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.

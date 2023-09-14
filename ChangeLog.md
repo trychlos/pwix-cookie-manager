@@ -15,6 +15,7 @@
     - Let the application define its own categories (todo #3)
     - Let the application decides if it displays a 'Reject All' button (todo #6)
     - Provide a configurable manager link (todo #28, todo #30)
+    - Provide a configurable policy link (todo #27)
 
 ### 1.3.0
 

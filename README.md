@@ -451,7 +451,7 @@ Defaults to a (localized) « Cookies policy ».
 
 The route to be set on the link.
 
-Defaults to a '`#`', which sends a `cm-policy-click` event.
+Defaults to a '`#`', which sends a `cm-policy-click` event on the `cmSliding` component.
 
 - `title`
 

@@ -14,13 +14,13 @@ import './cmManagerLink.html';
 
 Template.cmManagerLink.helpers({
     label(){
-        return this.route || pwixI18n.label( I18N, links.manager.label );
+        return this.label || pwixI18n.label( I18N, 'links.manager.label' );
     },
     route(){
         return this.route || '#';
     },
     title(){
-        return this.route || pwixI18n.label( I18N, links.manager.title );
+        return this.title || pwixI18n.label( I18N, 'links.manager.title' );
     }
 });
 

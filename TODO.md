@@ -20,7 +20,7 @@
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
 |   27 | 2023- 9- 6 | Integrate cookie policy as a template + link |
-|      | 2023- 9-14 | define cmPolicyLink component |
+|      | 2023- 9-14 | define cmPolicyLink component: done |
 |   31 |  |  |
 
 ---

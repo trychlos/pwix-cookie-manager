@@ -9,7 +9,7 @@ import { pwixI18n } from 'meteor/pwix:i18n';
 import '../../../common/js/index.js';
 
 import '../cmManagerLink/cmManagerLink.js';
-import '../cmManagerLink/cmPolicyLink.js';
+import '../cmPolicyLink/cmPolicyLink.js';
 
 import './cmSliding.html';
 import './cmSliding.less';
@@ -67,7 +67,7 @@ Template.cmSliding.helpers({
     },
 
     // have a cookie policy url ?
-    cookiesPolicy(){cookiesPolicy
+    cookiesPolicy(){
         return Template.instance().CM.havePolicy();
     },
 

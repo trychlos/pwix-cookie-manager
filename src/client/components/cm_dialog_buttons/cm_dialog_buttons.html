@@ -1,13 +1,13 @@
 <template name="cm_dialog_buttons">
     <div class="cm-dialog-buttons">
 
-        {{#if haveRejectAll }}
-            <div class="left">
+        <div class="left">
+            {{#if haveRejectAll }}
                 <button type="button" class="btn btn-secondary {{ smallBtn }}" data-cm-name="RejectAll">
                     {{ rejectLabel }}
                 </button>
-            </div>
-        {{/if}}
+            {{/if}}
+        </div>
 
         <div class="right">
             <button type="button" class="btn btn-secondary {{ smallBtn }}" data-cm-name="Choose">

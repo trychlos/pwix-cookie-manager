@@ -50,7 +50,7 @@ Known configuration options are:
 
     - `label`: a (localized) string to be displayed as the tab label, defaulting to `id`
 
-    - `title`: a (localized) HTML string to be displayed as the title of the corresponding tab in the Cookie Manager, defaulting to `id`
+    - `title`: a (localized) HTML string to be displayed as the title of the corresponding tab in the Cookie Manager, defaulting to `<h5>id</h5>`
 
     - `content`: a (localized) HTML string to be displayed as the description of the category in the Cookie Manager, defaulting to `id`
 
@@ -411,11 +411,43 @@ Please note that `CookieManager` internally uses some reserved characters. These
 
 ### Blaze components
 
+#### `cmManagerLink`
+
+A component which displays a link to run the Cookie Manager.
+
+It may be run with following parms:
+
+- `label`
+
+The label.
+
+Defaults to a (localized) « Cookies management ».
+
+- `route`
+
+The route to be set on the link.
+
+Defaults to a '`#`', which run the Cookie Manager.
+
+- `title`
+
+The title of the link.
+
+Defaults to a (localized) « Cookies management ».
+
 #### `cmSliding`
 
 A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.
 
 As this component provides a link to the cookies manager dialog, it may take the exact same parameters than `runManager()`, plus some specifics:
+
+- `cookiesManager`
+
+    Whether to display a link to run the cookies manager.
+
+    On click, the cookies manager will be opened.
+
+    Defaults to `false`.
 
 - `cookiesPolicy`
 
@@ -425,7 +457,7 @@ As this component provides a link to the cookies manager dialog, it may take the
 
     On click, the `cm-policy-click` event will be triggered on `cmSliding` component.
 
-    Defaults to none.
+    Defaults to `false`.
 
 `cmSliding` is displayed the first time a user visits the site, as a bottom sliding band. It can be closed:
 

@@ -15,15 +15,14 @@
 |    2 | 2023- 4-30 | cmConsent: have configuration options to provide a template for every category |
 |      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
-|    7 | 2023- 5- 1 | configure sliding background color |
 |   14 | 2023- 5-29 | make the cookie description localizable |
-|   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
 |   17 | 2023- 5-29 | Have a configurable logo in cmSliding |
 |   18 | 2023- 6- 1 | Have configuration option to allow cmSliding in Cordova |
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
-|   27 | 2023- 9- 6 | Integrate cookie policy as a template + cookie link |
-|   28 | 2023- 9-10 | the package should integrate at least a template of a cookie policy and the cookie manager link and the cookie policy link |
-|   29 |  |  |
+|   27 | 2023- 9- 6 | Integrate cookie policy as a template + link |
+|   29 | 2023- 9-14 | cmSliding honor cookiesPolicy |
+|   30 | 2023- 9-14 | cmSliding honor cookiesManager |
+|   31 |  |  |
 
 ---
 ## Done
@@ -38,6 +37,8 @@
 |      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
 |      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |      | 2023- 9-13 | done |
+|    7 | 2023- 5- 1 | configure sliding background color |
+|      | 2023- 9-14 | cancelled, the app should rather use a stylesheet |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
 |      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
 |      | 2023- 5- 2 | consent should be forgotten after one year |
@@ -52,6 +53,8 @@
 |   12 | 2023- 5-18 | review display on small devices |
 |      | 2023- 5-29 | done (and will request the last version of pwix:modal) |
 |   13 | 2023- 5-26 | Change 'make the CookieManager available to each and every package' to '...available to all' |
+|      | 2023- 6-22 | done |
+|   15 | 2023- 9-14 | when a cookie is disabled, should be erased |
 |      | 2023- 6-22 | done |
 |   16 | 2023- 5-29 | Have a verbosity level to the availability message |
 |      | 2023- 6-22 | the attachment as Meteor.CookieManager is made at initialization time, before configure() be called, so depends of a Meteor application-level global |
@@ -70,6 +73,8 @@
 |      | 2023- 9- 4 | fixed |
 |   26 | 2023- 9- 4 | closing the cookie manager dialog also closes the app content |
 |      | 2023- 9- 4 | fixed with pwix:accounts-ui v1.3.0 |
+|   28 | 2023- 9-10 | the package should integrate at least a template of a cookie policy and the cookie manager link and the cookie policy link |
+|      | 2023- 9-14 | done |
 
 ---
 P. Wieser

@@ -33,6 +33,7 @@ function configure( api ){
     api.use( 'pwix:toggle-switch@0.3.0' );
     api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );
+    api.addFiles( 'src/client/components/cmManagerLink/cmManagerLink.js', 'client' );
     api.addAssets([
         'resources/png/info-blue.png',
         'resources/png/info-orange.png',

@@ -111,12 +111,12 @@ CookieManager.reset = function( identifier ){
 /**
  * @summary runs the cookie manager to let the user accept or refuse cookies
  * @locus Client
- * @param {*} o the configuration object - see README
  */
 CookieManager.runManager = function( o ){
+    const title = pwixI18n.label( I18N, 'dialog.title' );
     Modal.run({
         mdClasses: 'cm-cookie-manager',
-        mdTitle: ( o ? o.dialogTitle : '' ) || pwixI18n.label( I18N, 'dialog.title' ),
+        mdTitle: ( o ? o.dialogTitle : title ) || title,
         mdBody: 'cm_dialog_tabs',
         mdFooter: 'cm_dialog_buttons',
         mdSizeKey: CM_RESPONSIBLE + CM_SLASH + CM_DIALOG_SIZE_CK,

@@ -31,6 +31,12 @@ CookieManager.i18n = {
                 consent: 'Une donnée composée qui enregistre la date du consentement de l\'utilisateur, l\'action qu\'il a choisie, ainsi que la liste des cookies autorisés',
                 size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
             },
+            links: {
+                manager: {
+                    label: 'Gestion des cookies',
+                    title: 'Gestion des cookies'
+                }
+            },
             sliding: {
                 body: '<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>',
                 body_sm: '<p>Ce site utilise des <em>cookies</em> pour vous procurer une meilleure expérience de navigation.</p>',

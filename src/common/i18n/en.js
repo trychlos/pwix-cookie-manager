@@ -31,6 +31,12 @@ CookieManager.i18n = {
                 consent: 'A composite data which records the date of the user consent, the action he has chosen, and the list of enabled cookies',
                 size: 'Keep the last dialog size to improve user experience.'
             },
+            links: {
+                manager: {
+                    label: 'Cookies management',
+                    title: 'Cookies management'
+                }
+            },
             sliding: {
                 body: '<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>',
                 body_sm: '<p>This site use <em>cookies</em> to offer you a better experience.</p>',

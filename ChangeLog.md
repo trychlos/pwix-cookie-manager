@@ -8,12 +8,13 @@
 
     Release date: 
 
-    - Remove cookies from our storage when user no more allow them (todo #25)
+    - Remove cookies from our storage when user no more allow them (todo #15, todo #25)
     - Bump version requirements
     - Update to new pwix:modal v 1.7.0
     - Back to Meteor 2.9.0
     - Let the application define its own categories (todo #3)
     - Let the application decides if it displays a 'Reject All' button (todo #6)
+    - Provide a manager link (todo #28)
 
 ### 1.3.0
 

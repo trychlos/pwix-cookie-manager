@@ -62,6 +62,14 @@ Known configuration options are:
 
     Defaults to 31536000000 ms, aka 365*24*60*60*1000, aka one year.
 
+- `haveRejectAll`
+
+    Let the application decides that it does not want present a 'Reject all' button to the user.
+
+    Please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' (cf. 'CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf').
+
+    Defaults to `true`.
+
 - `verbosity`
 
     Define the expected verbosity level.

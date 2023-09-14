@@ -13,6 +13,7 @@
     - Update to new pwix:modal v 1.7.0
     - Back to Meteor 2.9.0
     - Let the application define its own categories (todo #3)
+    - Let the application decides if it displays a 'Reject All' button (todo #6)
 
 ### 1.3.0
 

@@ -15,9 +15,6 @@
 |    2 | 2023- 4-30 | cmConsent: have configuration options to provide a template for every category |
 |      | 2023- 5-29 | cmConsent has been replaced by a Modal.run() call - but same idea |
 |    4 | 2023- 4-30 | have a dialog to see/update/delete all localStorage items |
-|    6 | 2023- 5- 1 | having a reject all button should be configurable |
-|      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
-|      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
 |    7 | 2023- 5- 1 | configure sliding background color |
 |   14 | 2023- 5-29 | make the cookie description localizable |
 |   15 | 2023- 5-29 | when a cookie is disabled, should be erased |
@@ -37,6 +34,10 @@
 |      | 2023- 9-13 | done |
 |    5 | 2023- 5- 1 | rather than having a dump configuration option, have a verbosity level which triggers on updates |
 |      | 2023- 5- 1 | done |
+|    6 | 2023- 5- 1 | having a reject all button should be configurable |
+|      | 2023- 5- 2 | please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' |
+|      |            | cf. '/maintainer/docs/CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf' |
+|      | 2023- 9-13 | done |
 |    8 | 2023- 5- 1 | cmConsent: record ip, timestamp when, and choice (button) as we have to prove that the user has consented |
 |      | 2023- 5- 2 | define a single consent trace with all these data as stringified json |
 |      | 2023- 5- 2 | consent should be forgotten after one year |

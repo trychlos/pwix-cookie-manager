@@ -40,6 +40,7 @@ const _checkInteger = function( name ){
 CookieManager._defaults = {
     categories: [],
     consentLifetime: 31536000000,   // one year
+    haveRejectAll: true,
     verbosity: CookieManager.C.Verbose.NONE
 };
 

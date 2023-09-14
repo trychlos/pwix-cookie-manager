@@ -31,6 +31,12 @@ Template.cm_dialog_buttons.helpers({
     chooseLabel(){
         return this.chooseButton || pwixI18n.label( I18N, 'buttons.choose' );
     },
+
+    // whether we have a 'Reject All' button (that we should have)
+    haveRejectAll(){
+        return CookieManager._conf.haveRejectAll;
+    },
+
     rejectLabel(){
         return this.rejectButton || pwixI18n.label( I18N, 'buttons.reject' );
     },

@@ -4,9 +4,9 @@
 
 ## ChangeLog
 
-### 1.4.0-rc
+### 1.4.0
 
-    Release date: 
+    Release date: 2023- 9-18
 
     - Remove cookies from our storage when user no more allow them (todo #15, todo #25)
     - Bump pwix:modal requirement to v 1.8.0
@@ -73,4 +73,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, July 4th
+- Last updated on 2023, Sep. 18th

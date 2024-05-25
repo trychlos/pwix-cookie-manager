@@ -23,15 +23,15 @@ Package.onTest( function( api ){
 });
 
 function configure( api ){
-    api.versionsFrom( '2.9.0' );
-    api.use( 'blaze-html-templates@2.0.0', 'client' );
+    api.versionsFrom([ '2.9.0', '3.0-rc.0' ]);
+    api.use( 'blaze-html-templates@2.0.0 || 3.0.0-alpha300.0', 'client' );
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
-    api.use( 'pwix:i18n@1.5.2' );
-    api.use( 'pwix:layout@1.3.0' );
-    api.use( 'pwix:modal@1.8.0' );
-    api.use( 'pwix:toggle-switch@0.3.0' );
-    api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
+    api.use( 'pwix:i18n@1.5.7' );
+    api.use( 'pwix:layout@1.3.1' );
+    api.use( 'pwix:modal@1.10.0' );
+    api.use( 'pwix:toggle-switch@0.3.3' );
+    api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
     api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );
     api.addFiles( 'src/client/components/cmManagerLink/cmManagerLink.js', 'client' );
     api.addFiles( 'src/client/components/cmPolicyLink/cmPolicyLink.js', 'client' );

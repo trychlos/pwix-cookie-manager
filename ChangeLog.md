@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.4.1-rc
+### 1.4.1
 
-    Release date: 
+    Release date: 2024- 5-25
 
     - Meteor 3.0 ready
 
@@ -77,4 +77,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Sep. 18th
+- Last updated on 2024, May. 25th

@@ -28,7 +28,7 @@ function configure( api ){
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
     api.use( 'pwix:i18n@1.5.7' );
-    api.use( 'pwix:modal@1.10.0' );
+    api.use( 'pwix:modal@1.10.0 || 2.0.0' );
     api.use( 'pwix:toggle-switch@0.3.3' );
     api.use( 'pwix:ui-layout@2.0.0' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );

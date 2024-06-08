@@ -7,6 +7,7 @@
     Release date: 
 
     - Upgrade pwix:modal dependency
+    - Fix the breakpoints constants inclusion in stylesheet
 
 ### 2.0.0
 

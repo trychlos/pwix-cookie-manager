@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.0.0-rc
+### 2.0.0
 
-    Release date: 
+    Release date: 2024- 6- 8
 
     - Replace obsolete pwix:layout v1 dependency with pwix:ui-layout v2 bumping major candidate version number
 
@@ -83,4 +83,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, May. 25th
+- Last updated on 2024, Jun. 8th

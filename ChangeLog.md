@@ -2,11 +2,11 @@
 
 ## ChangeLog
 
-### 1.4.2-rc
+### 2.0.0-rc
 
     Release date: 
 
-    - 
+    - Replace obsolete pwix:layout v1 dependency with pwix:ui-layout v2 bumping major candidate version number
 
 ### 1.4.1
 

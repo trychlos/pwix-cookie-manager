@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:cookie-manager',
-    version: '1.4.2-rc',
+    version: '2.0.0-rc',
     summary: 'Cookies management for Meteor',
     git: 'https://github.com/trychlos/pwix-cookie-manager',
     documentation: 'README.md'
@@ -28,9 +28,9 @@ function configure( api ){
     api.use( 'ecmascript' );
     api.use( 'less@4.0.0', 'client' );
     api.use( 'pwix:i18n@1.5.7' );
-    api.use( 'pwix:layout@1.3.1' );
     api.use( 'pwix:modal@1.10.0' );
     api.use( 'pwix:toggle-switch@0.3.3' );
+    api.use( 'pwix:ui-layout@2.0.0' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
     api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );
     api.addFiles( 'src/client/components/cmManagerLink/cmManagerLink.js', 'client' );

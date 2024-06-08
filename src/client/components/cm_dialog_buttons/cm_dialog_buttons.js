@@ -3,7 +3,7 @@
  */
 
 import { pwixI18n } from 'meteor/pwix:i18n';
-import { Layout } from 'meteor/pwix:layout';
+import { UILayout } from 'meteor/pwix:ui-layout';
 import { Modal } from 'meteor/pwix:modal';
 
 import '../../stylesheets/cm_cookie_manager.less';
@@ -42,7 +42,7 @@ Template.cm_dialog_buttons.helpers({
     },
     // have a small-btn class on small up to medium devices
     smallBtn(){
-        return Layout.isMD() ? 'btn-sm': '';
+        return UILayout.isMD() ? 'btn-sm': '';
     }
 });
 

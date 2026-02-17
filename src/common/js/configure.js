@@ -4,7 +4,10 @@
 
 import _ from 'lodash';
 
-CookieManager._conf = {};
+import { ReactiveVar } from 'meteor/reactive-var';
+
+let _conf = {};
+CookieManager._conf = new ReactiveVar( _conf );
 
 const _checkCategories = function( name ){
     const val = CookieManager._conf[name];
@@ -44,8 +47,6 @@ CookieManager._defaults = {
     verbosity: CookieManager.C.Verbose.NONE
 };
 
-_.merge( CookieManager._conf, CookieManager._defaults );
-
 /**
  * @summary Get/set the package configuration
  *  Should be called *in same terms* both in client and in server
@@ -54,15 +55,30 @@ _.merge( CookieManager._conf, CookieManager._defaults );
  */
 CookieManager.configure = function( o ){
     if( o && _.isObject( o )){
-        _.merge( CookieManager._conf, CookieManager._defaults, o );
-        // make sure we have integer where required
-        _checkCategories( 'categories' );
-        _checkInteger( 'consentLifetime' );
-        // be verbose if asked for
-        if( CookieManager._conf.verbosity & CookieManager.C.Verbose.CONFIGURE ){
-            console.debug( 'pwix:cookie-manager configure() with', o, 'building', CookieManager._conf );
+        // check that keys exist
+        let built_conf = {};
+        Object.keys( o ).forEach(( it ) => {
+            if( Object.keys( CookieManager._defaults ).includes( it )){
+                built_conf[it] = o[it];
+            } else {
+                console.warn( 'pwix:cookie-manager configure() ignore unmanaged key \''+it+'\'' );
+            }
+        });
+        if( Object.keys( built_conf ).length ){
+            _conf = _.merge( CookieManager._defaults, _conf, built_conf );
+            CookieManager._conf.set( _conf );
+            // make sure we have integer where required
+            _checkCategories( 'categories' );
+            _checkInteger( 'consentLifetime' );
+            // be verbose if asked for
+            if( _conf.verbosity & CookieManager.C.Verbose.CONFIGURE ){
+                console.debug( 'pwix:cookie-manager configure() with', built_conf );
+            }
         }
     }
     // also acts as a getter
-    return CookieManager._conf;
+    return CookieManager._conf.get();
 };
+
+_conf = _.merge( {}, CookieManager._defaults );
+CookieManager._conf.set( _conf );

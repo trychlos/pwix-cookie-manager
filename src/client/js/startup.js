@@ -3,10 +3,10 @@
  */
 
 Meteor.startup(() => {
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.DUMP ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.DUMP ){
         console.debug( 'CookieManager', CookieManager );
     }
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
         CookieManager.dumpStorage();
     }
 });
@@ -18,7 +18,7 @@ Meteor.startup(() => {
         name: CM_USER_CONSENT_CK,
         description: pwixI18n.label( I18N, 'dialog.consent' ),
         category: CookieManager.C.Category.TECHNICALS,
-        lifetime: CookieManager._conf.consentLifetime,
+        lifetime: CookieManager.configure().consentLifetime,
         enabled: true,
         disableable: false
     });

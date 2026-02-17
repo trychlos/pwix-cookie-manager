@@ -78,7 +78,7 @@ CookieManager.consentWrite = function( action ){
     });
     CookieManager.cookiesRead();
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
         CookieManager.dumpStorage();
     }
 };

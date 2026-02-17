@@ -31,6 +31,7 @@ function configure( api ){
     api.use( 'pwix:modal@1.10.0 || 2.0.0' );
     api.use( 'pwix:toggle-switch@0.3.3' );
     api.use( 'pwix:ui-layout@2.0.0' );
+    api.use( 'reactive-var' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
     api.addFiles( 'src/client/components/cmSliding/cmSliding.js', 'client' );
     api.addFiles( 'src/client/components/cmManagerLink/cmManagerLink.js', 'client' );

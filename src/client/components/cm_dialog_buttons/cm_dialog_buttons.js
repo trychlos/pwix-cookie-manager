@@ -12,14 +12,14 @@ import './cm_dialog_buttons.html';
 
 Template.cm_dialog_buttons.onCreated( function(){
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onCreated()' );
     }
 });
 
 Template.cm_dialog_buttons.onRendered( function(){
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onRendered()' );
     }
 });
@@ -34,7 +34,7 @@ Template.cm_dialog_buttons.helpers({
 
     // whether we have a 'Reject All' button (that we should have)
     haveRejectAll(){
-        return CookieManager._conf.haveRejectAll;
+        return CookieManager.configure().haveRejectAll;
     },
 
     rejectLabel(){
@@ -55,7 +55,7 @@ Template.cm_dialog_buttons.events({
 
 Template.cm_dialog_buttons.onDestroyed( function(){
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_buttons onDestroyed()' );
     }
 });

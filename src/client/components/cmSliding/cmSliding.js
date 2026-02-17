@@ -18,7 +18,7 @@ Template.cmSliding.onCreated( function(){
     const self = this;
 
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onCreated()' );
     }
 
@@ -44,7 +44,7 @@ Template.cmSliding.onRendered( function(){
     const self = this;
 
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onRendered()' );
     }
 
@@ -53,7 +53,7 @@ Template.cmSliding.onRendered( function(){
 
     // display the adertising cookie message if we have no user consent, or too old
     const consent = CookieManager.consentRead();
-    const show = ( consent === null ) || ( Date.now() - consent.date > CookieManager._conf.consentLifetime );
+    const show = ( consent === null ) || ( Date.now() - consent.date > CookieManager.configure().consentLifetime );
     //console.debug( 'consent=', consent, 'show=', show );
     if( show ){
         self.$( '.cmSliding .cm-body' ).addClass( 'show' );
@@ -118,7 +118,7 @@ Template.cmSliding.events({
 
 Template.cmSliding.onDestroyed( function(){
     // be verbose if asked for
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cmSliding onDestroyed()' );
     }
 });

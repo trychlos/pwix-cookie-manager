@@ -22,7 +22,7 @@ Template.cm_dialog_tabs.onCreated( function(){
     const self = this;
 
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onCreated()' );
     }
 
@@ -134,7 +134,7 @@ Template.cm_dialog_tabs.onCreated( function(){
     });
 
     // add to the predefined tabs those which may have been declared by the application
-    CookieManager._conf.categories.every(( cat ) => {
+    CookieManager.configure().categories.every(( cat ) => {
         let o = {
             name: cat.id,
             cat: cat.id,
@@ -155,7 +155,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     const self = this;
 
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
     }
 
@@ -253,7 +253,7 @@ Template.cm_dialog_tabs.events({
         // apply user choices
         instance.CM.apply();
         // dump if asked for
-        if( CookieManager._conf.verbosity & CookieManager.C.Verbose.STORAGE ){
+        if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
             CookieManager._published.every(( ck ) => {
                 console.debug( 'pwix:CookieManager', ck.responsible()+'/'+ck.name(), ck.enable());
                 return true;
@@ -264,7 +264,7 @@ Template.cm_dialog_tabs.events({
 
 Template.cm_dialog_tabs.onDestroyed( function(){
     // be verbose
-    if( CookieManager._conf.verbosity & CookieManager.C.Verbose.COMPONENTS ){
+    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
         console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
     }
 });

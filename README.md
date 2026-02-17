@@ -12,6 +12,15 @@ It provides:
 
 This has been written because `selaias:cookie-consent` seems to no more be maintained. So the need of a current package has arisen. Note that, contrarily to `selaias:cookie-consent`, this one doesn't requise `ostrio:cookies`. Instead, it relies on `localStorage` to store user consentement.
 
+## Installation
+
+This Meteor package is installable with the usual command:
+
+```sh
+    meteor add pwix:cookie-manager
+    meteor npm install lodash --save
+```
+
 ## The _cookie_ object
 
 `pwix:cookie-manager` doesn't manage the cookies by themselves, I mean their value. So, whether the _cookie_ is really a cookie, i.e. a data file sent from the server to the client before HTTP headers, and so on, is entirey up to the application (resp. another package).
@@ -521,7 +530,8 @@ Starting with v 1.0.0, and in accordance with advices from [the Meteor Guide](ht
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
 Dependencies as of v 2.0.0:
-```
+
+```js
     'lodash': '^4.17.0'
 ```
 

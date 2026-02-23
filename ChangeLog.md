@@ -8,6 +8,7 @@
 
     - Adapt to new pwix:ui-layout
     - configure() now warns for unmanaged keys
+    - Fix usage of cookie class
 
 ### 2.0.1
 

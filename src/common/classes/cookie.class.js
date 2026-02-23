@@ -223,6 +223,14 @@ export class Cookie {
 
     /**
      * Getter
+     * @returns {Number} the lifetime
+     */
+    lifetime(){
+        return this._vars.lifetime;
+    }
+
+    /**
+     * Getter
      * @returns {String} the name of the cookie
      */
     name(){

@@ -280,22 +280,22 @@ Template.cm_dialog_tabs_cookie.helpers({
 
     // Whether the cookie is disableable
     ck_disableable( c ){
-        return pwixI18n.label( I18N, c.disableable ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
+        return pwixI18n.label( I18N, c.disableable() ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
     },
 
     // lifetime of the cookie
     ck_lifetime( c ){
-        return c.lifetime ? c.lifetime : pwixI18n.label( I18N, 'cookie.illimited' );
+        return c.lifetime() || pwixI18n.label( I18N, 'cookie.illimited' );
     },
 
     // current value of the cookie
     ck_value( c ){
-        return localStorage.getItem( c.name ) || pwixI18n.label( I18N, 'cookie.undef' );
+        return localStorage.getItem( c.name()) || pwixI18n.label( I18N, 'cookie.undef' );
     },
 
     // try to build a collapse identifier
     collapseId( it, c ){
-        let id = 'id-' + it.cordion_id + '-' + c.name;
+        let id = 'id-' + it.cordion_id + '-' + c.name();
         return id.replace( /[/:]/g, '-' );
     },
 

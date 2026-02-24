@@ -9,42 +9,19 @@ import { ReactiveVar } from 'meteor/reactive-var';
 let _conf = {};
 CookieManager._conf = new ReactiveVar( _conf );
 
-const _checkCategories = function( name ){
-    const val = CookieManager._conf[name];
-    let errs = 0;
-    let newvals = [];
-    let newcats = {};
-    if( !_.isArray( val )){
-        console.warn( 'pwix:cookie-manager expects', name, 'be an array, found', val, 'reset to', CookieManager._defaults[name] );
-    } else {
-        val.every(( it ) => {
-            if( !it.id || !_.isString( it.id )){
-                console.warn( 'pwix:cookie-manager expects eacnh category have its own identifier, found', it.id, 'removing it' );
-            } else {
-                newvals.push( it );
-                newcats[it.id] = it;
-            }
-            return true;
-        });
-        CookieManager._conf[name] = newvals;
-        _.merge( CookieManager.Cdyn.Category, CookieManager.C.Category, newcats );
-    }
-};
-
 const _checkInteger = function( name ){
-    const val = CookieManager._conf[name];
+    const val = CookieManager._conf.get()[name];
     const ival = parseInt( val );
     if( val !== ival ){
         console.warn( 'pwix:cookie-manager expects', name, 'be an integer, found', val, 'reset to', CookieManager._defaults[name] );
-        CookieManager._conf[name] = CookieManager._defaults[name];
+        CookieManager._conf.get()[name] = CookieManager._defaults[name];
     }
 };
 
 CookieManager._defaults = {
-    categories: [],
     consentLifetime: 31536000000,   // one year
     haveRejectAll: true,
-    verbosity: CookieManager.C.Verbose.NONE
+    verbosity: CookieManager.C.Verbose.CONFIGURE
 };
 
 /**
@@ -68,7 +45,6 @@ CookieManager.configure = function( o ){
             _conf = _.merge( CookieManager._defaults, _conf, built_conf );
             CookieManager._conf.set( _conf );
             // make sure we have integer where required
-            _checkCategories( 'categories' );
             _checkInteger( 'consentLifetime' );
             // be verbose if asked for
             if( _conf.verbosity & CookieManager.C.Verbose.CONFIGURE ){

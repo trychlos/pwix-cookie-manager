@@ -32,7 +32,7 @@ Template.cmSliding.onCreated( function(){
             return Object.keys( context ).includes( name ) && _.isBoolean( context[name] ) ? context[name] : def;
         },
         haveManager(){
-            return self.CM.haveBool( 'cookiesManager', false );
+            return self.CM.haveBool( 'cookiesManager', true );
         },
         havePolicy(){
             return self.CM.haveBool( 'cookiesPolicy', false );

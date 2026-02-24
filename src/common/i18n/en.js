@@ -20,15 +20,17 @@ CookieManager.i18n = {
                 illimited: 'Illimited',
                 disableableTrue: 'Yes',
                 disableableFalse: 'No',
+                one_year: 'One year',
                 value: 'Current value',
                 undef: '<undefined>',
                 unknown: 'Unknown'
             },
             dialog: {
                 title: 'Cookies Manager',
-                none: 'No declared cookie in this category',
+                none: 'No cookie declared in this category',
                 chosen: 'Prevent the CookieManager preferences dialog to be re-displayed each time a page is reloaded.',
-                consent: 'A composite data which records the date of the user consent, the action he has chosen, and the list of enabled cookies',
+                consent: 'A composite data which records the date of the user consent, the action he/she has chosen, and the list of enabled cookies',
+                schema: 'The version number of the storage schema',
                 size: 'Keep the last dialog size to improve user experience.'
             },
             links: {

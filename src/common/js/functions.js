@@ -2,6 +2,9 @@
  * pwix:cookie-manager/src/common/js/functions.js
  */
 
+import _ from 'lodash';
+import { strict as assert } from 'node:assert';
+
 import { Cookie } from '../classes/cookie.class.js';
 
 /**
@@ -13,19 +16,15 @@ import { Cookie } from '../classes/cookie.class.js';
  */
 CookieManager.byCategory = function( category ){
     let res = [];
-    if( !category ){
-        console.warn( 'pwix:cookie-manager byCategory() expects a category, found none' );
-    } else if( !Object.keys( CookieManager.Cdyn.Category ).includes( category )){
-        console.warn( 'pwix:cookie-manager byCategory() expects a known category, found', category );
-    } else {
-        CookieManager._published.every(( ck ) => {
-            if( ck.category() === category ){
-                res.push( ck );
-            }
-            return true;
-        });
-        return res;
-    }
+    assert.ok( category && _.isString( category ), 'pwix:cookie-manager byCategory() expects a category, got', category );
+    CookieManager._published.every(( ck ) => {
+        const cat = ck.category();
+        if( cat.id === category ){
+            res.push( ck );
+        }
+        return true;
+    });
+    return res;
 };
 
 /**
@@ -41,15 +40,22 @@ CookieManager.dumpStorage = function(){
 };
 
 /**
- * @summary Set the user authorization of the named cookie
+ * @summary Find a cookie
  * @locus Anywhere
- * @param {String} identifier the identifier (responsible/name) of the cookie
- * @param {Boolean} allowed whether the cookie is allowed or not
+ * @param {String} responsible
+ * @param {String} name
+ * @returns {Cookie} the cookie
  */
-CookieManager.enable = function( identifier, allowed ){
-    if( Meteor.isClient ){
-        localStorage.setItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier, allowed ? 'true' : 'false' );
-    }
+CookieManager.get = function( responsible, name ){
+    let found = null;
+    CookieManager._published.every(( c ) => {
+        if( c.responsible() === responsible && c.name() === name ){
+            found = c;
+            return false;
+        }
+        return true;
+    });
+    return found;
 };
 
 /**
@@ -60,7 +66,7 @@ CookieManager.enable = function( identifier, allowed ){
 CookieManager.getEnabled = function(){
     let res = [];
     CookieManager._published.every(( c ) => {
-        if( c.enable()){
+        if( c.enabled()){
             res.push( c );
         }
         return true;
@@ -69,40 +75,34 @@ CookieManager.getEnabled = function(){
 };
 
 /**
- * @summary Says if the identified (responsible/name) cookie is enabled (i.e. authorized) by the user
- * @locus Anywhere
- * @param {String} identifier the identifier (responsible/name) of the cookie
- * @returns {Boolean} whether the cookie has been authorized by the user
- */
-CookieManager.isEnabled = function( identifier ){
-    let _enabled = true;
-    if( Meteor.isClient ){
-        const _ckname = STORED_COOKIE_PREFIX + identifier;
-        const _stored = localStorage.getItem( _ckname );
-        _enabled = ( _stored === null ) ? true : ( _stored === 'true' );
-    }
-    return _enabled;
-};
-
-/**
  * @summary Cookie publication
- * @description This should be called by each application or service which uses a cookie and wants the user accepts it.
+ * @description This should be called by each application or service which uses a cookie and wants the user accepts (or refuses) it.
  *  Note that this behavior is supposed to be mandatory, and SHOULD be followed by all.
+ *  If a default value if provided, it is honored if the cookie is enabled.
  * @locus Anywhere
- * @param {Object} cookies the cookie description as a javascript object, or an array of cookie descriptions
+ * @param {Objec|Array<Object>} cookies the cookie description as a javascript object, or an array of cookie descriptions
+ * @returns {Cookie|Array<Cookie>} the instanciated cookies
  */
 CookieManager.publish = function( cookies ){
-    let ck;
+    // an array
     if( Array.isArray( cookies )){
+        let res = [];
+        let ck;
         cookies.every(( o ) => {
             if( ck = Cookie.Validate( o )){
                 //console.debug( 'pushing', ck );
                 CookieManager._published.push( ck );
+                res.push( ck );
             }
             return true;
         });
-    } else if( ck = Cookie.Validate( cookies )){
+        return res;
+    }
+    // a single object
+    let ck = null;
+    if( ck = Cookie.Validate( cookies )){
         //console.debug( 'pushing', ck );
         CookieManager._published.push( ck );
     }
+    return ck;
 };

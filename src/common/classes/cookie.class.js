@@ -5,6 +5,7 @@
  */
 
 import _ from 'lodash';
+import { strict as assert } from 'node:assert';
 
 export class Cookie {
 
@@ -12,12 +13,11 @@ export class Cookie {
 
     // private data
     _vars = {
-        responsible: null,
-        name: null,
-        category: null,
+        responsible: null,  // a mandatory string identifier
+        name: null,         // a mandatory string identifier
+        category: null,     // the full Category object
         description: null,
         lifetime: null,
-        enabled: null,
         disableable: null,
         link: null
     };
@@ -26,7 +26,7 @@ export class Cookie {
 
     /**
      * @summary Whether the passed javascript object is a valid cookie declaration
-     * @param o a javascript object which describes the cookie
+     * @param {Object} o a javascript object which describes the cookie
      *  See the full description in package README.md#cookiemanager-publish
      * @returns {Cookie} a new Cookie object, or null
      *  As this is rather a programmer issue, we only send console.warn()s rather than fully user-compliant error messages
@@ -57,11 +57,16 @@ export class Cookie {
     static _isCategoryValid( o ){
         let valid = true;
         if( !o.category ){
-            console.warn( 'pwix:cookie-manager expects cookie declaration have a category, found null or undefined' );
+            console.warn( 'pwix:cookie-manager expects cookie declaration have a category, found', o.category );
             valid = false;
-        } else if( !Object.keys( CookieManager.Cdyn.Category ).includes( o.category )){
-            console.warn( 'pwix:cookie-manager expects cookie category be declared as one of a CookieManager.Category, found', o.category );
-            valid = false;
+        } else {
+            const cat = CookieManager.Categories.byId( o.category );
+            if( cat ){
+                o.category = cat;
+            } else {
+                console.warn( 'pwix:cookie-manager expects cookie category be declared as one of a CookieManager.Category, found', o.category );
+                valid = false;
+            }
         }
         return valid;
     }
@@ -162,34 +167,113 @@ export class Cookie {
         return valid;
     }
 
+    // private methods
+
+    /*
+     * @returns {String} whether the cookie is enabled or disabled, or undefined if doesn't exist
+     */
+    _storeReadSet(){
+        const value = localStorage.getItem( this.enabledKey());
+        return value;
+    }
+
+    /*
+     * Getter
+     * @returns {String} the value of the cookie in localStorage, or undefined if doesn't exist
+     */
+    _storeReadValue(){
+        const value = localStorage.getItem( this.valueKey());
+        return value;
+    }
+
+    /*
+     * @param {Boolean} enabled whether the cookie is allowed by the user
+     */
+    _storeWriteSet( enabled ){
+        assert.ok( enabled === true || enabled === false, 'pwix:cookie-manager Cookie._storeWriteSet() expect a boolean, got', enabled );
+        localStorage.setItem( this.enabledKey(), enabled ? 'enabled' : 'disabled' );
+    }
+
+    /*
+     * @param {String} value
+     */
+    _storeWriteValue( value ){
+        localStorage.setItem( this.valueKey(), value );
+    }
+
     // public data
 
     /**
      * Constructor
      * @param o a javascript object which describes the cookie
      * @returns {Cookie} the Cookie object instance
+     *  'enabled' and 'value' are runtime properties, and so not kept - they are always read from/written to the localStorage
      */
     constructor( o ){
         this._vars.responsible = o.responsible;
         this._vars.name = o.name;
         this._vars.category = o.category;
-        if( o.description ){
-            this._vars.description = o.description;
+        this._vars.description = o.description || '';
+        this._vars.lifetime = o.lifetime || pwixI18n.label( I18N, 'cookie.unknown' );
+        if( o.disableable === 'true' || o.disableable === false ){
+            this._vars.disableable = o.disableable;
+        } else {
+            this._vars.disableable = true;
         }
-        this._vars.lifetime = o.lifetime;
-        this._vars.enabled = o.enabled;
-        this._vars.disableable = o.disableable;
-        if( o.link ){
-            this._vars.link = o.link;
+        this._vars.link = o.link || '';
+
+        // at construction time, make sure the cookie exists on local storage and synchronize with the instance
+        let string = this._storeReadSet();
+        // if the cookie already exists, we do not care of the provided 'enabled' property, and rely on the stored one
+        if( string === 'enabled' || string === 'disabled' ){
+            // if enabled, we set a value if it doesn't exist yet
+            if( string === 'enabled' && o.value ){
+                const value = this._storeReadValue();
+                if( value === null || value === undefined ){
+                    this._storeWriteValue( o.value );
+                }
+            }
+            // if disabled, make sure the value is removed
+            if( string === 'disabled' ){
+                this.removeValue();
+            }
+        } else {
+            // if the cookie didn't yet exist, it is created as enabled / disabled if the property is specified as this instanciation time
+            // else default to false (cookie not allowed) as specified in the README
+            let enabled;
+            if( o.enabled === true || o.enabled === false ){
+                enabled = o.enabled;
+            } else {
+                enabled = false;
+            }
+            this._storeWriteSet( enabled );
+            // if the cookie is enabled, and we have a value, sync it in local storage
+            // if the cookie is disabled, then make sure we do not persist any value
+            if( enabled ){
+                if( o.value !== undefined ){
+                    this._storeWriteValue( o.value );
+                }
+            } else {
+                this.removeValue();
+            }
         }
     }
 
     /**
      * Getter
-     * @returns {String} the category of the cookie
+     * @returns {Object} the category of the cookie
+     *  See CookieManager.Categories for a description of the returned object
      */
     category(){
         return this._vars.category;
+    }
+
+    /**
+     * Getter
+     * @returns {String} the description of the cookie
+     */
+    description(){
+        return this._vars.description;
     }
 
     /**
@@ -205,12 +289,19 @@ export class Cookie {
      * @param {Boolean} enabled whether the user allows this cookie
      * @returns {Boolean} whether the cookie is enabled (either as a default, or because it is not disableable, of because the user has accepted it)
      */
-    enable( enabled ){
+    enabled( enabled ){
         if( arguments.length > 0 && ( enabled === true || enabled === false )){
-            this._vars.enabled = enabled;
-            //console.debug( this._vars.responsible, this._vars.name, 'enable', enabled );
+            this._storeWriteSet( enabled );
         }
-        return this._vars.enabled;
+        return this._storeReadSet() === 'enabled';
+    }
+
+    /**
+     * Getter
+     * @returns {String} the full key which records the enabled|disabled status
+     */
+    enabledKey(){
+        return CM_RESPONSIBLE + CM_SLASH + this.identifier() + '/set';
     }
 
     /**
@@ -218,15 +309,23 @@ export class Cookie {
      * @returns {String} the unique identifier of the cookie
      */
     identifier(){
-        return this._vars.responsible + CM_SLASH + this._vars.name;
+        return this.responsible() + CM_SLASH + this.name();
     }
 
     /**
      * Getter
-     * @returns {Number} the lifetime
+     * @returns {String} the lifetime as a user indication (e.g. 'illimited', 'session', ...)
      */
     lifetime(){
         return this._vars.lifetime;
+    }
+
+    /**
+     * Getter
+     * @returns {String} an optional link to the site which has declared this cookie
+     */
+    link(){
+        return this._vars.link;
     }
 
     /**
@@ -238,10 +337,48 @@ export class Cookie {
     }
 
     /**
+     * @summary remove the value key from local storage
+     */
+    removeValue(){
+        const key = CM_RESPONSIBLE + CM_SLASH + this.identifier() + '/value';
+        localStorage.removeItem( key );
+    }
+
+    /**
      * Getter
      * @returns {String} the responsible of the cookie
      */
     responsible(){
         return this._vars.responsible;
+    }
+
+    /**
+     * Getter/Setter
+     * @param {String} value the value to be written
+     * @returns {String} the stored value, can be undefined
+     *  Is always undefined if cookie is not enabled
+     */
+    value( value ){
+        const enabled = this.enabled();
+        if( value !== undefined ){
+            if( enabled ){
+                this._storeWriteValue( value );
+            } else {
+                console.warn( 'pwix:cookie-manager Cookie.value() refusing to write the value of a disabled cookie' );
+                return undefined;
+            }
+        }
+        if( enabled ){
+            return this._storeReadValue(); // which may be undefined
+        }
+        return undefined;
+    }
+
+    /**
+     * Getter
+     * @returns {String} the full key which records the value
+     */
+    valueKey(){
+        return CM_RESPONSIBLE + CM_SLASH + this.identifier() + '/value';
     }
 }

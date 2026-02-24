@@ -9,7 +9,7 @@ import '../components/cm_dialog_buttons/cm_dialog_buttons.js';
 import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
 
 /**
- * @summary reads the current allowed state of the cookies
+ * @summary reads the current allowed state of the published cookies
  *  eventually completes with new published cookies
  * @locus Client
  * @returns {Object} the CookieManager._cookies hash, indexed by cookies identifier, with true|false value
@@ -17,22 +17,9 @@ import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
  */
 CookieManager.cookiesRead = function(){
     CookieManager._cookies = {};
-    // read from localStorage
-    const prefix = CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH;
-    for( let i=0 ; i<localStorage.length ; ++i ){
-        const key = localStorage.key( i );
-        if( key.startsWith( prefix )){
-            const value = localStorage.getItem( key );
-            CookieManager._cookies[key.substring( prefix.length )] = ( value === 'true' );
-        }
-    }
-    // complete with unknown/new published cookies
     CookieManager._published.every(( ck ) => {
-        const id = ck.identifier();
-        if( !Object.keys( CookieManager._cookies ).includes( id )){
-            CookieManager._cookies[id] = ck.enable();
-        }
-        return true;
+        const ident = ck.identifier();
+        CookieManager._cookies[ident] = ck.enabled();
     });
     return CookieManager._cookies;
 };
@@ -48,14 +35,17 @@ CookieManager.cookiesRead = function(){
  */
 CookieManager.consentRead = function(){
     let res = null;
-    const str = localStorage.getItem( CM_RESPONSIBLE + CM_SLASH + CM_USER_CONSENT_CK );
-    if( str ){
-        const parts = str.split( CM_COMMA );
-        if( parts.length >= 2 ){
-            res = {
-                date: parts[0],
-                action: parts[1]
-            };
+    const ck = CookieManager.get( CM_RESPONSIBLE, CM_USER_CONSENT_CK );
+    if( ck ){
+        const str = ck.value();
+        if( str ){
+            const parts = str.split( CM_COMMA );
+            if( parts.length >= 2 ){
+                res = {
+                    date: parts[0],
+                    action: parts[1]
+                };
+            }
         }
     }
     return res;
@@ -69,43 +59,15 @@ CookieManager.consentRead = function(){
  * @param {String} action the chosen action
  */
 CookieManager.consentWrite = function( action ){
-    const now = Date.now();
-    localStorage.setItem( CM_RESPONSIBLE + CM_SLASH + CM_USER_CONSENT_CK, now + CM_COMMA + action );
-    CookieManager._published.every(( ck ) => {
-        //console.log( ck );
-        CookieManager.writeEnabled( ck );
-        return true;
-    });
-    CookieManager.cookiesRead();
+    const ck = CookieManager.get( CM_RESPONSIBLE, CM_USER_CONSENT_CK );
+    if( ck ){
+        const now = Date.now();
+        ck.value( now + CM_COMMA + action );
+    }
     // be verbose if asked for
     if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
         CookieManager.dumpStorage();
     }
-};
-
-/**
- * @summary Empty the whole localStorage space
- * @locus Client
- */
-CookieManager.removeAll = function(){
-    let names = [];
-    for( let i=0; i < localStorage.length; ++i ){
-        names.push( localStorage.key( i ));
-    }
-    names.every(( n ) => {
-        console.debug( 'removing', n );
-        localStorage.removeItem( n );
-        return true;
-    });
-};
-
-/**
- * @summary Reset the user preferences for the named cookie
- * @locus Client
- * @param {String} identifier the identifier 'responsible/name' of the cookie
- */
-CookieManager.reset = function( identifier ){
-    localStorage.removeItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier );
 };
 
 /**
@@ -119,7 +81,7 @@ CookieManager.runManager = function( o ){
         mdTitle: ( o ? o.dialogTitle : title ) || title,
         mdBody: 'cm_dialog_tabs',
         mdFooter: 'cm_dialog_buttons',
-        mdSizeKey: CM_RESPONSIBLE + CM_SLASH + CM_DIALOG_SIZE_CK,
+        mdSizeKey: CookieManager._owns[CM_DIALOG_SIZE_CK].valueKey(),
         mdCloseByBackdrop: false,
         mdCloseByHeader: false,
         mdCloseByKeyboard: false,
@@ -127,17 +89,38 @@ CookieManager.runManager = function( o ){
     });
 };
 
-/**
- * @summary Writes whether the given cookie is allowed or not
- *  A not-allowed (or no more allowed) cookie is deleted from the storage
- * @locus Client
- * @param {Cookie} cookie
- */
-CookieManager.writeEnabled = function( cookie ){
-    const identifier = cookie.identifier();
-    const enabled = cookie.enable();
-    localStorage.setItem( CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH + identifier, enabled ? 'true' : 'false' );
-    if( !enabled ){
-        localStorage.removeItem( identifier );
+// at import time (i.e. before any publication), make sure we migrate old versions of the storage schema
+const version = localStorage.getItem( CM_RESPONSIBLE+CM_SLASH+CM_RESPONSIBLE+CM_SLASH+CM_SCHEMA_VERSION_CK+'/value' );
+if( version === null || version === undefined ){
+    for( let i=0; i < localStorage.length; ++i ){
+        const key = localStorage.key( i );
+        if( key.startsWith( CM_RESPONSIBLE )){
+            if( key.endsWith( '/set' ) || key.endsWith( '/value' )){
+                // a new version - leave as is
+            } else {
+                if( key === CM_RESPONSIBLE+CM_SLASH+CM_USER_CONSENT_CK ){
+                    const newkey = CM_RESPONSIBLE+CM_SLASH+CM_RESPONSIBLE+CM_SLASH+CM_USER_CONSENT_CK;
+                    const value = localStorage.getItem( key );
+                    localStorage.setItem( newkey+'/set', 'enabled' );
+                    localStorage.setItem( newkey+'/value', value );
+                    localStorage.removeItem( key );
+                }
+                else if( key.startsWith( CM_RESPONSIBLE+CM_SLASH+'enabled'+CM_SLASH )){
+                    const value = localStorage.getItem( key );
+                    const newkey = key.replace( '/enabled', '' )+'/set';
+                    localStorage.setItem( newkey, value === 'true' ? 'enabled' : 'disabled' );
+                    localStorage.removeItem( key );
+                }
+                else {
+                    console.debug( 'pwix:cookie-manager unmigrated key', key );
+                }
+            }
+        } else {
+            // not one of our own cookies - just ignore and leave as is
+        }
     }
-};
+}
+// this is the future, should be found at the moment
+else if( version < CM_SCHEMA_VERSION ){
+    console.warn( 'pwix:cookie-manager found a future version', version );
+}

@@ -2,13 +2,16 @@
 
 ## ChangeLog
 
-### 2.0.2-rc
+### 2.1.0-rc
 
     Release date: 
 
     - Adapt to new pwix:ui-layout
     - configure() now warns for unmanaged keys
     - Fix usage of cookie class
+    - No more let the categories be configure()'ed, rather let the call extend the CookieManager.Categories object
+    - Change the CookieManager link default to 'true' in cmSliding to be consistent with EU recommandations
+    - Change the 'keep dialog size' default cookie value to 'true' to improve user experience
 
 ### 2.0.1
 

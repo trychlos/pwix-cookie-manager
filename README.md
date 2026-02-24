@@ -8,9 +8,11 @@ It provides:
 
 - a consentement dialog as a Blaze component
 
+- a review all dialog as a Blaze component
+
 - the methods to let the application (resp. another package) get the _cookies_ status.
 
-This has been written because `selaias:cookie-consent` seems to no more be maintained. So the need of a current package has arisen. Note that, contrarily to `selaias:cookie-consent`, this one doesn't requise `ostrio:cookies`. Instead, it relies on `localStorage` to store user consentement.
+This has been written because `selaias:cookie-consent` seems to no more be maintained. So the need of a current package has arisen. Note that, contrarily to `selaias:cookie-consent`, this one doesn't require `ostrio:cookies`. Instead, it relies on `localStorage` to store user consentement.
 
 ## Installation
 
@@ -23,11 +25,13 @@ This Meteor package is installable with the usual command:
 
 ## The _cookie_ object
 
-`pwix:cookie-manager` doesn't manage the cookies by themselves, I mean their value. So, whether the _cookie_ is really a cookie, i.e. a data file sent from the server to the client before HTTP headers, and so on, is entirey up to the application (resp. another package).
+`pwix:cookie-manager` doesn't manage the cookies by themselves, I mean their value. So, whether the _cookie_ is really a cookie, i.e. a data file sent from the server to the client before HTTP headers, or a local file, or any other thing, is entirey up to the originator (an application, another package, ...).
 
 Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_, i.e. a name and a description, an originator, a category, a status, along with some other properties which are only relevant for the aim of management. All that semantic, along with the user consentement, is stored in the `localStorage` of the browser.
 
-`pwix:cookie-manager` distinguishes five type of cookies:
+Nonetheless, `pwix:cookie-manager` also provides methods to get and set the cookies values in the device local storage of the application if the originator opt in.
+
+`pwix:cookie-manager` distinguishes five categories of cookies:
 
 - `CookieManager.C.Category.TECHNICALS`
 - `CookieManager.C.Category.FUNCTIONALS`
@@ -35,83 +39,28 @@ Instead, `pwix:cookie-manager` manages what can be called the cookie _semantic_,
 - `CookieManager.C.Category.MARKETING`
 - `CookieManager.C.Category.THIRD`
 
+These categories are available as `CookieManager.Categories` and can be freely extended.
+
 `pwix:cookie-manager` makes the cookie have three status:
 
 - it may be enabled and not disableable: the cookie is operational, and the user cannot refuse it
 
 - it may be enabled and disableable: the cookie defaults to be operational, but the user can refuse it
 
-- it may be disabled: the cookie is not operational, has been previously refused by the user.
+- it may be disabled: the cookie is not operational, has been previously refused by the user, can be re-enabled.
 
-## Configuration
+The user consent and the user choices are stored in localStorage with a name built like `manager/originator/name/set`.
 
-The package's behavior can be configured through a call to the `CookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
+When the cookie is enabled, then a value can be stored too.
 
-Known configuration options are:
+Example
 
-- `categories`
-
-    An array of the categories the application wishes to add to the predefined ones.
-
-    Each item of this array represents a category, must be an object with following keys:
-
-    - `id`: a string which identifies the category
-
-    - `label`: a (localized) string to be displayed as the tab label, defaulting to `id`
-
-    - `title`: a (localized) HTML string to be displayed as the title of the corresponding tab in the Cookie Manager, defaulting to `<h5>id</h5>`
-
-    - `content`: a (localized) HTML string to be displayed as the description of the category in the Cookie Manager, defaulting to `id`
-
-    When defined, these new categories may be used by the application to better categorize its own cookies.
-
-- `consentLifetime`
-
-    Define the lifetime of the user consent, i.e. the time at the end of which an explicit consent should be re-asked to the user, as a `ms` integer.
-
-    Defaults to 31536000000 ms, aka 365*24*60*60*1000, aka one year.
-
-- `haveRejectAll`
-
-    Let the application decides that it does not want present a 'Reject all' button to the user.
-
-    Please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' (cf. 'CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf').
-
-    Defaults to `true`.
-
-- `verbosity`
-
-    Define the expected verbosity level.
-
-    The accepted value can be any or-ed combination of following:
-
-    - `CookieManager.C.Verbose.NONE`
-
-        Do not display any trace log to the console
-
-    - `CookieManager.C.Verbose.COMPONENTS`
-
-        Trace Blaze components life:
-
-        - creation
-        - rendering
-        - destruction
-
-    - `CookieManager.C.Verbose.CONFIGURE`
-
-        Trace `CookieManager.configure()` calls and their result
-
-    - `CookieManager.C.Verbose.DUMP`
-
-        Dump the `CookieManager` global object at startup.
-
-    - `CookieManager.C.Verbose.STORAGE`
-
-        Dump the localStorage first at startup, and then on user choice (client-side only).
-
-Please note that `CookieManager.configure()` method should be called in the same terms both in client and server sides.
-
-Remind too that Meteor packages are instanciated at application level. They are so only configurable once, or, in other words, only one instance has to be or can be configured. Addtionnal calls to `SSR.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
+```js
+    key: pwix:cookie-manager/pwix:cookie-manager/user_consent/set
+    value: enabled|disabled
+    key: pwix:cookie-manager/pwix:cookie-manager/user_consent/value
+    value: <timestamp>, <user_choice>
+```
 
 ## Provides
 
@@ -152,15 +101,19 @@ Returns the array of published cookies for the specified category.
 
 See above.
 
-#### `CookieManager.isEnabled( identifier )`
+#### `CookieManager.get( originator, name ): <CookieManager.Cookie>`
 
-Returns whether the identified (responsible/name) _cookie_ is authorized by the user.
+Returns the instance of the `CookieManager.Cookie` class which represents the cookie.
+
+#### `CookieManager.getEnabled(): <Array<CookieManager.Cookie>>`
+
+Returns the list of enabled cookies.
 
 #### `CookieManager.publish( o )`
 
 This method let the application (resp. another package) publish the cookies it makes use of, so that the user is able to be informed of what he accepts or refuses.
 
-In order to not rely on the initialization order, this method should be called from `Meteor.startup()`.
+In order to not rely on the initialization order, it is suggested that this method be called from `Meteor.startup()`.
 
 `o` here is either a javascript object which describes a cookie, or an array of such javascript objects. It may contains following datas:
 
@@ -180,7 +133,7 @@ In order to not rely on the initialization order, this method should be called f
 
     The technical name of the cookie, as a string, so that, for example, this coud be checked by the user in his browser.
 
-    The `responsible/name` concatenation is expected to be a unique identifier of the cookie,.
+    The `responsible/name` concatenation is expected to be a unique identifier of the cookie.
 
     The `name` field is subject to restriction on reserved characters (#reserved-characters).
 
@@ -188,7 +141,7 @@ In order to not rely on the initialization order, this method should be called f
 
     The category the cookie belong to.
 
-    Must be referenced in `CookieManager.Categories`.
+    Must be referenced in `CookieManager.Category`.
 
 - `description`
 
@@ -202,9 +155,15 @@ In order to not rely on the initialization order, this method should be called f
 
     Defaults to english « Unknown ».
 
+- `lifetime_ms`
+
+    The lifetime of the cookie as a milliseconds number.
+
+    Defaults to `-1` which stands for « Unknown ».
+
 - `enabled`
 
-    Whether the cookie is initially enabled (`true`) or disabled (`false`), defaulting to `true`.
+    Whether the cookie defaults to be initially enabled (`true`) or disabled (`false`).
 
     Defaults to `false` (disabled).
 
@@ -216,7 +175,33 @@ In order to not rely on the initialization order, this method should be called f
 
     When we are describing a third-party cookie, the third-party main web site address.
 
+    may also be the URL of a privacy policy page, or of a cookie management policy page, or so.
+
     Defaults to none.
+
+- `value`
+
+    The initial default value of the cookie.
+
+    Only considered if the cookie defaults to be initially enabled.
+
+    Defaults to `undefined`.
+
+If a single object is provided as argument, then the function returns a `CookieManager.Cookie` instance, or null in case of an error.
+
+If an array is provided as argument, then the function returns an array of instanciated `CookieManager.Cookie`, which may be empty.
+
+At publication time, `CookieManager` synchronize the stored cookie with its `Cookie` instance:
+
+- if the cookie is already stored, then its `enabled|disabled` status is honored, and the provided default `enabled` is ignored
+
+- if the cookie doesn't yet exist, then it is created with the provided default `enabled`
+
+- if the cookie is enabled, and a value is stored, then the instance is synchronized with this value
+
+- if the cookie is enabled but no value is found, then the storage is synchronized with the provided default value if any
+
+- if the cookie is disabled, then `CookieManager` makes sure no value is locally persisting.
 
 #### `CookieManager.runManager( o )`
 
@@ -480,13 +465,13 @@ As this component provides a link to the cookies manager dialog, it may take the
 
     On click, the cookies manager will be opened.
 
-    Defaults to `false`.
+    Defaults to `true`.
 
 - `cookiesPolicy`
 
     Whether to display a link to the site cookies policy.
 
-    If provided, then the component will display a short sentence « Read our cookies policy ».
+    If provided, then the component will display a short (localized) sentence « Read our cookies policy ».
 
     On click, the `cm-policy-click` event will be triggered on `cmSliding` component.
 
@@ -497,6 +482,7 @@ As this component provides a link to the cookies manager dialog, it may take the
 - when the user clicks on the 'Got it' button
 
     - no update is done on the current cookies choices
+
     - the component will not be displayed again on next visit
 
 - when the user click on the link to open the cookie manager
@@ -509,7 +495,7 @@ As this component provides a link to the cookies manager dialog, it may take the
 
         Rationale is that reading, even very carefully, the cookies policy is not at all the same that explicitly consent to the cookies.
 
-And there is an english version
+There is an english version
 
 ![English version](/maintainer/png/sliding-en.png)
 
@@ -522,6 +508,62 @@ And a french version
 #### `cm-policy-click`
 
 This event is triggered on the `.cmSliding` component class when the developer has requested the display of a link to the cookies policy, and the user has clicked on this link.
+
+## Configuration
+
+The package's behavior can be configured through a call to the `CookieManager.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
+
+Known configuration options are:
+
+- `consentLifetime`
+
+    Define the lifetime of the user consent, i.e. the time at the end of which an explicit consent should be re-asked to the user, as a `ms` integer.
+
+    Defaults to 31536000000 ms, aka 365*24*60*60*1000, aka one year.
+
+- `haveRejectAll`
+
+    Let the application decides that it does not want present a 'Reject all' button to the user.
+
+    Please note that this is a CNIL recommandation to have a 'Reject all' button same size and level than 'Accept all' (cf. 'CNIL_2020_092_Recommandation-cookies-et-autres-traceurs.pdf').
+
+    Defaults to `true`.
+
+- `verbosity`
+
+    Define the expected verbosity level.
+
+    The accepted value can be any or-ed combination of following:
+
+    - `CookieManager.C.Verbose.NONE`
+
+        Do not display any trace log to the console
+
+    - `CookieManager.C.Verbose.COMPONENTS`
+
+        Trace Blaze components life:
+
+        - creation
+        - rendering
+        - destruction
+
+    - `CookieManager.C.Verbose.CONFIGURE`
+
+        Trace `CookieManager.configure()` calls and their result.
+
+        This is the default value.
+
+    - `CookieManager.C.Verbose.DUMP`
+
+        Dump the `CookieManager` global object at startup.
+
+    - `CookieManager.C.Verbose.STORAGE`
+
+        Dump the localStorage first at startup, and then on user choice (client-side only).
+
+Please note that `CookieManager.configure()` method should be called in the same terms both in client and server sides.
+
+Remind too that Meteor packages are instanciated at application level. They are so only configurable once, or, in other words, only one instance has to be or can be configured. Addtionnal calls to `SSR.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
 ## NPM peer dependencies
 

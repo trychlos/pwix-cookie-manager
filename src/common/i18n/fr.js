@@ -7,7 +7,7 @@ CookieManager.i18n = {
     ...{
         fr: {
             buttons: {
-                accept: 'Tout accepter',
+                accept: 'Accepter tout',
                 choose: 'Enregistrer mes choix',
                 reject: 'Tout refuser'
             },
@@ -20,15 +20,17 @@ CookieManager.i18n = {
                 illimited: 'Illimitée',
                 disableableTrue: 'Oui',
                 disableableFalse: 'Non',
+                one_year: 'Un an',
                 value: 'Valeur',
                 undef: '<non définie>',
                 unknown: 'Inconnue'
             },
             dialog: {
                 title: 'Gestion des cookies',
-                none: 'Aucun cookie déclaré dans cette categorie',
+                none: 'Aucun cookie n\'est déclaré dans cette categorie',
                 chosen: 'Empêche la boite de dialogue de gestion des cookies d\'être réaffichée quand une page est rechargée.',
-                consent: 'Une donnée composée qui enregistre la date du consentement de l\'utilisateur, l\'action qu\'il a choisie, ainsi que la liste des cookies autorisés',
+                consent: 'Une donnée composée qui enregistre la date du consentement de l\'utilisateur, l\'action qu\'il/elle a choisie, ainsi que la liste des cookies autorisés',
+                schema: 'Le numéro de version du schéma de stockage',
                 size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
             },
             links: {

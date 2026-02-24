@@ -84,7 +84,7 @@ Template.cm_dialog_tabs.onCreated( function(){
             },
             {
                 name: 'third',
-                cat: CookieManager.C.Category.THIRD,
+                cat: CookieManager.C.Category.THIRD_PARTY,
                 content: 'tabs.third.content',
                 content_id: Random.id(),
                 cordion_id: Random.id(),
@@ -100,7 +100,7 @@ Template.cm_dialog_tabs.onCreated( function(){
                 // whatever be the current state of the cookie, set all true
                 case CookieManager.C.Action.ACCEPT_ALL:
                     CookieManager._published.every(( ck ) => {
-                        ck.enable( true );
+                        ck.enabled( true );
                         return true;
                     });
                     break;
@@ -108,9 +108,8 @@ Template.cm_dialog_tabs.onCreated( function(){
                 // disable all disableable cookies
                 case CookieManager.C.Action.REJECT_ALL:
                     CookieManager._published.every(( ck ) => {
-                        //console.debug( ck.identifier(), 'disableable', ck.disableable());
                         if( ck.disableable()){
-                            ck.enable( false );
+                            ck.enabled( false );
                         }
                         return true;
                     });
@@ -119,33 +118,48 @@ Template.cm_dialog_tabs.onCreated( function(){
                 // get the current state from dictionary
                 case CookieManager.C.Action.CHOSEN:
                     CookieManager._published.every(( ck ) => {
-                        ck.enable( self.CM.cookies[ck.identifier()]);
+                        ck.enabled( self.CM.cookies[ck.identifier()] );
                         return true;
                     });
                     break;
             }
             CookieManager.consentWrite( self.CM.chosen );
+        },
+
+        // whether the current list of tabs already has this category id
+        tabsHaveCategory( id ){
+            let found = false;
+            self.CM.tabs.every(( tab ) => {
+                if( tab.cat === id ){
+                    found = true;
+                    return false;
+                }
+                return true;
+            });
+            return found;
         }
     };
 
-    // read the current allow state of the cookies
+    // read the current allow state of the cookies as a hash indexed by cookies identifier
     self.autorun(() => {
         self.CM.cookies = CookieManager.cookiesRead();
     });
 
     // add to the predefined tabs those which may have been declared by the application
-    CookieManager.configure().categories.every(( cat ) => {
-        let o = {
-            name: cat.id,
-            cat: cat.id,
-            content_id: Random.id(),
-            cordion_id: Random.id(),
-            nav_id: Random.id()
-        };
-        o[o.name+'Label'] = cat.label || cat.id;
-        o[o.name+'Title'] = '<h5>'+( cat.title || cat.id )+'</h5>';
-        o[o.name+'Content'] = cat.content || cat.id;
-        self.CM.tabs.push( o );
+    CookieManager.Categories.every(( cat ) => {
+        if( cat.id && !self.CM.tabsHaveCategory( cat.id )){
+            let o = {
+                name: cat.id,
+                cat: cat.id,
+                content_id: Random.id(),
+                cordion_id: Random.id(),
+                nav_id: Random.id()
+            };
+            o[o.name+'Label'] = cat.label_i18n ? pwixI18n.label( I18N, cat.label_i18n ) : ( cat.label || cat.id );
+            o[o.name+'Title'] = cat.title_i18n ? pwixI18n.label( I18N, cat.title_i18n ) : ( '<h5>'+( cat.title || cat.id )+'</h5>' );
+            o[o.name+'Content'] = cat.content_i18n ? pwixI18n.label( I18N, cat.content_i18n ) : ( cat.content || cat.id );
+            self.CM.tabs.push( o );
+        }
         return true;
     });
     //console.debug( 'tabs', self.CM.tabs );
@@ -219,7 +233,7 @@ Template.cm_dialog_tabs.helpers({
 
     // initialize our internal hash for this cookie
     setDict( c ){
-        Template.instance().CM.cookies[c.identifier()] = c.enable();
+        Template.instance().CM.cookies[c.identifier()] = c.enabled();
     },
 
     // tabs list
@@ -255,9 +269,15 @@ Template.cm_dialog_tabs.events({
         // dump if asked for
         if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
             CookieManager._published.every(( ck ) => {
-                console.debug( 'pwix:CookieManager', ck.responsible()+'/'+ck.name(), ck.enable());
+                console.debug( 'pwix:CookieManager', ck.identifier(), ck.enabled());
                 return true;
             });
+        }
+        // if the consent-manager-size cookie is disabled, remove what has been written by Modal
+        // because Modal considers the key provided at instanciation time, which can have changed since
+        const ck = CookieManager.get( CM_RESPONSIBLE, CM_DIALOG_SIZE_CK );
+        if( ck && !ck.enabled()){
+            ck.removeValue();
         }
     }
 });
@@ -278,6 +298,11 @@ Template.cm_dialog_tabs_button.helpers({
 
 Template.cm_dialog_tabs_cookie.helpers({
 
+    // the description of the cookie
+    ck_description( c ){
+        return c.description() || '';
+    },
+
     // Whether the cookie is disableable
     ck_disableable( c ){
         return pwixI18n.label( I18N, c.disableable() ? 'cookie.disableableTrue' : 'cookie.disableableFalse' );
@@ -285,12 +310,22 @@ Template.cm_dialog_tabs_cookie.helpers({
 
     // lifetime of the cookie
     ck_lifetime( c ){
-        return c.lifetime() || pwixI18n.label( I18N, 'cookie.illimited' );
+        return c.lifetime() || pwixI18n.label( I18N, 'cookie.unknown' );
+    },
+
+    // the link associated to the cookie
+    ck_link( c ){
+        return c.link() || '';
+    },
+
+    // the originator of the cookie
+    ck_responsible( c ){
+        return c.responsible() || '';
     },
 
     // current value of the cookie
     ck_value( c ){
-        return localStorage.getItem( c.name()) || pwixI18n.label( I18N, 'cookie.undef' );
+        return c.value() || pwixI18n.label( I18N, 'cookie.undef' );
     },
 
     // try to build a collapse identifier
@@ -307,10 +342,9 @@ Template.cm_dialog_tabs_cookie.helpers({
     // a toggle switch for this cookie
     parmsSwitch( c ){
         return {
-            responsible: c.responsible(),
-            name: c.name(),
+            name: c.identifier(),
             title: c.name(),
-            state: c.enable(),
+            state: c.enabled(),
             enabled: c.disableable()
         }
     }

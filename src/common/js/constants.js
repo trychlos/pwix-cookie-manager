@@ -6,19 +6,19 @@ CookieManager.C = {
 
     // the user's consent actins
     Action: {
-        GOTIT: 'GotIt',
+        GOTIT:      'GotIt',
         ACCEPT_ALL: 'AcceptAll',
         REJECT_ALL: 'RejectAll',
-        CHOSEN: 'Choose'
+        CHOSEN:     'Choose'
     },
 
     // our categories of cookies
     Category: {
         FUNCTIONALS: 'FUNCTIONALS',
-        MARKETING: 'MARKETING',
-        STATISTICS: 'STATISTICS',
-        TECHNICALS: 'TECHNICALS',
-        THIRD: 'THIRD'
+        MARKETING:   'MARKETING',
+        STATISTICS:  'STATISTICS',
+        TECHNICALS:  'TECHNICALS',
+        THIRD_PARTY: 'THIRD_PARTY'
     },
 
     // verbosity levels
@@ -34,15 +34,14 @@ CookieManager.C = {
 // non exported
 //
 
-// dynamic constants, aka constants modifiable by the application
-CookieManager.Cdyn = {};
-CookieManager.Cdyn.Category = CookieManager.C.Category;
-
 // localStorage data
 CM_RESPONSIBLE = 'pwix:cookie-manager';
 CM_USER_CONSENT_CK = 'user-consent';
 CM_DIALOG_SIZE_CK = 'consent-manager-size';
+CM_SCHEMA_VERSION_CK = 'schema-version';
 CM_ENABLED_CK = 'enabled';
+
+CM_SCHEMA_VERSION = 2;
 
 // reserved chars
 CM_COMMA = ',';
@@ -54,4 +53,3 @@ CM_RESERVED_CHARS = [
 ];
 
 I18N = 'pwix:cookie-manager:i18n-namespace';
-STORED_COOKIE_PREFIX = CM_RESPONSIBLE + CM_SLASH + CM_ENABLED_CK + CM_SLASH

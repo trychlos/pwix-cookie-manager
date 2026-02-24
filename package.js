@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:cookie-manager',
-    version: '2.1.0',
+    version: '2.1.1-rc.0',
     summary: 'Cookies management for Meteor',
     git: 'https://github.com/trychlos/pwix-cookie-manager',
     documentation: 'README.md'

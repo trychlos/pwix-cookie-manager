@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Decore the CookieManager link text to make it more visible
 
 ### 2.1.0
 

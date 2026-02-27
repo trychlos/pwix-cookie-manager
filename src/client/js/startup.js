@@ -2,17 +2,18 @@
  * pwix:cookie-manager/src/client/js/startup.js
  */
 
+import { Logger } from 'meteor/pwix:logger';
+
+const logger = Logger.get();
+
 Meteor.startup(() => {
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.DUMP ){
-        console.debug( 'CookieManager', CookieManager );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.DUMP }, 'CookieManager', CookieManager );
     if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
         CookieManager.dumpStorage();
     }
 });
 
 CookieManager._owns = {
-
 };
 
 Meteor.startup(() => {

@@ -2,11 +2,14 @@
  * pwix:cookie-manager/src/client/js/functions.js
  */
 
+import { Logger } from 'meteor/pwix:logger';
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { Modal } from 'meteor/pwix:modal';
 
 import '../components/cm_dialog_buttons/cm_dialog_buttons.js';
 import '../components/cm_dialog_tabs/cm_dialog_tabs.js';
+
+const logger = Logger.get();
 
 /**
  * @summary reads the current allowed state of the published cookies
@@ -112,7 +115,7 @@ if( version === null || version === undefined ){
                     localStorage.removeItem( key );
                 }
                 else {
-                    console.debug( 'pwix:cookie-manager unmigrated key', key );
+                    logger.debug( 'unmigrated key', key );
                 }
             }
         } else {
@@ -122,5 +125,5 @@ if( version === null || version === undefined ){
 }
 // this is the future, should be found at the moment
 else if( version < CM_SCHEMA_VERSION ){
-    console.warn( 'pwix:cookie-manager found a future version', version );
+    logger.warn( 'found a future version', version );
 }

@@ -5,7 +5,11 @@
 import _ from 'lodash';
 import { strict as assert } from 'node:assert';
 
+import { Logger } from 'meteor/pwix:logger';
+
 import { Cookie } from '../classes/cookie.class.js';
+
+const logger = Logger.get();
 
 /**
  * @summary Get the cookie for a given category
@@ -34,7 +38,7 @@ CookieManager.byCategory = function( category ){
 CookieManager.dumpStorage = function(){
     if( Meteor.isClient ){
         for( let i=0; i < localStorage.length; ++i ){
-            console.debug( 'CookieManager.dumpStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
+            logger.debug( 'CookieManager.dumpStorage['+i+']', localStorage.key( i ), '"'+localStorage.getItem( localStorage.key( i ))+'"' );
         }
     }
 };
@@ -90,7 +94,6 @@ CookieManager.publish = function( cookies ){
         let ck;
         cookies.every(( o ) => {
             if( ck = Cookie.Validate( o )){
-                //console.debug( 'pushing', ck );
                 CookieManager._published.push( ck );
                 res.push( ck );
             }
@@ -101,7 +104,6 @@ CookieManager.publish = function( cookies ){
     // a single object
     let ck = null;
     if( ck = Cookie.Validate( cookies )){
-        //console.debug( 'pushing', ck );
         CookieManager._published.push( ck );
     }
     return ck;

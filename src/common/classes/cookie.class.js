@@ -7,6 +7,10 @@
 import _ from 'lodash';
 import { strict as assert } from 'node:assert';
 
+import { Logger } from 'meteor/pwix:logger';
+
+const logger = Logger.get();
+
 export class Cookie {
 
     // static data
@@ -45,7 +49,7 @@ export class Cookie {
         let has = false;
         CM_RESERVED_CHARS.every(( ch ) => {
             if( str.indexOf( ch ) >= 0 ){
-                console.warn( 'pwix:cookie-manager found \''+ch+'\' reserved char in \''+str+'\'' );
+                logger.warn( 'Cookie._hasReservedChar() found \''+ch+'\' reserved char in \''+str+'\'' );
                 has = true;
             }
             return true;
@@ -57,14 +61,14 @@ export class Cookie {
     static _isCategoryValid( o ){
         let valid = true;
         if( !o.category ){
-            console.warn( 'pwix:cookie-manager expects cookie declaration have a category, found', o.category );
+            logger.warn( 'Cookie._isCategoryValid() expects cookie declaration have a category, found', o.category );
             valid = false;
         } else {
             const cat = CookieManager.Categories.byId( o.category );
             if( cat ){
                 o.category = cat;
             } else {
-                console.warn( 'pwix:cookie-manager expects cookie category be declared as one of a CookieManager.Category, found', o.category );
+                logger.warn( 'Cookie._isCategoryValid() expects cookie category be declared as one of a CookieManager.Category, found', o.category );
                 valid = false;
             }
         }
@@ -76,7 +80,7 @@ export class Cookie {
         let valid = true;
         if( o.description ){
             if( !_.isString( o.description )){
-                console.warn( 'pwix:cookie-manager expects cookie description be a string, found', o.description );
+                logger.warn( 'Cookie._isDescriptionValid() expects cookie description be a string, found', o.description );
                 valid = false;
             }
         }
@@ -88,7 +92,7 @@ export class Cookie {
         let valid = true;
         if( Object.keys( o ).includes( 'disableable' )){
             if( !_.isBoolean( o.disableable )){
-                console.warn( 'pwix:cookie-manager expects cookie disableablity to be a boolean, found', o.disableable );
+                logger.warn( 'Cookie._isDisableableValid() expects cookie disableablity to be a boolean, found', o.disableable );
                 valid = false;
             }
         } else {
@@ -102,7 +106,7 @@ export class Cookie {
         let valid = true;
         if( Object.keys( o ).includes( 'enabled' )){
             if( !_.isBoolean( o.enabled )){
-                console.warn( 'pwix:cookie-manager expects cookie initial status to be a boolean, found', o.enabled );
+                logger.warn( 'Cookie._isEnabledValid() expects cookie initial status to be a boolean, found', o.enabled );
                 valid = false;
             }
         } else {
@@ -125,7 +129,7 @@ export class Cookie {
         let valid = true;
         if( o.link ){
             if( !_.isString( o.lifetime )){
-                console.warn( 'pwix:cookie-manager expects cookie link be a string, found', o.link );
+                logger.warn( 'Cookie._isLinkValid expects cookie link be a string, found', o.link );
                 valid = false;
             }
         }
@@ -141,7 +145,7 @@ export class Cookie {
     static _isObject( o ){
         const valid = o && _.isObject( o );
         if( !valid ){
-            console.warn( 'pwix:cookie-manager expects a cookie declaration, got null or undefined' );
+            logger.warn( 'Cookie._isObject() expects a cookie declaration, got null or undefined' );
         }
         return valid;
     }
@@ -156,10 +160,10 @@ export class Cookie {
     static _isValidAsIdentifierPart( o, name ){
         let valid = true;
         if( !o[name] ){
-            console.warn( 'pwix:cookie-manager expects cookie declaration have a '+name+', found null or undefined' );
+            logger.warn( 'Cookie._isValidAsIdentifier() expects cookie declaration have a '+name+', found null or undefined' );
             valid = false;
         } else if( !_.isString( o[name] )){
-            console.warn( 'pwix:cookie-manager expects cookie '+name+' be a string, found', o[name] );
+            logger.warn( 'Cookie._isValidAsIdentifier() expects cookie '+name+' be a string, found', o[name] );
             valid = false;
         } else if( Cookie._hasReservedChar( o[name] )){
             valid = false;
@@ -364,7 +368,7 @@ export class Cookie {
             if( enabled ){
                 this._storeWriteValue( value );
             } else {
-                console.warn( 'pwix:cookie-manager Cookie.value() refusing to write the value of a disabled cookie' );
+                logger.warn( 'Cookie.value() refusing to write the value of a disabled cookie' );
                 return undefined;
             }
         }

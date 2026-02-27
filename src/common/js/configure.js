@@ -4,7 +4,10 @@
 
 import _ from 'lodash';
 
+import { Logger } from 'meteor/pwix:logger';
 import { ReactiveVar } from 'meteor/reactive-var';
+
+const logger = Logger.get();
 
 let _conf = {};
 CookieManager._conf = new ReactiveVar( _conf );
@@ -13,7 +16,7 @@ const _checkInteger = function( name ){
     const val = CookieManager._conf.get()[name];
     const ival = parseInt( val );
     if( val !== ival ){
-        console.warn( 'pwix:cookie-manager expects', name, 'be an integer, found', val, 'reset to', CookieManager._defaults[name] );
+        logger.warn( 'checkInteger() expects', name, 'be an integer, found', val, 'reset to', CookieManager._defaults[name] );
         CookieManager._conf.get()[name] = CookieManager._defaults[name];
     }
 };
@@ -38,7 +41,7 @@ CookieManager.configure = function( o ){
             if( Object.keys( CookieManager._defaults ).includes( it )){
                 built_conf[it] = o[it];
             } else {
-                console.warn( 'pwix:cookie-manager configure() ignore unmanaged key \''+it+'\'' );
+                logger.warn( 'configure() ignore unmanaged key \''+it+'\'' );
             }
         });
         if( Object.keys( built_conf ).length ){
@@ -46,10 +49,7 @@ CookieManager.configure = function( o ){
             CookieManager._conf.set( _conf );
             // make sure we have integer where required
             _checkInteger( 'consentLifetime' );
-            // be verbose if asked for
-            if( _conf.verbosity & CookieManager.C.Verbose.CONFIGURE ){
-                console.debug( 'pwix:cookie-manager configure() with', built_conf );
-            }
+            logger.verbose({ verbosity: _conf.verbosity, against: CookieManager.C.Verbose.CONFIGURE }, 'configure() with', built_conf );
         }
     }
     // also acts as a getter

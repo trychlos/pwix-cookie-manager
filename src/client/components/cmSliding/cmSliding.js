@@ -4,6 +4,7 @@
 
 import _ from 'lodash';
 
+import { Logger } from 'meteor/pwix:logger';
 import { pwixI18n } from 'meteor/pwix:i18n';
 
 import '../../../common/js/index.js';
@@ -14,13 +15,11 @@ import '../cmPolicyLink/cmPolicyLink.js';
 import './cmSliding.html';
 import './cmSliding.less';
 
-Template.cmSliding.onCreated( function(){
-    const self = this;
+const logger = Logger.get();
 
-    // be verbose if asked for
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmSliding onCreated()' );
-    }
+Template.cmSliding.onCreated( function(){
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cmSliding onCreated()' );
+    const self = this;
 
     self.CM = {
         // parms
@@ -41,12 +40,8 @@ Template.cmSliding.onCreated( function(){
 });
 
 Template.cmSliding.onRendered( function(){
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cmSliding onRendered()' );
     const self = this;
-
-    // be verbose if asked for
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmSliding onRendered()' );
-    }
 
     // set the font-size
     self.$( '.cmSliding .cm-body' ).css({ fontSize: self.CM.fontSize });
@@ -54,7 +49,7 @@ Template.cmSliding.onRendered( function(){
     // display the adertising cookie message if we have no user consent, or too old
     const consent = CookieManager.consentRead();
     const show = ( consent === null ) || ( Date.now() - consent.date > CookieManager.configure().consentLifetime );
-    //console.debug( 'consent=', consent, 'show=', show );
+    //logger.debug( 'consent=', consent, 'show=', show );
     if( show ){
         self.$( '.cmSliding .cm-body' ).addClass( 'show' );
     }
@@ -89,9 +84,6 @@ Template.cmSliding.helpers({
     //  rationale: do not show it when the page is being prerendered after having been requested by a bot crawler
     show(){
         const isPrerender = Package['pwix:ssr'] ? Package['pwix:ssr'].SSR.isPrerender() : false;
-        //console.debug( 'cookie-manager isPrerender', isPrerender );
-        //const isBot = Package['pwix:ssr'] ? Package['pwix:ssr'].SSR.isBot() : false;
-        //console.debug( 'cookie-manager isBot', isBot );
         return !isPrerender;
     }
 });
@@ -117,8 +109,5 @@ Template.cmSliding.events({
 });
 
 Template.cmSliding.onDestroyed( function(){
-    // be verbose if asked for
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cmSliding onDestroyed()' );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cmSliding onDestroyed()' );
 });

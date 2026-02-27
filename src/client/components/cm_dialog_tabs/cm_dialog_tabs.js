@@ -9,6 +9,7 @@
  *  - cm_dialog_tabs_cookie
  */
 
+import { Logger } from 'meteor/pwix:logger';
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { Random } from 'meteor/random';
 
@@ -18,13 +19,11 @@ import '../../stylesheets/cm_cookie_manager.less';
 
 import './cm_dialog_tabs.html';
 
-Template.cm_dialog_tabs.onCreated( function(){
-    const self = this;
+const logger = Logger.get();
 
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_tabs onCreated()' );
-    }
+Template.cm_dialog_tabs.onCreated( function(){
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_tabs onCreated()' );
+    const self = this;
 
     self.CM = {
         // internal vars
@@ -162,16 +161,12 @@ Template.cm_dialog_tabs.onCreated( function(){
         }
         return true;
     });
-    //console.debug( 'tabs', self.CM.tabs );
+    //logger.debug( 'tabs', self.CM.tabs );
 });
 
 Template.cm_dialog_tabs.onRendered( function(){
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_tabs onRendered()' );
     const self = this;
-
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_tabs onRendered()' );
-    }
 
     // set the modal target
     Modal.set({ target: self.$( '.cm-dialog-tabs' ) });
@@ -269,7 +264,7 @@ Template.cm_dialog_tabs.events({
         // dump if asked for
         if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
             CookieManager._published.every(( ck ) => {
-                console.debug( 'pwix:CookieManager', ck.identifier(), ck.enabled());
+                logger.debug( ck.identifier(), ck.enabled());
                 return true;
             });
         }
@@ -283,10 +278,7 @@ Template.cm_dialog_tabs.events({
 });
 
 Template.cm_dialog_tabs.onDestroyed( function(){
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_tabs onDestroyed()' );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_tabs onDestroyed()' );
 });
 
 Template.cm_dialog_tabs_button.helpers({

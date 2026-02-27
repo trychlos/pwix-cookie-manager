@@ -2,6 +2,7 @@
  * pwix:cookie-manager/src/client/components/cm_dialog_buttons/cm_dialog_buttons.js
  */
 
+import { Logger } from 'meteor/pwix:logger';
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { UILayout } from 'meteor/pwix:ui-layout';
 import { Modal } from 'meteor/pwix:modal';
@@ -10,18 +11,14 @@ import '../../stylesheets/cm_cookie_manager.less';
 
 import './cm_dialog_buttons.html';
 
+const logger = Logger.get();
+
 Template.cm_dialog_buttons.onCreated( function(){
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_buttons onCreated()' );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_buttons onCreated()' );
 });
 
 Template.cm_dialog_buttons.onRendered( function(){
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_buttons onRendered()' );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_buttons onRendered()' );
 });
 
 Template.cm_dialog_buttons.helpers({
@@ -54,8 +51,5 @@ Template.cm_dialog_buttons.events({
 });
 
 Template.cm_dialog_buttons.onDestroyed( function(){
-    // be verbose
-    if( CookieManager.configure().verbosity & CookieManager.C.Verbose.COMPONENTS ){
-        console.debug( 'pwix:cookie-manager cm_dialog_buttons onDestroyed()' );
-    }
+    logger.verbose({ verbosity: CookieManager.configure().verbosity, against: CookieManager.C.Verbose.COMPONENTS }, 'cm_dialog_buttons onDestroyed()' );
 });

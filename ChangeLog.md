@@ -8,6 +8,7 @@
 
     - Decore the CookieManager link text to make it more visible
     - Use pwix:logger universal logger, thus bumping minor candidate version number
+    - The cmSliding component now exhibits all buttons to be compliant with EU recommandations
 
 ### 2.1.0
 

@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import { Logger } from 'meteor/pwix:logger';
 import { pwixI18n } from 'meteor/pwix:i18n';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 import '../../../common/js/index.js';
 
@@ -24,19 +25,21 @@ Template.cmSliding.onCreated( function(){
     self.CM = {
         // parms
         fontSize: '90%',
+        haveCookiesManagerLink: new ReactiveVar( true ),
+        haveCookiesPolicyLink: new ReactiveVar( false ),
 
         // these functions here because we need them twice
         haveBool( name, def ){
             const context = Template.currentData();
             return Object.keys( context ).includes( name ) && _.isBoolean( context[name] ) ? context[name] : def;
-        },
-        haveManager(){
-            return self.CM.haveBool( 'cookiesManager', true );
-        },
-        havePolicy(){
-            return self.CM.haveBool( 'cookiesPolicy', false );
         }
     };
+
+    // setup reactive vars
+    self.autorun(() => {
+        self.CM.haveCookiesManagerLink.set( self.CM.haveBool( 'cookiesManager', true ));
+        self.CM.haveCookiesPolicyLink.set( self.CM.haveBool( 'cookiesPolicy', false ));
+    });
 });
 
 Template.cmSliding.onRendered( function(){
@@ -56,14 +59,14 @@ Template.cmSliding.onRendered( function(){
 });
 
 Template.cmSliding.helpers({
-    // have a link to CookieManager dialog
+    // have a button to open the CookiesManager dialog
     cookiesManager(){
-        return Template.instance().CM.haveManager();
+        return Template.instance().CM.haveCookiesManagerLink.get();
     },
 
-    // have a cookie policy url ?
+    // have a cookies policy link ?
     cookiesPolicy(){
-        return Template.instance().CM.havePolicy();
+        return Template.instance().CM.haveCookiesPolicyLink.get();
     },
 
     // string translation
@@ -75,9 +78,16 @@ Template.cmSliding.helpers({
     //  depends of the count of displayed lines and of the font size
     imageHeight(){
         const CM = Template.instance().CM;
-        const count = 2 + ( CM.haveManager() ? 1 : 0 ) + ( CM.havePolicy() ? 1 : 0 );
+        const count = 2 + ( CM.haveCookiesPolicyLink.get() ? 1 : 0 ) + ( CM.haveCookiesManagerLink.get() ? 1 : 0 );
         const height = count * 16; // * parseFloat( CM.fontSize ) / 100;
         return height + 'px';
+    },
+
+    // parms for cm_dialog_buttons
+    parmsButtons(){
+        return {
+            haveCookiesManagerLink: Template.instance().CM.haveCookiesManagerLink.get()
+        }
     },
 
     // whether this sliding has to be shown
@@ -89,16 +99,23 @@ Template.cmSliding.helpers({
 });
 
 Template.cmSliding.events({
-    // got it: close the box and do not redisplay
-    'click .cm-gotit'( event, instance ){
-        instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
-        CookieManager.consentWrite( CookieManager.C.Action.GOTIT );
-    },
+    'click .cm-dialog-buttons button'( event, instance ){
+        const name = instance.$( event.currentTarget ).data( 'cm-name' );
+        if( name === 'RejectAll' ){
+            instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
+            CookieManager.consentWrite( CookieManager.C.Action.REJECT_ALL );
 
-    // open the cookies manager (also closing this box)
-    //  will write itself the user consent
-    'click .cm-manager-link'( event, instance ){
-        instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
+        } else if( name === 'AcceptAll' ){
+            instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
+            CookieManager.consentWrite( CookieManager.C.Action.ACCEPT_ALL );
+
+        } else if( name === 'Choose' ){
+            instance.$( '.cmSliding .cm-body' ).removeClass( 'show' );
+            CookieManager.runManager({});
+
+        } else {
+            logger.warning( 'name=\''+name+'\' is not handled' );
+        }
     },
 
     // user asks for display of the cookies policy (and close the box)

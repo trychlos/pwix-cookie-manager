@@ -10,11 +10,13 @@
         </div>
 
         <div class="right">
-            <button type="button" class="btn btn-secondary {{ smallBtn }}" data-cm-name="Choose">
-                {{ chooseLabel }}
-            </button>
-    
-            <button type="submit" class="btn btn-primary {{ smallBtn }}" data-cm-name="AcceptAll">
+            {{#if haveChoose }}
+                <button type="submit" class="btn btn-primary {{ smallBtn }}" data-cm-name="Choose">
+                    {{ chooseLabel }}
+                </button>
+            {{/if}}
+
+            <button type="{{ acceptType }}" class="btn {{ acceptClass }} {{ smallBtn }}" data-cm-name="{{ acceptName }}">
                 {{ acceptLabel }}
             </button>
         </div>

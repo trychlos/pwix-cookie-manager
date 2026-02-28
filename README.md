@@ -457,11 +457,13 @@ Defaults to a (localized) « Cookies policy ».
 
 A sliding alert band displayed in the bottom of the screen, to let the user be informed or the existence of a cookies policy.
 
-As this component provides a link to the cookies manager dialog, it may take the exact same parameters than `runManager()`, plus some specifics:
+As this component can provide a link to the cookies manager dialog, it may take the exact same parameters than `runManager()`, plus some specifics:
 
 - `cookiesManager`
 
     Whether to display a link to run the cookies manager.
+    
+    Starting with v2.2, the link is replaced with a 'Let me choose' button which will act as the default button. The behaviour is the same.
 
     On click, the cookies manager will be opened.
 
@@ -495,13 +497,23 @@ As this component provides a link to the cookies manager dialog, it may take the
 
         Rationale is that reading, even very carefully, the cookies policy is not at all the same that explicitly consent to the cookies.
 
-There is an english version
+There is an english version:
 
-![English version](/maintainer/png/sliding-en.png)
+![English version](/maintainer/png/sliding-en-v1.png)
 
-And a french version
+And a french version:
 
-![English version](/maintainer/png/sliding-fr.png)
+![English version](/maintainer/png/sliding-fr-v1.png)
+
+Starting with v2.2 version, Thge `Got it` button is replaced with the 'standard' `Decline non essentials`, `Choose` and `Accept all` buttons non only for consistency reasons, but also to be compliant with EU recommandations.
+
+There is an english version:
+
+![English version](/maintainer/png/sliding-en-v2.png)
+
+And a french version:
+
+![English version](/maintainer/png/sliding-fr-v2.png)
 
 ### Informational messages
 

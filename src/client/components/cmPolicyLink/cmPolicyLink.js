@@ -26,6 +26,5 @@ Template.cmPolicyLink.helpers({
 Template.cmPolicyLink.events({
     'click .cmPolicyLink'( event, instance ){
         instance.$( event.currentTarget ).trigger( 'cm-policy-click' );
-        return false;
     }
 });

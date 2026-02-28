@@ -4,7 +4,7 @@
 
 CookieManager.C = {
 
-    // the user's consent actins
+    // the user's consent actions
     Action: {
         GOTIT:      'GotIt',
         ACCEPT_ALL: 'AcceptAll',

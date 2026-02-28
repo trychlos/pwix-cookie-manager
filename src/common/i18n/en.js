@@ -8,8 +8,9 @@ CookieManager.i18n = {
         en: {
             buttons: {
                 accept: 'Accept all',
-                choose: 'Record my choices',
-                reject: 'Reject all'
+                choose: 'Let me choose...',
+                record: 'Record my choices',
+                reject: 'Only essentials'
             },
             cookie: {
                 originator: 'Originator',
@@ -35,12 +36,12 @@ CookieManager.i18n = {
             },
             links: {
                 manager: {
-                    label: 'Cookies management',
+                    label: 'Open cookies manager',
                     title: 'Cookies management'
                 },
                 policy: {
-                    label: 'Cookies management Policy',
-                    title: 'Cookies management Policy'
+                    label: 'Cookies management policy',
+                    title: 'Cookies management policy'
                 }
             },
             sliding: {

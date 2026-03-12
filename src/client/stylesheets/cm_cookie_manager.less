@@ -5,6 +5,29 @@
 @import "{pwix:ui-layout}/exports/stylesheets.less";
 
 .cm-cookie-manager {
+
+    // let accordions have a vertical overflow
+    .modal-body {
+        height: 100%;
+        .cm-dialog-tabs {
+            height: 100%;
+            .tab-content {
+                height: 100%;
+                .tab-pane.active {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    .content,
+                    .cookies-list {
+                        overflow-y: auto;
+                        flex-grow: 1;
+                        min-height: 0;
+                    }
+                }
+            }
+        }
+    }
+
     .cm-dialog-tabs {
         @media screen and ( min-width: @ui-md-width ){
             display: flex;

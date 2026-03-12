@@ -10,6 +10,7 @@
  */
 
 import { Logger } from 'meteor/pwix:logger';
+import { Modal } from 'meteor/pwix:modal';
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { Random } from 'meteor/random';
 
@@ -169,7 +170,7 @@ Template.cm_dialog_tabs.onRendered( function(){
     const self = this;
 
     // set the modal target
-    Modal.set({ target: self.$( '.cm-dialog-tabs' ) });
+    Modal.topmost().set({ target: self.$( '.cm-dialog-tabs' ) });
 
     // activates the first tab
     self.CM.tabs.every(( it ) => {
@@ -254,7 +255,7 @@ Template.cm_dialog_tabs.events({
     // user clicks one of the three buttons, terminating the dialog
     'cm-click .cm-dialog-tabs'( event, instance, data ){
         instance.CM.chosen = data.name;
-        Modal.close();
+        Modal.topmost().close();
     },
 
     // dialog is closed, apply the choice

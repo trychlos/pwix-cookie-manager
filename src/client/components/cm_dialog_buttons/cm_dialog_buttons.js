@@ -87,7 +87,7 @@ Template.cm_dialog_buttons.events({
     'click .cm-dialog-buttons button'( event, instance ){
         if( !instance.CM.fromSliding.get()){
             const name = instance.$( event.currentTarget ).data( 'cm-name' );
-            Modal.target().trigger( 'cm-click', { name: name });
+            Modal.topmost().target().trigger( 'cm-click', { name: name });
         }
     }
 });

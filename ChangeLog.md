@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.0-rc.0
+### 2.2.0
 
-    Release date: 
+    Release date: 2026- 4-13
 
     - Decore the CookieManager link text to make it more visible
     - Use pwix:logger universal logger, thus bumping minor candidate version number
@@ -112,4 +112,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Feb. 24th
+- Last updated on 2026, Apr. 13rd

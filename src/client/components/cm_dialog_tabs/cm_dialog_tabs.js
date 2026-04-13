@@ -13,6 +13,7 @@ import { Logger } from 'meteor/pwix:logger';
 import { Modal } from 'meteor/pwix:modal';
 import { pwixI18n } from 'meteor/pwix:i18n';
 import { Random } from 'meteor/random';
+import { Tolert } from 'meteor/pwix:tolert';
 
 import '../../../common/js/index.js';
 
@@ -262,6 +263,8 @@ Template.cm_dialog_tabs.events({
     'md-close .cm-dialog-tabs'( event, instance, data ){
         // apply user choices
         instance.CM.apply();
+        // confirm the settings have been written
+        Tolert.success( pwixI18n.label( I18N, 'dialog.confirm' ));
         // dump if asked for
         if( CookieManager.configure().verbosity & CookieManager.C.Verbose.STORAGE ){
             CookieManager._published.every(( ck ) => {

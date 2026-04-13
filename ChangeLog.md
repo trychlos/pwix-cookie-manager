@@ -11,6 +11,7 @@
     - The cmSliding component now exhibits all buttons to be compliant with EU recommandations
     - Update to pwix:modal v2.5
     - Fix stylesheet to let accordions have a vertical overflow
+    - Have a small toast to confirm the settings have been successfully written
 
 ### 2.1.0
 

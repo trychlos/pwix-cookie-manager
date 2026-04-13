@@ -13,26 +13,27 @@ CookieManager.i18n = {
                 reject: 'Only essentials'
             },
             cookie: {
-                originator: 'Originator',
                 description: 'Description',
-                lifetime: 'Lifetime',
                 disableable: 'Disableable',
-                link: 'Link',
-                illimited: 'Illimited',
-                disableableTrue: 'Yes',
                 disableableFalse: 'No',
+                disableableTrue: 'Yes',
+                illimited: 'Illimited',
+                lifetime: 'Lifetime',
+                link: 'Link',
                 one_year: 'One year',
-                value: 'Current value',
+                originator: 'Originator',
                 undef: '<undefined>',
-                unknown: 'Unknown'
+                unknown: 'Unknown',
+                value: 'Current value'
             },
             dialog: {
-                title: 'Cookies Manager',
-                none: 'No cookie declared in this category',
                 chosen: 'Prevent the CookieManager preferences dialog to be re-displayed each time a page is reloaded.',
+                confirm: 'Your choices have been successfully registered',
                 consent: 'A composite data which records the date of the user consent, the action he/she has chosen, and the list of enabled cookies',
+                none: 'No cookie declared in this category',
                 schema: 'The version number of the storage schema',
-                size: 'Keep the last dialog size to improve user experience.'
+                size: 'Keep the last dialog size to improve user experience.',
+                title: 'Cookies Manager'
             },
             links: {
                 manager: {
@@ -47,9 +48,9 @@ CookieManager.i18n = {
             sliding: {
                 body: '<p>This site use <em>cookies</em> or other comparable technologies to offer you a better and more comfortable experience.</p>',
                 body_sm: '<p>This site use <em>cookies</em> to offer you a better experience.</p>',
-                policy_link: 'Read our cookies policy',
+                gotit: 'Got it. Thanks!',
                 manager_link: 'Open the cookies manager',
-                gotit: 'Got it. Thanks!'
+                policy_link: 'Read our cookies policy'
             },
             tabs: {
                 functionals: {

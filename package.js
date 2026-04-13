@@ -31,6 +31,7 @@ function configure( api ){
     api.use( 'pwix:logger@1.0.0-rc' );
     api.use( 'pwix:modal@2.5.0-rc' );
     api.use( 'pwix:toggle-switch@0.3.3' );
+    api.use( 'pwix:tolert@1.5.0' );
     api.use( 'pwix:ui-layout@2.0.0' );
     api.use( 'reactive-var' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );

@@ -13,26 +13,27 @@ CookieManager.i18n = {
                 reject: 'Seulement les essentiels'
             },
             cookie: {
-                originator: 'Origine',
                 description: 'Description',
-                lifetime: 'Durée de vie',
                 disableable: 'Désactivable',
-                link: 'Lien',
-                illimited: 'Illimitée',
-                disableableTrue: 'Oui',
                 disableableFalse: 'Non',
+                disableableTrue: 'Oui',
+                illimited: 'Illimitée',
+                lifetime: 'Durée de vie',
+                link: 'Lien',
                 one_year: 'Un an',
-                value: 'Valeur',
+                originator: 'Origine',
                 undef: '<non définie>',
-                unknown: 'Inconnue'
+                unknown: 'Inconnue',
+                value: 'Valeur'
             },
             dialog: {
-                title: 'Gestion des cookies',
-                none: 'Aucun cookie n\'est déclaré dans cette categorie',
                 chosen: 'Empêche la boite de dialogue de gestion des cookies d\'être réaffichée quand une page est rechargée.',
+                confirm: 'Vos choix ont été enregistrés avec succès',
                 consent: 'Une donnée composée qui enregistre la date du consentement de l\'utilisateur, l\'action qu\'il/elle a choisie, ainsi que la liste des cookies autorisés',
+                none: 'Aucun cookie n\'est déclaré dans cette categorie',
                 schema: 'Le numéro de version du schéma de stockage',
-                size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.'
+                size: 'Enregistre la dernière taille de la boîte de dialogue pour améliorer l\'expérience utilisateur.',
+                title: 'Gestion des cookies'
             },
             links: {
                 manager: {
@@ -47,9 +48,9 @@ CookieManager.i18n = {
             sliding: {
                 body: '<p>Ce site utilise des <em>cookies</em> ou d\'autres technologies comparables pour vous procurer une meilleure et plus confortable expérience de navigation.</p>',
                 body_sm: '<p>Ce site utilise des <em>cookies</em> pour vous procurer une meilleure expérience de navigation.</p>',
-                policy_link: 'Prenez connaissance de notre stratégie de gestion des cookies',
+                gotit: 'Vu. Merci !',
                 manager_link: 'Managez vos cookies',
-                gotit: 'Vu. Merci !'
+                policy_link: 'Prenez connaissance de notre stratégie de gestion des cookies'
             },
             tabs: {
                 functionals: {

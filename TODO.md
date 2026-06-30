@@ -21,7 +21,9 @@
 |   19 | 2023- 6- 1 | Have configuration option to allow cmSliding in bots prerendering |
 |   27 | 2023- 9- 6 | Integrate cookie policy as a template + link |
 |      | 2023- 9-14 | define cmPolicyLink component: done |
-|   31 |  |  |
+|   31 | 2026- 4-20 | cookies may have a dynamic name only known at runtime |
+|   32 | 2026- 4-27 | when user accepts 'only essentials', other cookies should be automatically disabled |
+|   33 |  |  |
 
 ---
 ## Done

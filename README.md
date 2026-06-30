@@ -620,4 +620,4 @@ New and updated translations are willingly accepted, and more than welcome. Just
 
 ---
 P. Wieser
-- Last updated on 2026, Apr. 13rd
+- Last updated on 2026, Jun. 30th

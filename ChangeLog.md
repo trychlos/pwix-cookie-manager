@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.1-rc.0
+### 2.2.1
 
-    Release date: 
+    Release date: 2026- 6-30
 
     - Cookie methods take an optional options object as additional argument (todo #31)
 
@@ -118,4 +118,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Apr. 13rd
+- Last updated on 2026, Jun. 30th

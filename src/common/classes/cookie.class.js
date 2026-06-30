@@ -183,10 +183,11 @@ export class Cookie {
 
     /*
      * Getter
+     * @param {Object} opts an optional options object
      * @returns {String} the value of the cookie in localStorage, or undefined if doesn't exist
      */
-    _storeReadValue(){
-        const value = localStorage.getItem( this.valueKey());
+    _storeReadValue( opts={} ){
+        const value = localStorage.getItem( this.valueKey( opts ));
         return value;
     }
 
@@ -200,9 +201,11 @@ export class Cookie {
 
     /*
      * @param {String} value
+     * @param {Object} opts an optional options object
      */
-    _storeWriteValue( value ){
-        localStorage.setItem( this.valueKey(), value );
+    _storeWriteValue( value, opts={} ){
+        logger.debug( '_storeWriteValue()', arguments );
+        localStorage.setItem( this.valueKey( opts ), value );
     }
 
     // public data
@@ -359,30 +362,42 @@ export class Cookie {
     /**
      * Getter/Setter
      * @param {String} value the value to be written
+     * @param {Object} opts an optional options object with following keys:
+     *  - dyn: a dynamic additional name
      * @returns {String} the stored value, can be undefined
      *  Is always undefined if cookie is not enabled
      */
-    value( value ){
+    value( value, opts={} ){
         const enabled = this.enabled();
-        if( value !== undefined ){
+        // if called with opts only
+        if( _.isObject( value )){
+            opts = value;
+        } else if( value !== undefined ){
             if( enabled ){
-                this._storeWriteValue( value );
+                this._storeWriteValue( value, opts );
             } else {
                 logger.warn( 'Cookie.value() refusing to write the value of a disabled cookie' );
                 return undefined;
             }
         }
         if( enabled ){
-            return this._storeReadValue(); // which may be undefined
+            return this._storeReadValue( opts ); // which may be undefined
         }
         return undefined;
     }
 
     /**
      * Getter
+     * @param {Object} opts an optional options object with following keys:
+     *  - dyn: a dynamic additional name
      * @returns {String} the full key which records the value
      */
-    valueKey(){
-        return CM_RESPONSIBLE + CM_SLASH + this.identifier() + '/value';
+    valueKey( opts={} ){
+        let key = CM_RESPONSIBLE + CM_SLASH + this.identifier();
+        if( opts.dyn ){
+            key += CM_SLASH + opts.dyn;
+        }
+        key += '/value';
+        return key;
     }
 }

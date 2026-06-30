@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Cookie methods take an optional options object as additional argument (todo #31)
 
 ### 2.2.0
 

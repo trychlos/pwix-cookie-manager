@@ -204,7 +204,7 @@ export class Cookie {
      * @param {Object} opts an optional options object
      */
     _storeWriteValue( value, opts={} ){
-        logger.debug( '_storeWriteValue()', arguments );
+        //logger.debug( '_storeWriteValue()', arguments );
         localStorage.setItem( this.valueKey( opts ), value );
     }
 

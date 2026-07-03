@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Add Logger to Cookie class
 
 ### 2.2.1
 

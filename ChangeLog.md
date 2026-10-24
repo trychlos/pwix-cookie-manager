@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.2-rc.0
+### 2.2.2
 
-    Release date: 
+    Release date: 2026-10-24
 
     - Add Logger to Cookie class
 
@@ -124,4 +124,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Jun. 30th
+- Last updated on 2026, Oct. 24th
